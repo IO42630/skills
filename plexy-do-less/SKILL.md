@@ -1,6 +1,8 @@
 ---
 name: plexy-do-less
-description: Do the smallest correct action — answer or edit directly, skip broad scans, tangents, subagents, and preamble. Trigger on "quick", "fast", "minimal", "just", "tldr", or "do less"; on direct or file-scoped questions; and when at risk of over-exploring.
+description: >
+  Do the smallest correct action — answer or edit directly, skip broad scans, tangents, subagents, and preamble. 
+  Trigger on "quick", "fast", "minimal", "tldr", or "do less"; on direct or file-scoped questions; and when at risk of over-exploring.
 ---
 
 # plexy-do-less
