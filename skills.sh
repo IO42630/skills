@@ -23,6 +23,8 @@ install_skill() {
 # 1. Install/Update specific skills non-interactively
 install_skill "https://github.com/io42630/skills" "plexy-markdown"
 install_skill "https://github.com/io42630/skills" "plexy-do-less"
+install_skill "https://github.com/io42630/skills" "plexy-robot"
+install_skill "https://github.com/io42630/skills" "plexy-kiss"
 install_skill "https://github.com/anthropics/skills" "skill-creator"
 
 # 2. Keep the root clean: move any generated lockfiles into .agents/
