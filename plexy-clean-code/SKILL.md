@@ -1,10 +1,10 @@
 ---
 name: plexy-clean-code
 description: >
-  When writing code.
+  Error-handling and field-encapsulation conventions for writing or editing code.
 ---
 
 # Smooth Conventions
 
-- don't create custom error messages, assume the user can read the stack-trace
-- encapsulate fields - if a field can be private, make it private
+- Rely on exceptions and stack traces instead of custom error messages.
+- Make fields private whenever possible.
