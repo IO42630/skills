@@ -4,6 +4,11 @@ A collection of AI agent skills compatible with [skills.sh](https://skills.sh/) 
 
 ## Available Skills
 
+### [`com-olexyn-tabdriver`](./com-olexyn-tabdriver/SKILL.md)
+
+- Guides integration of `com.olexyn:tabdriver` browser automation in Java applications.
+    - Covers configuration, a shared driver, named tabs, and session handling.
+
 ### [`plexy-clean-code`](./plexy-clean-code/SKILL.md)
 
 - Relies on exceptions and stack traces instead of custom error messages.
@@ -19,6 +24,10 @@ A collection of AI agent skills compatible with [skills.sh](https://skills.sh/) 
 - Follows explicit guidelines, user-designated references, and established project idioms.
     - Matches implementation conventions beyond formatting, including libraries and boilerplate-reduction tools.
 
+### [`plexy-java`](./plexy-java/SKILL.md)
+
+- Defines Java conventions for imports, code style, null handling, dependencies, and line breaks.
+
 ### [`plexy-kiss`](./plexy-kiss/SKILL.md)
 
 - Keeps the requested solution readable and maintainable without speculative complexity.
@@ -27,6 +36,10 @@ A collection of AI agent skills compatible with [skills.sh](https://skills.sh/) 
 ### [`plexy-markdown`](./plexy-markdown/SKILL.md)
 
 Formats Markdown as tight bullets: one statement per bullet, sub-bullets for sub-statements, lines under 120 chars.
+
+### [`plexy-robot`](./plexy-robot/SKILL.md)
+
+- Keeps replies terse, dense, and direct without losing technical accuracy or necessary detail.
 
 ### [`plexy-tickets`](./plexy-tickets/SKILL.md)
 
