@@ -28,18 +28,6 @@ A collection of AI agent skills compatible with [skills.sh](https://skills.sh/) 
 
 Formats Markdown as tight bullets: one statement per bullet, sub-bullets for sub-statements, lines under 120 chars.
 
-### [`plexy-nukeduck`](./plexy-nukeduck/SKILL.md)
-
-Rewrites arbitrary works of literature with full commitment by turning every character into a duck.
-
-### [`plexy-spawn`](./plexy-spawn/SKILL.md)
-
-Decomposes complex tasks into concurrent subagents (swarm execution) with clear boundaries and join points.
-
-### [`plexy-teach`](./plexy-teach/SKILL.md)
-
-Builds dense, research-grounded HTML lessons with mechanisms, contrasts, retrieval practice, and transfer tasks.
-
 ### [`plexy-tickets`](./plexy-tickets/SKILL.md)
 
 - Turns plans into verifiable local tickets with explicit blockers and approval before writing files.
