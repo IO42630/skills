@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trace a nested-list total</title>
+  <link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+  <main class="lesson">
+    <h1>Trace a nested-list total</h1>
+    <p>Promise: explain how recursive calls combine leaf values in a non-empty nested list.</p>
+    <p>Estimated time: 8 minutes including practice.</p>
+    <h2>Where does the total come from?</h2>
+    <p>For <code>[2, [3]]</code>, the outer call receives the leaf value 2 and the inner call's total 3.</p>
+    <p>The inner call returns 3; the outer call adds 2 + 3 and returns 5.</p>
+    <h2>Retrieve</h2>
+    <p>Without looking back, explain which call returns first and why.</p>
+    <details>
+      <summary>Compare your reasoning</summary>
+      <p>The call for <code>[3]</code> finishes first, so its result is available to the outer call.</p>
+    </details>
+    <h2>Transfer</h2>
+    <p>Predict the total and return order for <code>[[4], 1]</code>.</p>
+    <details>
+      <summary>Check the trace</summary>
+      <p>The call for <code>[4]</code> returns 4; the outer call adds the leaf value 1 and returns 5.</p>
+    </details>
+    <h2>Keep</h2>
+    <p>A parent call uses the results returned by its smaller calls.</p>
+    <p>Next question: what should a call return when its list is empty?</p>
+    <p>Source: <a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">Python functions</a>.</p>
+    <p>Ask your teacher for a different trace if the return order is unclear.</p>
+  </main>
+</body>
+</html>

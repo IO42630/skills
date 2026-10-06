@@ -1,0 +1,145 @@
+{
+  "skill_name": "plexy-teach",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a self-contained HTML lesson that teaches a developer who knows variables and loops but not recursion how to use recursion to solve and debug a nested-data problem. Make the lesson intellectually interesting, not a shallow definition, and include a worked example, a tempting wrong approach, a boundary case, retrieval practice, and a transfer task.",
+      "expected_output": "A polished HTML lesson that builds a causal mental model of recursion and lets the learner apply it to a new nested-data problem.",
+      "files": [],
+      "expectations": [
+        "The lesson is an actual readable HTML artifact with semantic structure and a visible learning promise.",
+        "The explanation includes a worked recursive example, a comparison with a tempting iterative or incorrect approach, and a boundary case.",
+        "The lesson includes both retrieval practice and a novel transfer task with feedback or an answer explanation.",
+        "The lesson is substantially more than a definition or a short list of generic points."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Teach me Bayesian reasoning so I can interpret medical screening results without confusing sensitivity, specificity, and the probability that a positive result is correct. I understand percentages but have not studied probability formally. Produce an HTML lesson with an intriguing opening puzzle, concrete numbers, an explanation of base rates, a near-miss misconception, uncertainty or limitations, and practice that transfers to a fresh scenario.",
+      "expected_output": "A research-grounded HTML lesson that makes base rates and predictive values intuitive without sacrificing precision.",
+      "files": [],
+      "expectations": [
+        "The lesson uses concrete numerical examples to distinguish sensitivity, specificity, and predictive value.",
+        "The lesson explains the base-rate mechanism and addresses why the common misconception is tempting.",
+        "The lesson contains an opening puzzle, a boundary or limitation, and a fresh transfer exercise.",
+        "Important claims are qualified or linked to credible source material rather than presented as unsupported authority."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want a first serious lesson on how to read a company's balance sheet to judge financial health. I can read basic accounting terms but usually memorize ratios without understanding them. Build an HTML lesson around a real decision: compare two companies that look similar at first glance, explain the mechanisms behind liquidity and leverage, expose at least one ratio trap, and finish with retrieval plus a new case.",
+      "expected_output": "A dense, decision-oriented HTML lesson that turns balance-sheet ratios into an interpretable model rather than a formula list.",
+      "files": [],
+      "expectations": [
+        "The lesson uses a concrete comparison or decision and explains the mechanisms behind liquidity and leverage.",
+        "The lesson includes a ratio trap, assumption or boundary case that prevents rote application.",
+        "The lesson has retrieval practice and a novel case requiring interpretation rather than repetition.",
+        "The HTML artifact is self-contained, navigable, and suitable for later reference."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Continue teaching me in the supplied workspace, keeping its relative layout. I have ten minutes today. Choose the smallest useful next debugging capability for my Python CLI, using what I demonstrated in earlier sessions and the pending review. I have not answered today's exercises yet. Keep my preference for individual practice.",
+      "expected_output": "A short continuation lesson about empty-list termination, preceded by a closed-book review and integrated with the existing assets, vocabulary, and learning path without prematurely recording mastery.",
+      "files": [
+        "plexy-teach/evals/fixtures/workspace/MISSION.md",
+        "plexy-teach/evals/fixtures/workspace/RESOURCES.md",
+        "plexy-teach/evals/fixtures/workspace/GLOSSARY.md",
+        "plexy-teach/evals/fixtures/workspace/NOTES.md",
+        "plexy-teach/evals/fixtures/workspace/learning-records/0001-hard-coded-depth.md",
+        "plexy-teach/evals/fixtures/workspace/learning-records/0002-tracing-recursive-totals.md",
+        "plexy-teach/evals/fixtures/workspace/lessons/0007-sum-nested-lists.html",
+        "plexy-teach/evals/fixtures/workspace/assets/lesson.css"
+      ],
+      "expectations": [
+        "The response invites a brief closed-book trace before further explanation and does not invent the learner's answer.",
+        "The core lesson targets empty-list termination rather than repeating basic non-empty tracing or expanding into dictionaries and performance optimisation.",
+        "The new lesson is numbered 0008, links to the existing lesson through a valid relative path, and reuses assets/lesson.css rather than replacing it or duplicating its foundation.",
+        "The lesson states an estimated completion time within ten minutes including retrieval and transfer practice, with optional extensions clearly separate.",
+        "Examples use Python and the canonical term leaf value, and no forums or group classes are recommended.",
+        "Existing records and glossary entries are preserved; teaching new material alone creates neither a mastery record nor a settled glossary term.",
+        "A concrete later review prompt is planned without marking it completed; interleaving is limited to related skills the learner can already use.",
+        "Useful researched sources extend rather than duplicate RESOURCES.md, and essential local dependencies resolve within the copied workspace."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Use the supplied workspace as the state from our earlier sessions. Here is my answer to the empty-list exercise: an empty list returns zero because it contributes no leaf values; [2, [], [3]] totals 5, and each empty branch stops without another recursive call. I now see why my earlier assumption that every list needs a first leaf was wrong. Record this correction and plan a later review; I do not need another lesson today. I am considering switching the goal to browser development, but I have not decided, so ask me before changing the mission.",
+      "expected_output": "An evidence-based state update with a new numbered correction record, explicit linked supersession, a spaced review, and no unconfirmed mission change or unnecessary lesson.",
+      "files": [
+        "plexy-teach/evals/fixtures/workspace/MISSION.md",
+        "plexy-teach/evals/fixtures/workspace/GLOSSARY.md",
+        "plexy-teach/evals/fixtures/workspace/NOTES.md",
+        "plexy-teach/evals/fixtures/workspace/learning-records/0001-hard-coded-depth.md",
+        "plexy-teach/evals/fixtures/workspace/learning-records/0002-tracing-recursive-totals.md"
+      ],
+      "expectations": [
+        "A new learning record numbered 0003 captures the corrected understanding, the learner's actual answer as evidence, and its implication for future practice.",
+        "Record 0002 is retained and marked Status: superseded by LR-0003, with links from it to the new record and from the new record back to 0002.",
+        "Record 0001 and its existing supersession history are preserved, and the non-empty tracing capability is not erased by the correction.",
+        "MISSION.md remains unchanged until the learner confirms a new goal, and the response asks a focused confirmation question.",
+        "A later closed-book review is recorded in NOTES.md without claiming long-term retention from this immediate answer alone.",
+        "Any glossary update reflects demonstrated understanding, preserves canonical terms, and does not duplicate an existing term under a synonym.",
+        "No new HTML lesson, full course scaffold, or community recommendation is created."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "In one sentence, what does recursion mean? This is a quick reference question, not a request for a lesson or study plan. Do not create or edit any files.",
+      "expected_output": "A direct one-sentence explanation without invoking a persistent teaching workflow.",
+      "files": [],
+      "expectations": [
+        "The response gives a concise and accurate one-sentence explanation rather than a guided lesson.",
+        "No HTML artifact, teaching state file, asset, or directory is created or edited.",
+        "The response does not interview the user about a mission, invent learner preferences, or propose a course.",
+        "In a normal-routing run, plexy-teach is not selected for this explicitly non-teaching request; forced-skill runs cannot establish routing success."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Teach me to debug an off-by-one error in a Python loop. I know variables and basic loops, and I have ten minutes including practice. Create a lesson in a portable teaching workspace that I can open directly through file:// with networking disabled, use only with a keyboard, read with JavaScript disabled, and print with the exercises and answer explanations intact. Shared local assets are fine. Test those behaviors where tools permit; clearly tell me which checks you could not perform.",
+      "expected_output": "A bounded, accessible, offline-capable lesson with local relative dependencies and an honest artifact-verification report.",
+      "files": [],
+      "expectations": [
+        "The lesson has one debugging capability and an estimated core completion time within ten minutes including retrieval and a new transfer case.",
+        "All required styles, scripts, fonts, diagrams, and other local dependencies resolve from the copied workspace without network access or a development server.",
+        "The artifact uses semantic HTML with a title, language attribute, meaningful headings, readable contrast, and labelled native controls where interaction is needed.",
+        "Keyboard users can reach and operate every necessary interaction without a mouse and see the focused element.",
+        "With JavaScript disabled, the explanation, retrieval prompts, transfer task, and specific answer reasoning remain readable.",
+        "A narrow viewport has no clipped essential content, motion respects reduced-motion preferences if present, and print output includes both exercises and their answer explanations.",
+        "The report distinguishes performed browser checks from static inspection and unavailable checks, without claiming unperformed checks passed.",
+        "New learning records or glossary entries do not claim the learner mastered the content before an exercise response is received."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Export the supplied lessons/0007-sum-nested-lists.html as exports/0007-sum-nested-lists.html, a single standalone HTML file I can email and open offline without any other workspace files. Preserve the original lesson and assets unchanged. This is an export, not a request for a new lesson or new teaching content.",
+      "expected_output": "A single-file copy with its stylesheet embedded, no required local or network dependencies, and unchanged original workspace files.",
+      "files": [
+        "plexy-teach/evals/fixtures/workspace/lessons/0007-sum-nested-lists.html",
+        "plexy-teach/evals/fixtures/workspace/assets/lesson.css"
+      ],
+      "expectations": [
+        "The requested export file exists and preserves the source lesson's explanation, prompts, answer reasoning, and optional external source link.",
+        "Required stylesheet content is embedded rather than linked through ../assets/lesson.css, and the exported copy works without the asset directory.",
+        "The source HTML and shared stylesheet are unchanged.",
+        "No new numbered lesson or learning record is created, and no mission interview or additional curriculum is introduced.",
+        "Export portability is verified where tools permit, with unavailable runtime checks reported honestly."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I have finished a beginner Python CLI lesson and can write the code, but I need judgment about whether other people can understand and maintain it. I would like constructive practitioner feedback online, have no budget for classes, and am willing to consider a community. Help me find one or two reputable places and a concrete question or small artifact to bring. Do not make another HTML lesson or imply that I have already joined or received feedback.",
+      "expected_output": "Mission-relevant, verified community recommendations with a concrete feedback task and durable source annotations, without substituting community opinion for evidence.",
+      "files": [],
+      "expectations": [
+        "Recommendations are verified real communities with a stated reason to expect relevant, constructive practitioner feedback rather than fabricated links or generic popularity claims.",
+        "The suggested feedback task concerns readability or maintainability of a small Python CLI artifact and respects the zero-budget online constraint.",
+        "The response distinguishes what can be explained from documentation from context-dependent judgment that benefits from practitioner feedback.",
+        "Useful recommendations are annotated under Wisdom (Communities) in RESOURCES.md without inventing membership or learning evidence.",
+        "If verification is unavailable, candidate communities are explicitly unverified rather than claimed researched or reputable.",
+        "No unnecessary HTML lesson or full course scaffold is produced."
+      ]
+    }
+  ]
+}
