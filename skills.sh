@@ -24,6 +24,7 @@ install_skill() {
 install_skill "https://github.com/io42630/skills" "plexy-markdown"
 install_skill "https://github.com/io42630/skills" "plexy-do-less"
 install_skill "https://github.com/io42630/skills" "plexy-robot"
+install_skill "https://github.com/io42630/skills" "plexy-tickets"
 install_skill "https://github.com/io42630/skills" "plexy-kiss"
 install_skill "https://github.com/anthropics/skills" "skill-creator"
 
