@@ -1,21 +1,19 @@
 ---
 name: plexy-teach
 description: >
-  Teach a skill or concept through dense, rigorous, beautifully crafted HTML lessons that make the learner
-  think, remember, and transfer what they learn. Use for guided learning, practice, lessons, tutorials,
+  Teach a skill or concept through clear, focused HTML lessons with simple examples, visible reasoning,
+  and useful practice. Use for guided learning, practice, lessons, tutorials,
   study plans, courses, or teaching workspaces, even without the word "teach". Do not turn quick factual
   questions, ordinary code fixes, or edits to teaching instructions into teaching sessions.
 ---
 
 # plexy-teach
 
-Act as a demanding teacher, curriculum designer, and careful researcher. Build lessons that repay attention.
-The learner should leave each lesson with a sharper mental model, a usable capability, and a question worth
-carrying forward.
-
-Do not confuse length with depth. Depth comes from causal explanations, carefully chosen examples, contrasts,
-boundary cases, retrieval, and transfer. A lesson with three generic points and motivational filler has failed,
-even if its typography is attractive.
+- Teach the core idea directly.
+- Use the simplest faithful example that makes the reasoning visible.
+- Judge depth by what the learner can explain or do, not by topic count, realism, or visual polish.
+- Spend the learner's attention on understanding the idea, not decoding a scenario.
+- Keep necessary nuance without turning every caveat into another topic.
 
 ## Invocation Boundaries
 
@@ -77,58 +75,63 @@ that lets the learner understand a mechanism, make a decision, predict an outcom
 
 ## Design the Lesson
 
-Every lesson is one tightly bounded capability connected to the mission. It may contain many linked ideas, but
-all of them must serve one central question or decision.
-
-- Default to a core lesson completable in 10–15 minutes, including its retrieval and transfer practice.
+- Choose one tightly bounded capability connected to the mission.
+    - A broad mission is context, not the syllabus for the next lesson.
+- Default to a core lesson completable in 10–15 minutes, including practice.
     - The learner's stated time budget takes precedence.
     - State the estimated completion time in the lesson.
-- Introduce only the few new conceptual chunks needed for the promised capability.
-    - Keep worked steps visible so the learner need not hold the whole procedure in working memory.
-- Split material that exceeds the budget into linked lessons rather than compressing it into unexplained prose.
-- Keep optional deeper branches separate from the core path.
-- Let the lesson progression serve the time budget rather than inflate it into nine compulsory sections.
+- Define the promised capability and the learner's demonstrated prior floor before writing.
+- Choose the smallest example that exposes the mechanism needed for that capability.
+- Keep worked steps visible so the learner need not hold the whole procedure in working memory.
+- Split material that exceeds the budget into later lessons rather than compressing it into unexplained prose.
+- Do not attach an advanced appendix merely to include everything researched.
 
-Before writing, define internally:
+Use a short teaching flow rather than a quota of sections:
 
-- **Promise:** what the learner will be able to explain, predict, make, or decide afterward.
-- **Prior floor:** what the learner can already use without re-reading an explanation.
-- **Central tension:** the puzzle, trade-off, misconception, or surprising observation that makes the topic matter.
-- **Concept spine:** the few ideas whose relationships produce the promised capability.
-- **Transfer task:** a fresh situation in which the learner must use the model rather than repeat a phrase.
+1. State the idea and why it matters in plain language.
+2. Work through one small example, showing why each decisive step follows.
+3. Ask the learner to retrieve the reasoning and apply it to a small changed case.
+4. Finish with the rule to keep and its essential limit.
 
-Use a progression such as:
+- Combine stages when it makes the explanation clearer.
+- Use a puzzle only when it helps reveal the idea.
+    - Ask for a prediction before revealing the outcome; a known failure calls for diagnosis instead.
+- Add a contrast or boundary case when it prevents a likely misunderstanding of this capability.
+    - Neither needs its own section or a separate elaborate scenario.
+- Introduce additional concepts only when the current explanation needs them.
 
-1. **Orient:** open with a concrete puzzle, prediction, failure, historical turn, or counterintuitive result.
-2. **Name:** introduce only the vocabulary needed to think precisely about the puzzle.
-3. **Model:** show the mechanism or structure, not merely a definition.
-4. **Work:** walk through a representative example with the reasoning visible.
-5. **Contrast:** compare a near neighbor, tempting alternative, or plausible wrong approach.
-6. **Stress-test:** show a boundary case, failure mode, exception, or change in assumptions.
-7. **Retrieve:** ask the learner to reconstruct the idea without looking at the explanation.
-8. **Transfer:** give a new problem, artifact, decision, or prediction that reveals whether the model travels.
-9. **Compress:** finish with a compact reference and a bridge to the next useful question.
+### Use Minimal, Faithful Examples
 
-This is a design pattern, not a form to fill mechanically. Skip a stage only when doing so makes the lesson
-clearer, not because the first definition feels sufficient.
+- Start with the minimum actors, objects, inputs, and steps needed to show the mechanism.
+- Explain the concept before asking the learner to navigate domain-specific machinery.
+- Reuse the same small example for explanation, correction, and comparison where possible.
+    - Change one relevant condition at a time so the cause of the changed result is visible.
+- Omit names, backstory, infrastructure, code, and numbers that do no explanatory work.
+- Use short code fragments when they make the decisive operation clearer than prose.
+    - Do not build a sample application to teach one check or one return value.
+    - Label pseudocode and omitted implementation details honestly.
+- State assumptions that keep the example valid.
+    - Simplify the presentation, not required safety, correctness, or data-integrity controls.
+    - Do not present an illustrative fragment as production-ready code.
+- Add realistic complexity after the simple mechanism is understood, or when it is the requested capability.
 
-### Make It Dense Without Making It Murky
+- For an initial authorization lesson, one caller and one requested document can expose the missing check.
+    - Show why being logged in does not establish permission to read that document.
+    - Use trusted caller identity and trusted policy data for the server-side decision before releasing bytes.
+    - Keep policy stable for this example; defer queues, cached grants, and revocation timing.
+- For a recursive-total lesson, a tiny nested list can expose how a child result reaches its parent.
+    - Avoid a filesystem crawler or a general tree framework unless that is what the learner needs to learn.
 
-Aim for a high signal-to-noise lesson. Each section should change what the learner can see or do.
+### Make the Reasoning Do the Work
 
-- Prefer causal chains and relationships over disconnected fact lists.
-- Use concrete examples, minimal examples, adversarial examples, and near misses where they reveal different edges.
-- Explain why a misconception is attractive before correcting it; this makes the correction retrievable.
-- Include two or more curiosity anchors when they illuminate the model: an origin, surprising consequence, real
-  failure, cross-domain connection, unresolved question, or useful edge case.
-- Let details earn their place by sharpening a prediction, exposing an assumption, or changing a decision.
-- Compare concepts that are easy to confuse, using the same dimensions for both.
-- State what would count as evidence against the model or when a different model should replace it.
-- Prefer one precise paragraph to three atmospheric paragraphs.
-- Use technical language when it compresses thought, then define it with a concrete consequence.
-
-Curiosity is not decoration. A surprising detail should function as a handle for memory or as evidence that
-forces the learner to refine the model. Remove trivia that cannot do either job.
+- Explain the causal chain instead of listing related facts.
+- Walk through the decisive step rather than naming an advanced principle in place of explaining it.
+- Define only vocabulary needed for the current reasoning.
+- Explain a tempting mistake when the learner is likely to make it.
+- Keep interesting facts only when they clarify the mechanism or make its essential limit memorable.
+    - There is no quota for surprises, historical context, or cross-domain connections.
+- Remove a detail if its removal changes neither understanding nor the learner's next decision.
+- Do not mistake brevity for teaching: the example still needs an explanation of why it works.
 
 ### Write Like an Expert Teacher
 
@@ -151,11 +154,16 @@ Choose practice that matches the capability:
 - **Reconstruction:** ask the learner to draw, outline, or explain the model from memory.
 - **Manipulation:** let the learner change an input and observe a consequence.
 - **Diagnosis:** present a plausible failure and ask for the broken assumption.
-- **Transfer:** use a novel case, not a reworded example from the lesson.
+- **Transfer:** apply the taught reasoning to a small changed case without adding untaught prerequisites.
+    - Require a fresh decision or trace, not just recognition of the same words.
 
-Give feedback that identifies the decisive reasoning, not only whether the answer is right. Explain why each
-wrong path was tempting. Avoid answer clues in formatting, option length, ordering, or conspicuous wording.
-Interactions must still work as readable content if scripts fail, and they must not turn learning into clicking.
+- A short exercise can combine retrieval and transfer.
+    - Ask the learner to recall the rule, make a prediction, and explain it in the changed case.
+- Give feedback that identifies the decisive reasoning, not only whether the answer is right.
+- Address the relevant wrong path without inventing a catalogue of distractors.
+- Avoid answer clues in formatting, option length, ordering, or conspicuous wording.
+- Prefer a prompt with a readable answer explanation over a custom simulator or quiz engine.
+- Keep interactions readable if scripts fail.
 
 End with a small real-world action or observation when possible. Ask the learner to report what they predicted,
 noticed, built, or changed. Only treat material as learned when there is evidence of use, not mere exposure.
@@ -198,22 +206,27 @@ noticed, built, or changed. Only treat material as learned when there is evidenc
     - Preserve the workspace lesson and reusable assets.
     - An export is not a new lesson and does not consume the next lesson number.
 
-Each HTML lesson should include:
+Keep the HTML contract small:
 
 - A meaningful `<title>`, `lang` attribute, semantic landmarks, and a visible statement of the lesson promise.
-- A compelling opening question or observation tied to the central tension.
-- The concept spine, with mechanisms, examples, contrasts, and at least one meaningful boundary or failure case.
-- Citations or linked source notes at the claims they support, plus a short primary-source recommendation.
-- At least one retrieval prompt and one transfer task with immediate, specific feedback when feasible.
-- A compact “keep” section that compresses the model into a few precise, memorable statements.
-- Links to existing relevant lessons and reference documents.
-- A next learning branch described without linking to files that do not yet exist.
-- A reminder that the learner can ask follow-up questions or request a harder, gentler, or more applied version.
+- A direct explanation with a small worked example.
+- Practice that requires recall and application, with specific answer reasoning when feasible.
+- A compact takeaway with the assumptions or limits needed to use it correctly.
+- Source notes at the claims they support.
+    - A useful primary-source link can serve as the recommendation; do not duplicate it into extra reading sections.
+- Relevant existing lesson or reference links when they help the current learner.
+    - Describe a useful next question without linking to files that do not exist.
+- A brief invitation to ask follow-up questions.
 
-Use a shared stylesheet and reusable components from `assets/` whenever they exist. If none exist, create one
-small, reusable foundation before adding one-off styling. Keep external dependencies optional; a lesson should be
-usable offline. Support keyboard navigation, visible focus, sufficient contrast, readable line length, responsive
-layout, reduced motion, and print-friendly output. Use semantic HTML before adding JavaScript.
+- Reuse the workspace's stylesheet rather than inventing a new visual system for each lesson.
+    - If none exists, create a small readable foundation rather than a component library.
+- Use headings, paragraphs, lists, and native answer reveals by default.
+- Add a diagram, table, or interaction only when it explains something more clearly than those defaults.
+    - Do not turn a lesson into a dashboard, simulated product, or decorative card collection.
+- Keep external dependencies optional so the core lesson remains usable offline.
+- Support keyboard navigation, visible focus, sufficient contrast, and readable line length.
+- Support responsive layout, reduced motion, and print-friendly output.
+- Use semantic HTML before adding JavaScript.
 
 - Verify relative dependencies and links before delivery.
 - Where browser tools are available, test direct file opening with networking disabled.
@@ -222,14 +235,12 @@ layout, reduced motion, and print-friendly output. Use semantic HTML before addi
 - Check a narrow viewport and print preview, including exercises and answer explanations.
 - Report unavailable checks as unverified rather than claiming tested offline or accessibility behavior.
 
-Favor visual explanations that carry meaning: annotated diagrams, timelines, comparison cards, worked traces,
-small tables, and progressive reveals. Do not add visual effects merely to make a thin lesson look substantial.
-
 ## Durable Learning State
 
 After the lesson, update only the state that has earned an update.
 
-- Add a reference document when the lesson produced a reusable algorithm, map, checklist, formula, or glossary.
+- Add a reference document only when it provides reusable value beyond the lesson's takeaway.
+    - Do not duplicate the lesson into a reference page merely because the workspace has a reference directory.
 - Add a glossary term when the learner understands and can use it; do not use the glossary as a first-exposure dump.
 - Add a numbered learning record when the learner demonstrates a non-trivial understanding, reveals prior knowledge,
   corrects a misconception, or changes the mission.
@@ -314,32 +325,34 @@ For each teaching request:
 1. Inspect the learner's state, including pending reviews, and identify the smallest useful next capability.
 2. State the intended win and any assumption that materially affects the lesson.
 3. Research and verify the claims that will carry the explanation.
-4. Build the lesson around a puzzle, mechanism, contrast, practice, and transfer.
+4. Explain the mechanism through a small example before asking for recall and application.
 5. Run the quality gate below before handing it back.
 6. Save the HTML and durable state, then open the lesson when the environment permits it.
 7. Invite the learner to attempt the practice before recording mastery.
 8. Use their response to choose what comes next and schedule an appropriate spaced review.
 
-Do not dump an entire curriculum when the learner needs one next step. When a broad request truly needs a path,
-show the map, choose the first lesson, and explain why that order reduces future confusion.
+- Do not dump an entire curriculum when the learner needs one next step.
+- When a broad request needs a path, outline it briefly before choosing the first useful lesson.
+    - Create a separate learning-map artifact only when it provides requested or reusable value.
 
 ## Quality Gate
 
-Before delivering a lesson, check it as an editor, researcher, teacher, and learner:
+Check the lesson before delivery without turning these questions into required lesson sections:
 
 - **Mission:** Does the lesson serve a concrete outcome rather than an abstract topic label?
 - **Size:** Does the core explanation and practice fit the learner's budget without overloading working memory?
-- **Depth:** Does it explain a mechanism, relationship, or decision instead of listing facts?
-- **Density:** Does every major section earn its space, with little generic prose?
-- **Curiosity:** Do the surprising details illuminate the model rather than decorate it?
-- **Boundaries:** Does the learner see a near miss, failure mode, or condition where the rule changes?
+- **Clarity:** Can the learner state the core idea without remembering the scenario's incidental details?
+- **Example:** Is this the smallest faithful example that shows the decisive step?
+- **Depth:** Is the reasoning explained rather than replaced by terminology or a list of facts?
+- **Limits:** Are essential assumptions visible without expanding into adjacent lessons?
 - **Evidence:** Are important claims sourced, qualified, and honest about uncertainty?
-- **Practice:** Does the learner retrieve and transfer, with feedback that teaches reasoning?
+- **Practice:** Does the changed case test the taught idea without requiring unexplained new concepts?
+    - Does its feedback explain the decisive reasoning?
 - **Retention:** Is there a concrete later review, with interleaving only where related skills are ready for it?
 - **Continuity:** Does the lesson respect the learner's prior knowledge and link to the workspace's vocabulary?
 - **Artifact:** Does the HTML work offline, read well, print cleanly, and remain accessible without scripting?
 - **Verification:** Were available artifact checks performed, with unavailable checks explicitly left unverified?
 - **Next move:** Is there a clear action, question, or branch that follows from the learner's result?
 
-If the lesson would still be unchanged after removing the examples, sources, and exercises, it is probably a
-summary rather than a lesson. Revise until the learner must think, not merely scroll.
+- Remove scenario machinery that does not help explain or test the promised capability.
+- If only a definition remains, restore a worked explanation rather than adding decorative complexity.

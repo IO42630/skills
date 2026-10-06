@@ -10,7 +10,8 @@
         "The lesson is an actual readable HTML artifact with semantic structure and a visible learning promise.",
         "The explanation includes a worked recursive example, a comparison with a tempting iterative or incorrect approach, and a boundary case.",
         "The lesson includes both retrieval practice and a novel transfer task with feedback or an answer explanation.",
-        "The lesson is substantially more than a definition or a short list of generic points."
+        "The lesson is substantially more than a definition or a short list of generic points.",
+        "The nested-data example is small enough to trace directly; neither the worked example nor transfer requires understanding an invented application or general tree framework."
       ]
     },
     {
@@ -22,19 +23,21 @@
         "The lesson uses concrete numerical examples to distinguish sensitivity, specificity, and predictive value.",
         "The lesson explains the base-rate mechanism and addresses why the common misconception is tempting.",
         "The lesson contains an opening puzzle, a boundary or limitation, and a fresh transfer exercise.",
-        "Important claims are qualified or linked to credible source material rather than presented as unsupported authority."
+        "Important claims are qualified or linked to credible source material rather than presented as unsupported authority.",
+        "The arithmetic and scenario make the base-rate effect visible without requiring unrelated medical details, a custom calculator, or untaught probability machinery."
       ]
     },
     {
       "id": 3,
       "prompt": "I want a first serious lesson on how to read a company's balance sheet to judge financial health. I can read basic accounting terms but usually memorize ratios without understanding them. Build an HTML lesson around a real decision: compare two companies that look similar at first glance, explain the mechanisms behind liquidity and leverage, expose at least one ratio trap, and finish with retrieval plus a new case.",
-      "expected_output": "A dense, decision-oriented HTML lesson that turns balance-sheet ratios into an interpretable model rather than a formula list.",
+      "expected_output": "A focused, decision-oriented HTML lesson that turns balance-sheet ratios into an interpretable model rather than a formula list.",
       "files": [],
       "expectations": [
         "The lesson uses a concrete comparison or decision and explains the mechanisms behind liquidity and leverage.",
         "The lesson includes a ratio trap, assumption or boundary case that prevents rote application.",
         "The lesson has retrieval practice and a novel case requiring interpretation rather than repetition.",
-        "The HTML artifact is self-contained, navigable, and suitable for later reference."
+        "The HTML artifact is self-contained, navigable, and suitable for later reference.",
+        "Company data is limited to figures that carry the liquidity and leverage reasoning rather than an elaborate financial dashboard or irrelevant company backstory."
       ]
     },
     {
@@ -139,6 +142,52 @@
         "Useful recommendations are annotated under Wisdom (Communities) in RESOURCES.md without inventing membership or learning evidence.",
         "If verification is unavailable, candidate communities are explicitly unverified rather than claimed researched or reputable.",
         "No unnecessary HTML lesson or full course scaffold is produced."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "I want to get better at IT security so I can explain how attacks work and what a defense actually prevents. I know basic HTTP and backend programming, but not threat modeling. Give me a first HTML lesson. I have about ten minutes today.",
+      "expected_output": "One focused security lesson whose small worked example makes an attack's causal chain and the decisive defense clear without trying to cover the broad mission at once.",
+      "files": [],
+      "expectations": [
+        "The lesson chooses one observable security capability rather than surveying attacks or teaching a complete threat-modeling methodology.",
+        "The worked example identifies what the attacker controls, what they cannot do, and how one mistaken trust decision produces the unwanted result.",
+        "The defense makes the decisive control visible and explains why it blocks that result under explicit assumptions; a production-security guarantee is not claimed.",
+        "If object authorization is chosen, permission is checked on the server using trusted identity and policy for the requested object before data is released; login, TLS, or a client-supplied owner field are not treated as substitutes.",
+        "The example uses only the actors, objects, and operations needed for the chosen mechanism rather than adding databases, queues, caching, or policy races unrelated to that capability.",
+        "Practice requires recalling the reasoning and applying it to a small changed case with specific feedback, without adding several untaught mechanisms at once.",
+        "Necessary limits are stated without a catalogue of advanced exceptions, and the explanation plus practice plausibly fits the stated ten-minute budget.",
+        "The output uses readable semantic HTML without a custom simulator or decorative dashboard, and creates no redundant reference page or full course scaffold."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Teach me how a recursive function gets a total from a nested list. I know Python loops and function returns but recursion has not clicked. Make an HTML lesson I can work through in ten minutes.",
+      "expected_output": "A compact lesson that visibly traces child returns into a parent total using a tiny nested list, then checks the same reasoning on a changed input.",
+      "files": [],
+      "expectations": [
+        "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+        "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+        "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+        "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+        "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+        "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+        "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "I already understand server-side object authorization. Now I need to reason about a report export that waits in a queue while a user's access may be revoked. Teach me the difference between authorization at enqueue time and at execution time. Compare a policy where revocation cancels pending exports with one where an accepted export is a durable grant. Use a worked timeline and practice in a twenty-minute HTML lesson.",
+      "expected_output": "A focused advanced lesson that includes queue and revocation mechanics because they are the requested capability, with two explicit policy timelines and reasoning about what each policy permits.",
+      "files": [],
+      "expectations": [
+        "The lesson includes a queued export and revocation between enqueue and execution instead of removing those mechanisms in the name of simplicity.",
+        "Worked timelines show how the two explicitly different policies lead to different permission decisions and required controls.",
+        "The explanation does not claim that enqueue-time authorization is always sufficient or that execution-time denial is always correct regardless of the stated policy.",
+        "Trusted queue origin is not treated as proof of current user permission, and a durable grant is distinguished from an accidentally stale cached allow.",
+        "Implementation assumptions and costs are stated without suggesting a short membership query alone solves atomicity, revocation, and all check/use races.",
+        "Practice asks the learner to apply the stated policy to a changed event order, with feedback explaining the decisive timing or policy condition.",
+        "The example avoids unrelated infrastructure or a production export framework while retaining the complexity necessary to teach the requested distinction."
       ]
     }
   ]

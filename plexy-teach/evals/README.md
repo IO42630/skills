@@ -17,4 +17,14 @@
     - Check readable exercises and feedback with JavaScript disabled.
     - Check narrow-screen layout, reduced-motion behavior, and print preview.
 - Check case 8's export alone, without the fixture's asset directory.
+- Cases 10–12 check instructional simplicity rather than just lesson length.
+    - Case 10 checks that a broad security mission produces one small, causal first lesson.
+    - Case 11 checks that recursion is explained through returns rather than elaborate sample machinery.
+    - Case 12 checks that requested queue and revocation complexity is retained rather than oversimplified.
+- Judge example complexity by the prerequisites and incidental details the learner must track.
+    - Identify what each actor, object, operation, and new term contributes to the promised capability.
+    - Check whether the transfer case tests taught reasoning or introduces a second lesson's prerequisites.
+    - Do not award depth for heading count, visual polish, or advanced terminology without worked reasoning.
+    - Do not award simplicity for a short definition that lacks a usable explanation.
+- Judge the stated time budget against the explanation and reasoning tasks, not the estimate label alone.
 - Record unavailable checks as unverified rather than treating them as passes.
