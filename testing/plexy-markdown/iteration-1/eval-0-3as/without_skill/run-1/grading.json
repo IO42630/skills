@@ -1,0 +1,46 @@
+{
+  "expectations": [
+    {
+      "text": "The document covers Authentication, Authorization, and Accounting.",
+      "passed": true,
+      "evidence": "Found: Authentication, Authorization, Accounting/Auditing."
+    },
+    {
+      "text": "Every non-exempt line is at most 120 characters.",
+      "passed": false,
+      "evidence": "10 dash-chained bullet(s); e.g. line 11: - **Something you know** \u2014 a password, PIN, or passphrase."
+    },
+    {
+      "text": "No bullet chains statements with an em-dash or hyphen.",
+      "passed": false,
+      "evidence": "10 dash-chained bullet(s); e.g. line 11: - **Something you know** \u2014 a password, PIN, or passphrase."
+    },
+    {
+      "text": "Bullets dominate: at least 80% of content lines are list items.",
+      "passed": false,
+      "evidence": "16/31 content lines are bullets (52%)."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "output_chars": 4342,
+    "total_tool_calls": 0,
+    "errors_encountered": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0.0
+  },
+  "metrics": {
+    "word_count": 620,
+    "max_line_length": 400,
+    "mean_line_length": 115.7,
+    "bullet_ratio": 0.516,
+    "long_lines": 12,
+    "dash_chained_bullets": 10
+  }
+}

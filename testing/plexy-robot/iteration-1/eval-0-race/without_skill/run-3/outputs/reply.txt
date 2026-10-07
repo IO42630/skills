@@ -1,0 +1,14 @@
+A race condition is a bug that occurs when a program's correctness depends on the unpredictable timing or interleaving of multiple threads (or processes) accessing shared state. Because the scheduler can switch between threads at any point, operations that look atomic in source code—like `x++` (read, modify, write)—can interleave, so two threads may read the same old value and one update gets lost, or a half-initialized object may be observed by another thread. The result is nondeterministic behavior: the program works most of the time and fails intermittently.
+
+A standard way to prevent race conditions is mutual exclusion: ensure only one thread can be inside a critical section of code at a time, using a lock or mutex. For example, wrap the shared-state access in a mutex:
+
+```python
+lock = threading.Lock()
+
+def increment():
+    with lock:          # only one thread at a time
+        global counter
+        counter += 1
+```
+
+Other common techniques in the same spirit are atomic operations (compare-and-swap), thread-safe data structures, or—where possible—immutable data and message passing, which avoid shared mutable state altogether.

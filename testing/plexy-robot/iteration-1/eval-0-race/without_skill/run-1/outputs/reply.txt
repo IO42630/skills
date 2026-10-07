@@ -1,0 +1,20 @@
+A race condition is a bug that happens when a program's correctness depends on the relative timing or interleaving of concurrent operations—usually two or more threads (or processes) accessing shared state at the same time. If the "wrong" ordering occurs, the program produces incorrect results, even though each individual operation is valid on its own.
+
+A classic example is a shared counter incremented by two threads. The operation `count = count + 1` is really three steps: read the current value, add one, and write it back. If both threads read the same value before either writes, one increment is lost:
+
+```
+Thread A: read count (5)
+Thread B: read count (5)
+Thread A: write 6
+Thread B: write 6   // should be 7
+```
+
+One standard way to prevent race conditions is **mutual exclusion using a lock (mutex)**. Before touching the shared data, a thread acquires the lock; while it holds the lock, no other thread can enter the same critical section. The thread releases the lock when it's done, so access to the shared state is serialized:
+
+```
+lock(mutex)
+count = count + 1   // critical section, only one thread at a time
+unlock(mutex)
+```
+
+Other common approaches include atomic operations, semaphores, and designing the code so shared mutable state is avoided altogether (e.g., message passing, immutable data, or thread-local state). The key idea is to ensure that concurrent accesses to shared data are either properly synchronized or eliminated.

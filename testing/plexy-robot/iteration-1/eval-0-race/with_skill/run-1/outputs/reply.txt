@@ -1,0 +1,3 @@
+... Race condition: a program's correctness depends on the timing or interleaving of concurrent operations. Two or more threads reach shared state uncoordinated, and the result depends on who runs when. Canonical example: both threads execute `x = x + 1`; the interleaved read-modify-write loses one update because it is not atomic.
+
+Standard prevention: mutual exclusion. Guard the shared state with a lock (mutex) so only one thread executes the critical section at a time — the lost-update example becomes correct. Other approaches: atomic operations for simple cases, message passing instead of shared memory, or eliminating shared mutable state.

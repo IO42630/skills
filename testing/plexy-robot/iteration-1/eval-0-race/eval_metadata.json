@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "eval_name": "race-condition-reply",
+  "prompt": "Explain what a race condition is in a program, and give one standard way to prevent it.",
+  "assertions": [
+    "The reply begins with literal `... ` (three dots and a space).",
+    "The reply is terse: at most 50 words.",
+    "The reply contains no filler or pleasantry words (sure, certainly, of course, just, really, basically, actually, happy to, great question).",
+    "The reply is accurate: it ties race conditions to concurrent/shared state and names a synchronization fix (lock, mutex, atomic, semaphore, transaction)."
+  ]
+}

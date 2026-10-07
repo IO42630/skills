@@ -1,0 +1,3 @@
+... Race condition: outcome depends on timing/interleaving of concurrent operations on shared state. Same inputs can yield different — often corrupt — results.
+
+Prevent: mutual exclusion. Wrap the critical section in a lock/mutex so only one thread at a time reads-modifies-writes the shared state (e.g. `synchronized` in Java, `threading.Lock` in Python).

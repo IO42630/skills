@@ -1,0 +1,3 @@
+... Race condition: multiple threads access shared state concurrently without coordination, so result depends on interleaving. Classic case: two threads read counter=0, both write 1 — one increment lost.
+
+Prevent: mutual exclusion. Guard the critical section with a lock/mutex so only one thread accesses shared state at a time.

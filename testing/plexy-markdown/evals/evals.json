@@ -1,0 +1,17 @@
+{
+  "skill_name": "plexy-markdown",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Write a Markdown document explaining the 3 As of cybersecurity.",
+      "expected_output": "A tight, bullet-based Markdown document: one statement per bullet, sub-bullets for sub-statements, every line under 120 characters, concise.",
+      "files": [],
+      "expectations": [
+        "The document covers Authentication, Authorization, and Accounting.",
+        "Every non-exempt line is at most 120 characters.",
+        "No bullet chains statements with an em-dash or hyphen.",
+        "Bullets dominate: at least 80% of content lines are list items."
+      ]
+    }
+  ]
+}

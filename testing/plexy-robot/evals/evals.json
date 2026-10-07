@@ -1,0 +1,17 @@
+{
+  "skill_name": "plexy-robot",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Explain what a race condition is in a program, and give one standard way to prevent it.",
+      "expected_output": "A terse, accurate chat reply in robot style: starts with `... `, no filler or pleasantries, well under 50 words, and still defines the concept and names a real fix.",
+      "files": [],
+      "expectations": [
+        "The reply begins with literal `... ` (three dots and a space).",
+        "The reply is terse: at most 50 words.",
+        "The reply contains no filler or pleasantry words (sure, certainly, of course, just, really, basically, actually, happy to, great question).",
+        "The reply is accurate: it ties race conditions to concurrent/shared state and names a synchronization fix (lock, mutex, atomic, semaphore, transaction)."
+      ]
+    }
+  ]
+}

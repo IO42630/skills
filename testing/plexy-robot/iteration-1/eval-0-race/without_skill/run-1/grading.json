@@ -1,0 +1,41 @@
+{
+  "expectations": [
+    {
+      "text": "The reply begins with literal `... ` (three dots and a space).",
+      "passed": false,
+      "evidence": "First characters: 'A race condition is a bug that happens w'"
+    },
+    {
+      "text": "The reply is terse: at most 50 words.",
+      "passed": false,
+      "evidence": "236 words."
+    },
+    {
+      "text": "The reply contains no filler or pleasantry words (sure, certainly, of course, just, really, basically, actually, happy to, great question).",
+      "passed": false,
+      "evidence": "Filler found: really."
+    },
+    {
+      "text": "The reply is accurate: it ties race conditions to concurrent/shared state and names a synchronization fix (lock, mutex, atomic, semaphore, transaction).",
+      "passed": true,
+      "evidence": "Concurrency terms: concurrent, interleaving, processes, thread; fix terms: atomic, lock, mutex, synchronized."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "output_chars": 1457,
+    "total_tool_calls": 0,
+    "errors_encountered": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0.0
+  },
+  "metrics": {
+    "word_count": 236
+  }
+}

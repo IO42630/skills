@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "eval_name": "3a-cybersecurity",
+  "prompt": "Write a Markdown document explaining the 3 As of cybersecurity.",
+  "assertions": [
+    "The document covers Authentication, Authorization, and Accounting.",
+    "Every non-exempt line is at most 120 characters.",
+    "No bullet chains statements with an em-dash or hyphen.",
+    "Bullets dominate: at least 80% of content lines are list items."
+  ]
+}
