@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 75\u201388 show parent total 2, child return 7 assigned to child_total, and the parent's next addition producing 9; returning alone is explicitly not an update to parent state."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked [2, [3, 4]] has three integer leaves and one child, and the two-line return/use form adds no external machinery."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 61\u201371 display the complete recursive function and return after the loop. Lines 90\u201392 explain empty and flat stopping behavior; lines 48 and 139 state finite integer-list/no-cycle and depth limitations. Nine executable inputs pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Practice covers the trace, recalls the parent's action, and requires a fresh chain for [2, [5, [1]], 3]. Feedback identifies returns 1 then 6, outer totals 2 \u2192 8 \u2192 11, and the immediate receiver of each return."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "The lost-answer diagnosis, empty-child boundary, learner-created input, and later recall all stay with integer leaves and lists."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Four sections budget 1/4/3/2 minutes for idea, trace, two core practice tasks, and takeaway/boundary. No compulsory history or unrelated examples are added."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 115\u2013127 require distinguishing a child failing to run from its result being discarded and repairing the branch; practice makes the return-to-addition connection observable."
+    }
+  ]
+}

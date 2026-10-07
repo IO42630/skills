@@ -1,0 +1,87 @@
+{
+  "compile": {
+    "command": [
+      "javac",
+      "--release",
+      "17",
+      "-Xlint:rawtypes",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "-processorpath",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar",
+      "-d",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation/classes",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/outputs/src/main/java/example/model/Customer.java",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/outputs/src/main/java/example/service/CustomerDirectory.java",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/checks/BehaviorCheck.java"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "WARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::objectFieldOffset has been called by lombok.permit.Permit\nWARNING: Please consider reporting this to the maintainers of class lombok.permit.Permit\nWARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release\n"
+  },
+  "bytecode": {
+    "command": [
+      "javap",
+      "-c",
+      "-p",
+      "-classpath",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation/classes",
+      "example.service.CustomerDirectory"
+    ],
+    "exit_code": 0,
+    "stdout": "Compiled from \"CustomerDirectory.java\"\npublic class example.service.CustomerDirectory {\n  private final java.util.Map<java.lang.String, example.model.Customer> customers;\n\n  public java.util.Optional<example.model.Customer> findById(java.lang.String);\n    Code:\n         0: aload_0\n         1: getfield      #1                  // Field customers:Ljava/util/Map;\n         4: aload_1\n         5: invokeinterface #7,  2            // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;\n        10: checkcast     #13                 // class example/model/Customer\n        13: invokestatic  #15                 // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;\n        16: areturn\n\n  public java.util.List<java.lang.String> displayNames();\n    Code:\n         0: aload_0\n         1: getfield      #1                  // Field customers:Ljava/util/Map;\n         4: invokeinterface #21,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;\n         9: invokeinterface #25,  1           // InterfaceMethod java/util/Collection.stream:()Ljava/util/stream/Stream;\n        14: invokedynamic #31,  0             // InvokeDynamic #0:apply:()Ljava/util/function/Function;\n        19: invokeinterface #35,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;\n        24: invokeinterface #41,  1           // InterfaceMethod java/util/stream/Stream.sorted:()Ljava/util/stream/Stream;\n        29: invokeinterface #44,  1           // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;\n        34: areturn\n\n  public void load(java.nio.file.Path) throws java.io.IOException;\n    Code:\n         0: aload_1\n         1: getstatic     #48                 // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;\n         4: invokestatic  #54                 // Method java/nio/file/Files.readAllLines:(Ljava/nio/file/Path;Ljava/nio/charset/Charset;)Ljava/util/List;\n         7: astore_2\n         8: aload_2\n         9: invokeinterface #60,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;\n        14: astore_3\n        15: aload_3\n        16: invokeinterface #66,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z\n        21: ifeq          98\n        24: aload_3\n        25: invokeinterface #72,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;\n        30: checkcast     #76                 // class java/lang/String\n        33: astore        4\n        35: aload         4\n        37: ldc           #78                 // String ,\n        39: iconst_2\n        40: invokevirtual #80                 // Method java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;\n        43: astore        5\n        45: aload         5\n        47: arraylength\n        48: iconst_2\n        49: if_icmpeq     62\n        52: new           #84                 // class java/io/IOException\n        55: dup\n        56: ldc           #86                 // String Invalid customer row: expected id,name\n        58: invokespecial #88                 // Method java/io/IOException.\"<init>\":(Ljava/lang/String;)V\n        61: athrow\n        62: new           #13                 // class example/model/Customer\n        65: dup\n        66: aload         5\n        68: iconst_0\n        69: aaload\n        70: aload         5\n        72: iconst_1\n        73: aaload\n        74: invokespecial #92                 // Method example/model/Customer.\"<init>\":(Ljava/lang/String;Ljava/lang/String;)V\n        77: astore        6\n        79: aload_0\n        80: getfield      #1                  // Field customers:Ljava/util/Map;\n        83: aload         5\n        85: iconst_0\n        86: aaload\n        87: aload         6\n        89: invokeinterface #95,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\n        94: pop\n        95: goto          15\n        98: return\n\n  public example.service.CustomerDirectory(java.util.Map<java.lang.String, example.model.Customer>);\n    Code:\n         0: aload_0\n         1: invokespecial #99                 // Method java/lang/Object.\"<init>\":()V\n         4: aload_1\n         5: ldc           #104                // String customers is marked non-null but is null\n         7: invokestatic  #106                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;\n        10: pop\n        11: aload_0\n        12: aload_1\n        13: putfield      #1                  // Field customers:Ljava/util/Map;\n        16: return\n\n  private static java.lang.String lambda$displayNames$0(example.model.Customer);\n    Code:\n         0: aload_0\n         1: invokevirtual #112                // Method example/model/Customer.getName:()Ljava/lang/String;\n         4: aload_0\n         5: invokevirtual #116                // Method example/model/Customer.getId:()Ljava/lang/String;\n         8: invokedynamic #119,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\n        13: areturn\n}\n",
+    "stderr": ""
+  },
+  "core": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "core"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS core\n",
+    "stderr": ""
+  },
+  "null": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "null"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS null\n",
+    "stderr": ""
+  },
+  "io": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "io"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS io\n",
+    "stderr": ""
+  },
+  "optional": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "optional"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS optional\n",
+    "stderr": ""
+  }
+}

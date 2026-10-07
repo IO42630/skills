@@ -1,0 +1,87 @@
+{
+  "compile": {
+    "command": [
+      "javac",
+      "--release",
+      "17",
+      "-Xlint:rawtypes",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "-processorpath",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar",
+      "-d",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation/classes",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/customer-directory/src/main/java/example/model/Customer.java",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/checks/BehaviorCheck.java"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "WARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::objectFieldOffset has been called by lombok.permit.Permit\nWARNING: Please consider reporting this to the maintainers of class lombok.permit.Permit\nWARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release\n/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java:10: warning: [rawtypes] found raw type: Map\n    private final Map customers;\n                  ^\n  missing type arguments for generic class Map<K,V>\n  where K,V are type-variables:\n    K extends Object declared in interface Map\n    V extends Object declared in interface Map\n/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java:12: warning: [rawtypes] found raw type: Map\n    public CustomerDirectory(Map customers) {\n                             ^\n  missing type arguments for generic class Map<K,V>\n  where K,V are type-variables:\n    K extends Object declared in interface Map\n    V extends Object declared in interface Map\n/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java:20: warning: [rawtypes] found raw type: List\n    public List displayNames() {\n           ^\n  missing type arguments for generic class List<E>\n  where E is a type-variable:\n    E extends Object declared in interface List\nNote: /Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java uses unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\n3 warnings\n"
+  },
+  "bytecode": {
+    "command": [
+      "javap",
+      "-c",
+      "-p",
+      "-classpath",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation/classes",
+      "example.service.CustomerDirectory"
+    ],
+    "exit_code": 0,
+    "stdout": "Compiled from \"CustomerDirectory.java\"\npublic class example.service.CustomerDirectory {\n  private final java.util.Map customers;\n\n  public example.service.CustomerDirectory(java.util.Map);\n    Code:\n         0: aload_0\n         1: invokespecial #1                  // Method java/lang/Object.\"<init>\":()V\n         4: aload_0\n         5: aload_1\n         6: putfield      #7                  // Field customers:Ljava/util/Map;\n         9: return\n\n  public example.model.Customer findById(java.lang.String);\n    Code:\n         0: aload_0\n         1: getfield      #7                  // Field customers:Ljava/util/Map;\n         4: aload_1\n         5: invokeinterface #13,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;\n        10: checkcast     #19                 // class example/model/Customer\n        13: areturn\n\n  public java.util.List displayNames();\n    Code:\n         0: new           #21                 // class java/util/ArrayList\n         3: dup\n         4: invokespecial #23                 // Method java/util/ArrayList.\"<init>\":()V\n         7: astore_1\n         8: aload_0\n         9: getfield      #7                  // Field customers:Ljava/util/Map;\n        12: invokeinterface #24,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;\n        17: invokeinterface #28,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;\n        22: astore_2\n        23: aload_2\n        24: invokeinterface #34,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z\n        29: ifeq          80\n        32: aload_2\n        33: invokeinterface #40,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;\n        38: astore_3\n        39: aload_3\n        40: checkcast     #19                 // class example/model/Customer\n        43: astore        4\n        45: aload_1\n        46: ldc           #44                 // String %s (%s)\n        48: iconst_2\n        49: anewarray     #2                  // class java/lang/Object\n        52: dup\n        53: iconst_0\n        54: aload         4\n        56: invokevirtual #46                 // Method example/model/Customer.getName:()Ljava/lang/String;\n        59: aastore\n        60: dup\n        61: iconst_1\n        62: aload         4\n        64: invokevirtual #50                 // Method example/model/Customer.getId:()Ljava/lang/String;\n        67: aastore\n        68: invokestatic  #53                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\n        71: invokeinterface #59,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z\n        76: pop\n        77: goto          23\n        80: aload_1\n        81: invokeinterface #65,  1           // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;\n        86: invokeinterface #69,  1           // InterfaceMethod java/util/stream/Stream.sorted:()Ljava/util/stream/Stream;\n        91: invokeinterface #74,  1           // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;\n        96: areturn\n\n  public void load(java.nio.file.Path) throws java.io.IOException;\n    Code:\n         0: aload_1\n         1: getstatic     #78                 // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;\n         4: invokestatic  #84                 // Method java/nio/file/Files.readAllLines:(Ljava/nio/file/Path;Ljava/nio/charset/Charset;)Ljava/util/List;\n         7: astore_2\n         8: aload_2\n         9: invokeinterface #90,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;\n        14: astore_3\n        15: aload_3\n        16: invokeinterface #34,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z\n        21: ifeq          77\n        24: aload_3\n        25: invokeinterface #40,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;\n        30: checkcast     #54                 // class java/lang/String\n        33: astore        4\n        35: aload         4\n        37: ldc           #91                 // String ,\n        39: iconst_2\n        40: invokevirtual #93                 // Method java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;\n        43: astore        5\n        45: aload_0\n        46: getfield      #7                  // Field customers:Ljava/util/Map;\n        49: aload         5\n        51: iconst_0\n        52: aaload\n        53: new           #19                 // class example/model/Customer\n        56: dup\n        57: aload         5\n        59: iconst_0\n        60: aaload\n        61: aload         5\n        63: iconst_1\n        64: aaload\n        65: invokespecial #97                 // Method example/model/Customer.\"<init>\":(Ljava/lang/String;Ljava/lang/String;)V\n        68: invokeinterface #100,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\n        73: pop\n        74: goto          15\n        77: goto          81\n        80: astore_2\n        81: return\n      Exception table:\n         from    to  target type\n             0    77    80   Class java/io/IOException\n}\n",
+    "stderr": ""
+  },
+  "core": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "core"
+    ],
+    "exit_code": 0,
+    "stdout": "PASS core\n",
+    "stderr": ""
+  },
+  "null": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "null"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Exception in thread \"main\" java.lang.AssertionError: null map accepted by constructor\n\tat BehaviorCheck.main(BehaviorCheck.java:69)\n"
+  },
+  "io": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "io"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Exception in thread \"main\" java.lang.AssertionError: missing-file IOException swallowed\n\tat BehaviorCheck.main(BehaviorCheck.java:79)\n"
+  },
+  "optional": {
+    "command": [
+      "java",
+      "-Djava.io.tmpdir=/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation",
+      "-cp",
+      "/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/fixtures/validation/classes:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/lombok-1.18.48.jar:/Users/ivan.olexyn/home/ws-github/io42630/skills/testing/plexy-java/.deps/slf4j-api-2.0.17.jar",
+      "BehaviorCheck",
+      "optional"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Exception in thread \"main\" java.lang.AssertionError: typed Optional return\n\tat BehaviorCheck.check(BehaviorCheck.java:32)\n\tat BehaviorCheck.main(BehaviorCheck.java:86)\n"
+  }
+}

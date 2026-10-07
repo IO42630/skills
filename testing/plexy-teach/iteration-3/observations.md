@@ -1,0 +1,27 @@
+## Interpretation
+
+- All six new artifacts satisfy all seven unchanged content expectations: 21/21 per configuration.
+    - This repeats iteration 2's saturated pass rate; no content-rubric advantage was detected.
+    - These are assistant artifact judgments, not measured learner gains or completion times.
+- The earlier JavaScript difference did not repeat.
+    - Both variants now use static traces and native answer reveals, with zero script blocks.
+    - Baseline runs 2 and 3 include optional scratch textareas and explicitly say notes are not saved or graded.
+    - Therefore removing bespoke JavaScript is not a stable demonstrated skill effect across rounds.
+- With-skill HTML is 17.9% smaller on average, while lesson text is only 2.7% shorter.
+    - With-skill examples have three or four leaves and one child call.
+    - Baselines have four or five leaves and two nested child calls; all remain small enough for the rubric.
+    - With-skill lessons include short delayed-recall suggestions; baselines emphasize immediate reconstruction.
+    - These differences do not establish better learning, lower elapsed generation time, or reduced token cost.
+- All six recursive functions pass nine inputs each: 54 executable input/output checks.
+    - The extractor initially selected baseline run 2's introductory flat-list function.
+    - That function is explicitly not the nested-list solution. Selection now requires a self-calling function.
+    - Incomplete fill-in exercises are not executable implementations; exactly one complete recursive definition is required.
+    - Regression tests cover a flat intro, incomplete exercise, missing recursive implementation, and ambiguous multiple implementations.
+    - No generated lesson was repaired to improve its score.
+- Static checks find language attributes, semantic structure, and no required external dependencies in all artifacts.
+    - No browser, offline-rendering, keyboard, narrow-viewport, or printing result is claimed.
+    - Rendered answer inclusion in print remains unverified for both variants.
+- The seven expectations all pass both variants and therefore do not discriminate skill value on this prompt.
+    - More repetitions improve our view of artifact variability, not topic coverage.
+    - Timing/tokens remain unavailable; source research, routing, and durable workspace behavior are untested.
+    - `review.html` provides the six outputs and grades for human feedback alongside iteration 2's outputs.

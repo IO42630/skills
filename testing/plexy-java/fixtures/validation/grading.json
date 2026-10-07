@@ -1,0 +1,88 @@
+{
+  "expectations": [
+    {
+      "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+      "passed": true,
+      "evidence": "javac exit=0; see validation/results.json."
+    },
+    {
+      "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+      "passed": true,
+      "evidence": "PASS core"
+    },
+    {
+      "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+      "passed": false,
+      "evidence": "Import failures: ['src/main/java/example/service/CustomerDirectory.java']"
+    },
+    {
+      "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+      "passed": false,
+      "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+    },
+    {
+      "text": "Obvious local initializers use var rather than redundant explicit types.",
+      "passed": false,
+      "evidence": "var initializers=0; redundant obvious locals=['src/main/java/example/service/CustomerDirectory.java:21', 'src/main/java/example/service/CustomerDirectory.java:31', 'src/main/java/example/service/CustomerDirectory.java:33']."
+    },
+    {
+      "text": "Java sources compile without raw-type warnings.",
+      "passed": false,
+      "evidence": "Compiler raw-type warnings=3; compiled=True."
+    },
+    {
+      "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+      "passed": false,
+      "evidence": "Exception in thread \"main\" java.lang.AssertionError: missing-file IOException swallowed\n\tat BehaviorCheck.main(BehaviorCheck.java:79)"
+    },
+    {
+      "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+      "passed": false,
+      "evidence": "Exception in thread \"main\" java.lang.AssertionError: typed Optional return\n\tat BehaviorCheck.check(BehaviorCheck.java:32)\n\tat BehaviorCheck.main(BehaviorCheck.java:86)"
+    },
+    {
+      "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+      "passed": false,
+      "evidence": "Objects.requireNonNull in constructor=False; Exception in thread \"main\" java.lang.AssertionError: null map accepted by constructor\n\tat BehaviorCheck.main(BehaviorCheck.java:69)"
+    },
+    {
+      "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+      "passed": true,
+      "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+    },
+    {
+      "text": "Chained method-call dots start on new lines.",
+      "passed": false,
+      "evidence": "Same-line chained dots: {'src/main/java/example/service/CustomerDirectory.java': [26, 26]}"
+    },
+    {
+      "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+      "passed": false,
+      "evidence": "Multi-argument layout failures: {'src/main/java/example/service/CustomerDirectory.java': [24, 31, 33, 34, 34]}"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 9,
+    "total": 12,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "output_chars": 1592,
+    "total_tool_calls": null,
+    "errors_encountered": null
+  },
+  "timing": {
+    "total_duration_seconds": null,
+    "total_tokens": null,
+    "status": "Not exposed by this subagent runtime."
+  },
+  "metrics": {
+    "java_lines": 66,
+    "max_line_length": 86,
+    "var_initializers": 0,
+    "raw_type_warnings": 3,
+    "chain_layout_violations": 2,
+    "argument_layout_violations": 5
+  }
+}

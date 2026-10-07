@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recursive totals: how a child's answer reaches its parent</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #202b36; background: #fff; line-height: 1.6; }
+    body { margin: 0; }
+    main { max-width: 46rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    h1, h2, h3 { line-height: 1.25; color: #142c40; }
+    h1 { font-size: 2rem; }
+    h2 { margin-top: 2rem; font-size: 1.4rem; }
+    h3 { font-size: 1.08rem; }
+    p, ul, ol { margin-block: .8rem; }
+    li + li { margin-top: .4rem; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .94em; }
+    :not(pre) > code { background: #edf2f5; padding: .1em .25em; border-radius: .2rem; }
+    pre { padding: 1rem; border: 1px solid #bdcbd4; background: #f5f7f9; overflow-x: auto; line-height: 1.5; }
+    pre code { font-size: .9rem; }
+    .meta { color: #445563; }
+    .principle { border-left: .25rem solid #226486; padding: .2rem 1rem; background: #f1f7fa; }
+    .trace { padding-left: 1.5rem; }
+    .trace li { margin-bottom: .9rem; }
+    details { margin: 1rem 0; padding: .7rem 1rem; border: 1px solid #a6b7c3; border-radius: .25rem; }
+    summary { cursor: pointer; font-weight: 650; color: #173e57; }
+    summary:focus-visible { outline: 3px solid #8b3f00; outline-offset: 5px; }
+    footer { margin-top: 2rem; border-top: 1px solid #bdcbd4; padding-top: .75rem; font-size: .9rem; color: #445563; }
+    @media (max-width: 36rem) { main { padding: 1.25rem 1rem 2rem; } h1 { font-size: 1.65rem; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+    @media print {
+      main { max-width: none; margin: 0; padding: 0; }
+      body { font-size: 11pt; }
+      h2, h3 { break-after: avoid; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; break-inside: avoid; }
+      details { break-inside: avoid; }
+      details > summary { display: block; }
+      details > :not(summary) { display: block !important; }
+      details::details-content { content-visibility: visible; }
+      .print-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="meta">10 minutes · Python loops and returns are enough to start</p>
+    <h1>Recursive totals: one list, one answer</h1>
+    <p>By the end, you will be able to trace a nested-list total and explain exactly how a child's returned number becomes part of its parent's total.</p>
+    <p class="meta">Spend about 1 minute on the idea, 4 on the trace, 2 on the mistake, 2 on practice, and 1 on the takeaway. Use paper for the practice before opening the answers.</p>
+  </header>
+
+  <section aria-labelledby="idea">
+    <h2 id="idea">A return gives the waiting call an answer</h2>
+    <p>For a flat list, you already know the job: start at zero, loop through the numbers, and add each one. A nested list changes just one decision. When an item is itself a list, you need its total before you can add it.</p>
+    <div class="principle">
+      <p><strong>Ask the same function to total that smaller list. When it returns a number, add that number to the current total.</strong> Recursion is a function calling itself; it still uses the same loops and returns you know.</p>
+    </div>
+    <p>We will use <code>[2, [3, 4]]</code>. Its answer is <code>9</code>. The useful question is not what the answer is, but how the inner <code>7</code> gets back to the call that has already counted <code>2</code>.</p>
+  </section>
+
+  <section aria-labelledby="trace">
+    <h2 id="trace">Follow two calls, not one shared total</h2>
+    <p>This is runnable Python for finite nested lists of integers, with no list containing itself directly or indirectly. <code>isinstance(item, list)</code> asks whether the item is a list. Input validation is omitted so we can focus on the return.</p>
+    <pre><code>def total(items):
+    result = 0
+    for item in items:
+        if isinstance(item, list):
+            result += total(item)
+        else:
+            result += item
+    return result
+
+total([2, [3, 4]])  # returns 9</code></pre>
+    <p>Call the outer call the <strong>parent</strong> and the call it starts the <strong>child</strong>. These are labels for two executions of the same function, not different functions. Each call has its own <code>items</code>, <code>result</code>, and loop position.</p>
+    <ol class="trace">
+      <li><strong>Parent starts:</strong> its <code>items</code> is <code>[2, [3, 4]]</code> and its <code>result</code> starts at <code>0</code>. The first item is the integer <code>2</code>, so the parent's result becomes <code>2</code>.</li>
+      <li><strong>Parent reaches the list:</strong> its next item is <code>[3, 4]</code>. At <code>result += total(item)</code>, the parent needs the value of <code>total([3, 4])</code>. It waits here with its result still <code>2</code>; it has not added anything for this item yet.</li>
+      <li><strong>Child starts:</strong> its <code>items</code> is <code>[3, 4]</code>. Its own result starts at <code>0</code>, not at the parent's <code>2</code>. It adds <code>3</code>, then <code>4</code>, giving <code>7</code>.</li>
+      <li><strong>Child finishes:</strong> its loop is over, so <code>return result</code> returns <code>7</code> to the waiting parent. It ends this child call, not the parent call.</li>
+      <li><strong>Parent resumes:</strong> the waiting expression <code>total(item)</code> now supplies <code>7</code>. The pending addition is therefore <code>2 + 7</code>, making the parent's result <code>9</code>. Its loop ends and it returns <code>9</code>.</li>
+    </ol>
+    <pre aria-label="Two separate local totals and the returned value"><code>Parent: total([2, [3, 4]])   result: 0 → 2 → waits → 9
+Child:       total([3, 4])   result: 0 → 3 → 7
+                                          returns 7 to parent</code></pre>
+    <p>The child's <code>return</code> does not reach into the parent's local variable. <strong>The parent changes its own result because it adds the returned value.</strong></p>
+    <h3>Why does this stop?</h3>
+    <p>Each recursive call takes one contained list, going deeper into the finite nesting. A list containing only numbers makes no more calls: its loop simply adds and returns. That is the stopping case, often called the <strong>base case</strong>. An empty list also stops immediately: its loop runs zero times, so <code>total([])</code> returns <code>0</code>. This code needs no separate base-case <code>if</code>.</p>
+    <p><code>return result</code> belongs <em>after</em> the loop. Returning inside the loop would finish that call before it had processed the remaining items.</p>
+  </section>
+
+  <section aria-labelledby="mistake">
+    <h2 id="mistake">Visiting a child is not adding its answer</h2>
+    <p>Suppose you keep the same function but change only its list branch:</p>
+    <pre><code>if isinstance(item, list):
+    total(item)  # changed line: no addition</code></pre>
+    <p><strong>Diagnose it before revealing:</strong> What would the changed function return for <code>[2, [3, 4]]</code>? Would the child still calculate <code>7</code>? Explain why those two answers can differ.</p>
+    <details>
+      <summary>Reveal the diagnosis</summary>
+      <p>The parent returns <code>2</code>. The child still calculates and returns <code>7</code>, because its two items are numbers. But the parent calls the child without using its returned value. Nothing adds that <code>7</code> to the parent's result.</p>
+      <p>The repair is <code>result += total(item)</code>. Calling a function does not automatically collect its answer. Recursion follows the same rule as any other function call.</p>
+    </details>
+  </section>
+
+  <section aria-labelledby="practice">
+    <h2 id="practice">Close the trace and try a changed list</h2>
+    <p>Use the <em>correct</em> function with <code>[1, [2, 3], 4]</code>. Write your answers before opening the explanation:</p>
+    <ol>
+      <li>From memory, explain what the parent does when it meets a list, and how the answer gets added.</li>
+      <li>Write the parent's result just before the child starts, the child's returned value, and the parent's final returned value.</li>
+      <li>Does the parent process <code>4</code> before or after the child returns? Explain why the child finishing does not end the parent.</li>
+    </ol>
+    <details>
+      <summary>Check the changed-list trace</summary>
+      <p>The parent calls the same function on the contained list and adds its returned number. It has its own result, separate from the child's.</p>
+      <pre><code>Parent adds 1:             result = 1
+Child totals [2, 3]:       returns 5
+Parent adds child's 5:    result = 6
+Parent adds last item 4:  result = 10
+Parent returns:           10</code></pre>
+      <p>The parent processes <code>4</code> <strong>after</strong> the child returns. The child ends only its own call. The parent resumes at the waiting addition, then continues its loop to the next item.</p>
+      <p>If you got <code>5</code>, you may have mistaken the child's answer for the whole answer. If you got <code>6</code>, you may have stopped the parent too soon. Keep the parent's remaining loop items visible while the child runs.</p>
+    </details>
+    <p><strong>Boundary check:</strong> Predict <code>total([[], 5])</code>, including what the empty child returns and why.</p>
+    <details>
+      <summary>Check the empty-list case</summary>
+      <p>The empty child starts with <code>result = 0</code>, visits no items, and returns <code>0</code>. The parent adds that zero, then adds <code>5</code>, and returns <code>5</code>. A list does not need any numbers to produce a usable answer.</p>
+    </details>
+    <p class="print-note">For a paper copy, open the answer reveals before printing so their explanations are included.</p>
+  </section>
+
+  <section aria-labelledby="takeaway">
+    <h2 id="takeaway">The rule to keep</h2>
+    <div class="principle">
+      <p><strong>Each call totals its own list. A parent waits for a child's number, adds that number, then continues its own loop.</strong> Separate calls have separate local totals; the return value is what crosses back.</p>
+    </div>
+    <p>This version assumes integers or nested lists, finite nesting, and no circular references. Other item types need a defined policy. Extremely deep nesting can exceed Python's recursion limit; this is a small example for understanding the mechanism, not an unrestricted input handler.</p>
+    <p><strong>Next action:</strong> In your own Python scratch space, type the function and run your changed-list prediction. Compare the returned value with your written trace. Getting the final number is useful; explaining the paused parent and the returned child value is the evidence to aim for.</p>
+    <p><strong>Later recall:</strong> Tomorrow, without looking back, trace <code>[3, [1, 2], 5]</code> and explain the two separate totals. Revisit the same rule a week later with an empty child. If the return handoff is still unclear, return to steps 2–5 of the worked trace; you can ask for a slower explanation of that handoff.</p>
+    <details>
+      <summary>Later-review answer — leave closed until you try</summary>
+      <p>The parent has <code>3</code> when it pauses. The child starts at zero and returns <code>3</code>. The parent resumes with <code>3 + 3 = 6</code>, then adds <code>5</code> and returns <code>11</code>. The two values of <code>3</code> belong to different calls; the child's returned value becomes one contribution to the parent's total.</p>
+    </details>
+  </section>
+
+  <footer>
+    <p>Source basis: the Python function shown here and its step-by-step hand trace. No external research was performed. No learner answers have been observed; the practice is an opportunity to demonstrate understanding, not a record of mastery.</p>
+    <p>This single file contains its styles and uses native answer reveals; it has no external dependencies or JavaScript. Browser rendering, offline opening, keyboard interaction, narrow-screen layout, and print output remain unverified in this environment.</p>
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Rows 107\u2013115 show C returning 4 to B, B adding it to 3 then 1 and returning 8, and A adding to 2 then 5 to return 15."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked [2, [3, [4], 1], 5] has five leaves and two child calls. A brief flat-loop bridge and static work-card analogy do not require external setup."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 67\u201388 show the full recursive aggregation, return outside the loop, [] returning 0, and finite numbers/lists without self-containment. No general-purpose arbitrary-input claim is made. Nine executable inputs pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 129\u2013144 require fresh returns for [1, [2, [3]], 4] and an empty-child check, explaining the final 4; lines 151\u2013173 reconstruct code without looking and retrieve the pause/use/continue mechanism."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "All transfer, code reconstruction, and early-return diagnosis remain numeric nested-list tasks; no dictionaries, performance work, or unfamiliar libraries are required."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Five sections budget 0\u20131, 1\u20133, 3\u20136, 6\u20138, and 8\u201310 minutes. The core is a small static trace and short exercises, without compulsory unrelated history or curiosity anchors."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 119\u2013124 require tracking simultaneous separate totals and the receiver of C's return. Changed-input feedback explains continuation and an exit explanation ties return values to the caller's update."
+    }
+  ]
+}

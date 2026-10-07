@@ -1,0 +1,670 @@
+{
+  "metadata": {
+    "skill_name": "plexy-do-less",
+    "executor_model": "gpt-6.1-sol (Junie)",
+    "timestamp": "2026-10-07T07:47:48.553314+00:00",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 5
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 9
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "41 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 41,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 9,
+        "test_commands": 2,
+        "skill_loading": "confirmed",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "41 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 41,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 1,
+        "skill_loading": "confirmed",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "41 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 41,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 1,
+        "skill_loading": "confirmed",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "with_skill",
+      "run_number": 4,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 9
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "42 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 42,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 9,
+        "test_commands": 2,
+        "skill_loading": "confirmed",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "with_skill",
+      "run_number": 5,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "38 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 38,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 1,
+        "skill_loading": "confirmed",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "53 words; reply begins 'Fixed `timeout.py` to divide by 1000: 1500 ms now returns 1.5 seconds.'."
+        }
+      ],
+      "metrics": {
+        "word_count": 53,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 2,
+        "skill_loading": "not_loaded",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "41 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 41,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 2,
+        "skill_loading": "not_loaded",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "46 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 46,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 2,
+        "skill_loading": "not_loaded",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "without_skill",
+      "run_number": 4,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "44 words; reply begins 'Fixed `timeout.py` to divide by 1000: 1500 ms now equals 1.5 seconds. '."
+        }
+      ],
+      "metrics": {
+        "word_count": 44,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 2,
+        "skill_loading": "not_loaded",
+        "task_completed": true
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "scoped-timeout-fix",
+      "configuration": "without_skill",
+      "run_number": 5,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 8
+      },
+      "expectations": [
+        {
+          "text": "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+          "passed": true,
+          "evidence": "Behavioral probes: {'conversion': True, 'preserved': True}; exit=0."
+        },
+        {
+          "text": "Negative-value rejection and request_options behavior are preserved.",
+          "passed": true,
+          "evidence": "Negative values and caller checked by behavioral probes."
+        },
+        {
+          "text": "Only the conversion expression changes; the supplied tests remain unchanged.",
+          "passed": true,
+          "evidence": "AST comparison ignores only the conversion expression; tests compared byte-for-byte."
+        },
+        {
+          "text": "The agent actually runs the requested unittest command successfully.",
+          "passed": true,
+          "evidence": "Recorded terminal command, exit code, test count, and OK required."
+        },
+        {
+          "text": "Investigation stays on the two task files, without broad surveys or helper subagents.",
+          "passed": true,
+          "evidence": "4 task investigation calls; violations: []."
+        },
+        {
+          "text": "The final reply is at most 60 words and has no conversational preamble.",
+          "passed": true,
+          "evidence": "38 words; reply begins 'Fixed `timeout.py`: 1500 ms now converts to 1.5 seconds. Negative-valu'."
+        }
+      ],
+      "metrics": {
+        "word_count": 38,
+        "investigation_calls": 4,
+        "recorded_runtime_actions": 8,
+        "test_commands": 2,
+        "skill_loading": "not_loaded",
+        "task_completed": true
+      },
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": null,
+      "tokens": null,
+      "word_count": {
+        "mean": 40.6,
+        "stddev": 1.5165750888103102,
+        "min": 38,
+        "max": 42
+      },
+      "investigation_calls": {
+        "mean": 4,
+        "stddev": 0.0,
+        "min": 4,
+        "max": 4
+      },
+      "recorded_runtime_actions": {
+        "mean": 8.4,
+        "stddev": 0.5477225575051661,
+        "min": 8,
+        "max": 9
+      },
+      "test_commands": {
+        "mean": 1.4,
+        "stddev": 0.5477225575051661,
+        "min": 1,
+        "max": 2
+      },
+      "completion_rate": {
+        "mean": 1,
+        "stddev": 0.0,
+        "min": 1,
+        "max": 1
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": null,
+      "tokens": null,
+      "word_count": {
+        "mean": 44.4,
+        "stddev": 5.683308895353129,
+        "min": 38,
+        "max": 53
+      },
+      "investigation_calls": {
+        "mean": 4,
+        "stddev": 0.0,
+        "min": 4,
+        "max": 4
+      },
+      "recorded_runtime_actions": {
+        "mean": 8,
+        "stddev": 0.0,
+        "min": 8,
+        "max": 8
+      },
+      "test_commands": {
+        "mean": 2,
+        "stddev": 0.0,
+        "min": 2,
+        "max": 2
+      },
+      "completion_rate": {
+        "mean": 1,
+        "stddev": 0.0,
+        "min": 1,
+        "max": 1
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "Completion is reported separately from efficiency/style; all four task requirements must pass.",
+    "Tool counts include failed structure lookups; inherited Junie instructions require these lookups.",
+    "Investigation counts exclude skill loading, required tests, edits, and evidence writes.",
+    "Timing and tokens are unavailable; output characters are not reported as tokens.",
+    "A single task and 5 repeats are a smoke test; no general or statistically significant claim.",
+    "This tests explicitly loaded instructions, not automatic triggering or global skill isolation.",
+    "Reply words: with skill 40.6 \u00b1 1.5; without skill 44.4 \u00b1 5.7.",
+    "Investigation calls: with skill 4.0 \u00b1 0.0; without skill 4.0 \u00b1 0.0."
+  ]
+}

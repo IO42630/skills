@@ -1,0 +1,27 @@
+## Interpretation
+
+- All six new artifacts satisfy all seven unchanged content expectations: 21/21 per configuration.
+    - There is no rubric pass-rate improvement over either iteration 2 or iteration 3.
+    - This is explicit non-blinded assistant review, not evidence of learner mastery or an observed ten-minute completion.
+- Neither variant uses JavaScript in this round, matching iteration 3 rather than iteration 2's baseline steppers.
+    - All lessons use static traces and native answer reveals.
+    - Baseline run 3 adds static call-frame boxes and a sixth short section; these faithfully explain the same taught calls.
+    - No retroactive failure is assigned for presentation choices that the frozen rubric permits.
+- With-skill HTML is 19.7% smaller and lesson text 8.3% shorter on average.
+    - All three with-skill worked inputs are [2, [3, 4]], with three leaves and one child call.
+    - Baselines use four or five leaves and two child calls.
+    - With-skill run 1 explicitly separates child_total assignment from addition; both forms pass the same function checks.
+    - With-skill artifacts suggest delayed retrieval; baselines focus on immediate prediction, reconstruction, and diagnosis.
+    - Shorter artifacts are a descriptive metric, not proof of stronger teaching or lower runtime cost.
+- All six recursive functions pass nine inputs each: 54 executable input/output checks.
+    - The earlier first-definition assumption also selected baseline run 2's explicitly flat introductory function.
+    - The extractor correction checks the recursive implementation without altering either introductory or recursive lesson code.
+    - Baseline run 3's phrase "at any depth" is qualified by its explicit recursion-depth limitation.
+    - Worked arithmetic and feedback explanations were also inspected directly; no artifacts were edited after generation.
+- All six have language attributes, semantic structure, and no detected required external dependencies.
+    - Static evidence is not a passed accessibility, browser, offline-opening, or print check.
+    - `review.html` includes this round's outputs and grades with iteration 3's outputs as previous context.
+- Across all three completed rounds there are nine lessons per configuration, still on one frozen prompt.
+    - All seven expectations remain saturated for both variants; no broad skill-quality or statistical-significance claim follows.
+    - The consistent observed difference is smaller with-skill HTML, not universal JavaScript removal.
+    - Research, normal routing, persistent workspace behavior, timing, tokens, and actual learner outcomes remain untested or unavailable.

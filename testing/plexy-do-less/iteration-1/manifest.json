@@ -1,0 +1,10 @@
+{
+  "skill_sha256": "a82fd63df4ab6d2204e7b1188931cba38fc1c6b9c45f2cfcb61fc537800ae3f9",
+  "fixture_sha256": {
+    "test_timeout.py": "142a1403bcc432d4226ca0b1316c1cc5c8149bbfe5faa850c937d4d1d6539430",
+    "timeout.py": "d6c46e88ae2d4feac97084a6bcbeef323d974116bec9bc36dfdbec72a8c16447"
+  },
+  "executor_model": "gpt-6.1-sol (Junie general-purpose subagent)",
+  "runs_per_configuration": 5,
+  "baseline": "No explicitly loaded skill; inherited agent instructions remain identical."
+}

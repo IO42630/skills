@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 89–107 show child subtotal 7 returning to a parent still at 2, followed by the parent's addition and return 9. The call is explicitly replaced with its returned number."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked input [2, [3, 4]] has three leaves and one child; the displayed function needs no application or library."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 76–86 show the function and integer, finite, acyclic assumption; lines 109–110 explain zero-iteration stopping and the return after the loop. Depth/input limits are retained at line 145. Nine regression inputs passed."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 115–130 request recall and the returns for [1, [2, []], 3]; feedback shows empty return 0, child return 2, outer resumption, and final return 6."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "The transfer introduces an empty child already explained by the function. The diagnosis removes += from the same branch; later practice uses [[5], 1]. No new representation is required."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Four main sections allocate 1/4/4/1 minutes to the idea, one worked trace, recall/changed-input practice, and takeaway. Later recall is separate; no anecdotes or broad curriculum. Learner timing was not measured."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "The table distinguishes waiting and returning; the lost-+= exercise explains why computing a child total without using it leaves the outer answer at 4."
+    }
+  ]
+}

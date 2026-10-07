@@ -1,0 +1,97 @@
+{
+  "expectations": [
+    {
+      "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+      "passed": true,
+      "evidence": "javac exit=0; see validation/results.json."
+    },
+    {
+      "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+      "passed": true,
+      "evidence": "PASS core"
+    },
+    {
+      "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+      "passed": true,
+      "evidence": "Import failures: []"
+    },
+    {
+      "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+      "passed": false,
+      "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+    },
+    {
+      "text": "Obvious local initializers use var rather than redundant explicit types.",
+      "passed": true,
+      "evidence": "var initializers=2; redundant obvious locals=[]."
+    },
+    {
+      "text": "Java sources compile without raw-type warnings.",
+      "passed": true,
+      "evidence": "Compiler raw-type warnings=0; compiled=True."
+    },
+    {
+      "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+      "passed": true,
+      "evidence": "PASS io"
+    },
+    {
+      "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+      "passed": true,
+      "evidence": "PASS optional"
+    },
+    {
+      "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+      "passed": true,
+      "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+    },
+    {
+      "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+      "passed": true,
+      "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+    },
+    {
+      "text": "Chained method-call dots start on new lines.",
+      "passed": true,
+      "evidence": "Same-line chained dots: {}"
+    },
+    {
+      "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+      "passed": true,
+      "evidence": "Multi-argument layout failures: {}"
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "failed": 1,
+    "total": 12,
+    "pass_rate": 0.9166666666666666
+  },
+  "execution_metrics": {
+    "output_chars": 1789,
+    "total_tool_calls": null,
+    "errors_encountered": null
+  },
+  "timing": {
+    "total_duration_seconds": null,
+    "total_tokens": null,
+    "status": "Not exposed by this subagent runtime."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+        "reason": "This frozen probe requires @Builder even though the task does not request a builder API. @Data with a generated constructor also removes boilerplate; keep the score but interpret the annotation-specific failure narrowly."
+      }
+    ],
+    "overall": "Targeted convention probes and behavior checks, not comprehensive Java conformance."
+  },
+  "metrics": {
+    "java_lines": 73,
+    "max_line_length": 79,
+    "var_initializers": 2,
+    "raw_type_warnings": 0,
+    "chain_layout_violations": 0,
+    "argument_layout_violations": 0
+  }
+}

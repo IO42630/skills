@@ -1,0 +1,6 @@
+{
+  "agent-3": ["do-less-with-4", "with_skill", 4],
+  "agent-1": ["do-less-without-4", "without_skill", 4],
+  "agent-2": ["do-less-without-5", "without_skill", 5],
+  "agent-4": ["do-less-with-5", "with_skill", 5]
+}

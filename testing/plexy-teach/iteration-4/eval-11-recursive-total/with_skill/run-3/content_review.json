@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Rows 87\u201392 explicitly show the child returning 7 to a parent waiting at 2, the resumed statement behaving as subtotal += 7, and the parent returning 9."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked [2, [3, 4]] has three integer leaves and one child; no filesystem, parsing, object hierarchy, or framework appears."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 71\u201378 display complete aggregation with the final return. Lines 98\u2013100 explain integer and empty-list stopping cases; lines 65 and 141 state finite non-self-containing inputs and recursion-depth limitations. Nine executable inputs pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 105\u2013121 require memory retrieval and tracing [1, [2, [3]], []] with returns 3, 5, 0, and 6; feedback checks the outer subtotal before/after the empty child and warns against simply flattening mentally."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "The deeper trace, discarded-result diagnosis, and delayed [4, [1, []]] recall all stay in the taught integer/list model."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Four core sections follow a six-minute explanation, three-minute practice, one-minute retrieval route. The optional later-review reveal adds no compulsory unrelated content."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 130\u2013134 distinguish computation from collection and explain that replacing a subtotal would lose earlier numbers; return chains, not reading or final numbers, are proposed as evidence of understanding."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "eval_id": 0,
+  "eval_name": "json-settings",
+  "prompt": "Write a production-ready Python helper for a small command-line tool. Provide load_settings(path) in settings.py. It must read a UTF-8 JSON file from the local filesystem and return its contents as a dictionary, preserving nested values. Reject any non-object top-level JSON value with ValueError. Missing files and malformed JSON must retain their native FileNotFoundError and json.JSONDecodeError diagnostics. Current callers pass a local file path; there are no other data sources or operating modes. Include a short design note in design.md.",
+  "assertions": [
+    "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+    "Rejects every non-object JSON top-level type with ValueError.",
+    "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+    "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+    "Closes file handles on success, malformed JSON, and rejected top-level values.",
+    "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities."
+  ]
+}

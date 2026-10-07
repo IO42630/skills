@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 191–219 trace C return 4, B resumption to 7 then 8, B return 8, A resumption to 10 then 15, and distinguish waiting from post-return totals."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked input [2, [3, [4], 1], 5] has five leaves and three calls. The call-card term stack frame is immediately explained; no external application is introduced."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 140–159 show finite numeric-list assumptions, explicit empty-list return 0, list aggregation, and return placement. The depth limit is stated at line 285. The code-line spans were reconstructed into Python; nine regression inputs passed."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 227–245 ask child returns for [1, [], [2, [3]], 4], showing 0, 3, 5, and outer 10 with a double-counting warning. Lines 253–282 add reconstruction and closed-book explanation on [6, [2, []], 1]."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "Changed inputs remain small numeric lists. Wrong answers are the same-list recursion and direct list addition already motivated by the taught branch; no new type or library is needed."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Five main sections budget 1/2/3/2/2 minutes around one worked return chain, a changed input, and reconstruction. The simulator and quiz UI are more elaborate, but do not add compulsory unrelated instructional topics. Actual learner timing was not measured."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "The table and specific wrong-answer feedback separate private subtotals, waiting, and returned numbers. The exit check requests an explanatory return chain rather than recognition of the recursion definition."
+    }
+  ]
+}

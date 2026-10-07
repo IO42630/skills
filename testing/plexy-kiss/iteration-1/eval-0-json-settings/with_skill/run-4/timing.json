@@ -1,0 +1,7 @@
+{
+  "total_tokens": null,
+  "duration_ms": null,
+  "total_duration_seconds": null,
+  "status": "unavailable",
+  "reason": "The executor completion notification did not expose token or duration metrics."
+}

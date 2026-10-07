@@ -1,0 +1,15 @@
+{
+  "status": "blocked",
+  "opencode_version": "1.18.18",
+  "model": "opencode/deepseek-v4-flash-free",
+  "successful_generations": 0,
+  "first_attempt": "eval-11-recursive-total/without_skill/run-1/execution.json",
+  "diagnostics": [
+    "A tool-free lesson generation timed out after 240 seconds with empty stdout and stderr.",
+    "A separate 30-second CLI diagnostic stalled during startup before returning any model events.",
+    "The free chat-completions endpoint returned HTTP 400: Upstream request failed: Model is unavailable.",
+    "The non-free deepseek-v4-flash endpoint returned HTTP 401: Missing API key."
+  ],
+  "fallback": "../iteration-2/benchmark.md",
+  "comparative_score": null
+}

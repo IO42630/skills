@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 75\u201387 explicitly trace parent 2, child 7, return to parent, and 2 + 7 = 9; the parent changes its own result with +=."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The sole worked input [2, [3, 4]] uses three leaves and one child. The example stays entirely in Python number-and-list operations."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 60\u201368 show the complete aggregation function; lines 89\u201391 explain zero-iteration [] and finite descent. Line 136 states type and recursion-depth limitations. All nine executable inputs pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 95\u2013118 instruct covering the function, retrieving the rule, and tracing [1, [2, []], 3]; feedback gives return order 0 \u2192 2 \u2192 6, parent totals, and explanations for losing the final 3 or double-counting."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "All changed inputs, error diagnosis, immediate practice, and delayed recall stay within numbers, empty lists, and nested lists."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Four sections are budgeted 2/3/4/1 minutes. The two-call explanation and three short practice tasks are focused, with no compulsory history, curiosity anchors, or nine-part template."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "The learner has to explain immediate return destinations, separate local totals, loop continuation, and the lost-result bug; lines 125\u2013129 distinguish running a child from adding its answer."
+    }
+  ]
+}

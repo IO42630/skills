@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 77\u201386 show the parent holding 2, the child computing and returning 7, and the pending += using that value to produce 9."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked [2, [3, 4]] has three integer leaves and one child; no framework, filesystem, parser, or setup is introduced."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 65\u201374 give the full loop and recursive accumulation. Lines 87\u201389 explain empty and flat stopping cases and return indentation; lines 64 and 137 state finite cycle-free integer-list scope and depth limits. Nine executable checks pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 106\u2013127 require recalling the mechanism, tracing [1, [2, 3], 4], explaining continuation to 4, and checking an empty child; feedback shows child 5, parent 6 then 10, not just the final answer."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "Transfer and later recall only alter integers, empty lists, and nesting. Other types and extreme depth are identified as outside the example."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "The header allocates 1/4/2/2/1 minutes to five focused sections. One two-call trace, a missing-addition diagnosis, and short changed-input practice need no unrelated content."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 93\u2013102 distinguish a child calculating 7 from the parent discarding it and returning 2. The learner must explain both separate local results and the parent's addition."
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Teach me how a recursive function gets a total from a nested list. I know Python loops and function returns but recursion has not clicked. Make an HTML lesson I can work through in ten minutes.
+
+Return the complete HTML lesson in your final response, without Markdown fences or commentary. File, research, and browser tools are unavailable in this content-only evaluation. Do not claim to have researched sources, saved files, tested a browser, or observed learner answers. Do not ask follow-up questions; use the learner context in the request.

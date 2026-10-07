@@ -1,0 +1,3 @@
+Implemented `RenameAccountAction` as a frozen dataclass with a typed repository and native relative imports for its future `accounts.rename_account` location. `execute(account_id, *, rename_to)` finds the account, raises the existing `NotFoundError(account_id)` if absent, otherwise immutably replaces its name and returns the repository's save result.
+
+The explicit task requirement overrides the usual stripping convention: `rename_to` is preserved exactly, including leading/trailing whitespace. Only the selected reference's naming idiom is adopted; no execution framework, concurrency, dependencies, or unrelated migrations are introduced. Inputs remain unchanged; no tests or grading were inspected or run.

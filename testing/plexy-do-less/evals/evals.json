@@ -1,0 +1,19 @@
+{
+  "skill_name": "plexy-do-less",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Fix the milliseconds-to-seconds conversion in timeout.py; 1500 ms should be 1.5 seconds. Preserve negative-value rejection and the existing request_options behavior. Run python3 -m unittest -v test_timeout.py.",
+      "expected_output": "A focused fix to timeout.py, preserved caller and rejection behavior, an actual successful run of the requested tests, and a concise result without unnecessary investigation or delegation.",
+      "files": ["fixtures/timeout.py", "fixtures/test_timeout.py"],
+      "expectations": [
+        "The conversion is correct for zero, fractional milliseconds, and multiple positive values.",
+        "Negative-value rejection and request_options behavior are preserved.",
+        "Only the conversion expression changes; the supplied tests remain unchanged.",
+        "The agent actually runs the requested unittest command successfully.",
+        "Investigation stays on the two task files, without broad surveys or helper subagents.",
+        "The final reply is at most 60 words and has no conversational preamble."
+      ]
+    }
+  ]
+}

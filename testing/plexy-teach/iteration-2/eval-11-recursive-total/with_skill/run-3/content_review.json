@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 79–91 explicitly trace the parent's saved 2, child's separate 0→3→7, child return 7, pending +=7, and outer return 9."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked list [2, [3, 4]] has three numeric leaves; parent/child are explained as call roles, not application objects."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 69–77 show the full function, including list aggregation and return placement. Lines 94–95 explain empty-list zero, finite acyclic nesting, and the depth limit. Nine regression inputs passed."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 100–118 request covering the worked trace and tracing [1, [2, [3]], 4]; feedback gives child returns 3 and 5 and explains why the parent continues to 4."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "Transfer adds one list level; diagnosis drops the addition at the same call site; an empty-list recap uses [2, []]. No untaught types or algorithms."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Four main sections allocate 1/4/4/1 minutes, one worked input, and three brief reasoning prompts. Later recall is not part of the ten-minute core. No compulsory anecdotes; no measured learner timing."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "The lesson distinguishes separate accumulators, returned values, and the caller's addition. The missing-+= diagnosis explains why the outer call returns only 2 instead of 9."
+    }
+  ]
+}

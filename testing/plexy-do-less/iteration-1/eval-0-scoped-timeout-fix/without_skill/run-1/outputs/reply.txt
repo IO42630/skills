@@ -1,0 +1,5 @@
+Fixed `timeout.py` to divide by 1000: 1500 ms now returns 1.5 seconds. Negative-value rejection and `request_options` behavior are preserved.
+
+`python3 -m unittest -v test_timeout.py`: all 3 tests passed (exit 0).
+
+Saved this handoff in `reply.txt` and the final test output with its exit code in `test-output.txt`.

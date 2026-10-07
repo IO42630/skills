@@ -1,0 +1,16 @@
+{
+  "model": "Junie general_purpose (gpt-6.1-sol)",
+  "sessions": [
+    {"configuration": "without_skill", "run_number": 1, "handle": "agent-4", "status": "COMPLETED"},
+    {"configuration": "with_skill", "run_number": 1, "handle": "agent-2", "status": "COMPLETED"},
+    {"configuration": "with_skill", "run_number": 2, "handle": "agent-1", "status": "COMPLETED"},
+    {"configuration": "without_skill", "run_number": 2, "handle": "agent-7", "status": "COMPLETED"},
+    {"configuration": "without_skill", "run_number": 3, "handle": "agent-5", "status": "COMPLETED"},
+    {"configuration": "with_skill", "run_number": 3, "handle": "agent-3", "status": "COMPLETED"}
+  ],
+  "launch_order": "Alternated variant order between pairs; both new rounds launched together in fresh concurrent sessions.",
+  "duration_seconds": null,
+  "tokens": null,
+  "generation_checks": "All generators reported browser checks unavailable; no source research or runtime tests performed during generation.",
+  "parent_checks": "Content inspection and displayed Python function regression checks are performed separately after generation."
+}

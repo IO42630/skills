@@ -1,0 +1,20 @@
+{
+  "skill_name": "plexy-teach",
+  "evals": [
+    {
+      "id": 11,
+      "prompt": "Teach me how a recursive function gets a total from a nested list. I know Python loops and function returns but recursion has not clicked. Make an HTML lesson I can work through in ten minutes.",
+      "expected_output": "A compact lesson that visibly traces child returns into a parent total using a tiny nested list, then checks the same reasoning on a changed input.",
+      "files": [],
+      "expectations": [
+        "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+        "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+        "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+        "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+        "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+        "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+        "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself."
+      ]
+    }
+  ]
+}

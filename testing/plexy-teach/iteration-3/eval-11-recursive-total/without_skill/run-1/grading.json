@@ -1,0 +1,69 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Trace table lines 108\u2013117 shows C returning 4 to B, B adding 3 + 4 and returning 7 to A, then A adding 2 + 7 and continuing to 5 for 14."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked [2, [3, [4]], 5] has four leaves and two nested child calls, still a small list-only example without external machinery."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 70\u201387 expose the recursive accumulation, return after the loop, empty-list zero, and finite non-circular scope. Line 58 excludes other containers and extreme depth. Nine executable checks pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Practice [1, [2, []], 3] asks for four intermediate checkpoints; lines 160\u2013175 require filling the function without looking back and tracing [4, [1, [2]], 3], with an explanation of counting each leaf once."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "Fresh traces, empty-child checks, missing-addition and early-return diagnoses all use the same number-and-list model."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Five sections have a 0\u201310-minute route, one compact trace table, and short prediction/reconstruction tasks. No compulsory unrelated stories or setup. This is a fuller exercise set, but the core remains plausibly ten minutes."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 121\u2013127 explain the immediate caller, and lines 178\u2013192 test discarded returns, early return, and independent empty children; correct totals alone are not the lesson's entire substance."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "unverified": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "metrics": {
+    "word_count": 1419,
+    "html_chars": 15104,
+    "heading_count": 8,
+    "code_blocks": 5,
+    "scripts": 0,
+    "answer_reveals": 9,
+    "has_semantic_structure": true,
+    "has_language": true,
+    "required_dependencies": [],
+    "static_self_contained": true
+  },
+  "review_method": "Explicit artifact inspection by the parent assistant; not a blind or independent judge.",
+  "unavailable_checks": [
+    "Browser rendering",
+    "Keyboard interaction",
+    "JavaScript-disabled rendering",
+    "Print preview",
+    "Narrow-screen layout",
+    "Source research",
+    "Skill routing",
+    "Persistent workspace workflow"
+  ]
+}

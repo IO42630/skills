@@ -1,0 +1,69 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 79\u201396 trace A waiting at 2, B returning 7, A adding 7 then 1, and A returning 10; the local totals are explicitly separate."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked input [2, [3, 4], 1] has four integer leaves and one child call; lines 60\u201370 need only a loop and list type check."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 63\u201372 display the full function with return after the loop; lines 101\u2013103 explain [] returning 0. Line 145 limits inputs to finite cycle-free integer lists and warns about recursion depth. The function passes nine executable checks."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 107\u2013137 require covering the code, recalling the rule, and tracing [4, [1, [2]], [], 3]; feedback tracks 2 \u2192 3 \u2192 10 returns and identifies wrong return destinations, resets, and premature stopping."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "All practice, next-use guidance, and later recall stay with integers and nested lists. Cycles and extreme depth are limits, not additional exercises."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "The header budgets 1/4/4/1 minutes across idea, example, practice, and takeaway. The four main sections use one small worked input, two core tasks, and no required anecdotes or application setup."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 96\u201399 explain that returning alone does not update the parent and a bare call yields only 3; practice asks for each caller's before/after subtotal rather than a definition of recursion."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "unverified": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "metrics": {
+    "word_count": 1259,
+    "html_chars": 12010,
+    "heading_count": 9,
+    "code_blocks": 4,
+    "scripts": 0,
+    "answer_reveals": 2,
+    "has_semantic_structure": true,
+    "has_language": true,
+    "required_dependencies": [],
+    "static_self_contained": true
+  },
+  "review_method": "Explicit artifact inspection by the parent assistant; not a blind or independent judge.",
+  "unavailable_checks": [
+    "Browser rendering",
+    "Keyboard interaction",
+    "JavaScript-disabled rendering",
+    "Print preview",
+    "Narrow-screen layout",
+    "Source research",
+    "Skill routing",
+    "Persistent workspace workflow"
+  ]
+}

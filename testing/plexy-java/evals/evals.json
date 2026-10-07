@@ -1,0 +1,25 @@
+{
+  "skill_name": "plexy-java",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Clean up the supplied small Java 17 Maven customer directory for maintainability and robustness. Keep the packages, class names, public method names, and argument types; changing the lookup return type to make absence explicit is allowed. Customer remains a mutable id/name value object. CustomerDirectory uses the supplied map, finds customers by id, returns sorted display strings in the form 'Name (id)', and loads UTF-8 CSV rows containing id,name into the same map. Make invalid constructor input and file-read failures observable rather than silently accepting them. Keep the existing Maven dependencies and do not introduce unrelated features. Save the complete revised pom.xml and Java sources, not just a suggested diff.",
+      "expected_output": "A complete, compilable project preserving the customer-directory behavior while following the Java skill's import, Lombok, var, generics, exception, null, dependency, and line-break conventions.",
+      "files": ["fixtures/customer-directory/pom.xml", "fixtures/customer-directory/src/main/java/example/model/Customer.java", "fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java"],
+      "expectations": [
+        "The complete candidate compiles for Java 17 with the real declared dependencies.",
+        "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+        "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+        "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+        "Obvious local initializers use var rather than redundant explicit types.",
+        "Java sources compile without raw-type warnings.",
+        "Missing-file IOException reaches the caller rather than being swallowed.",
+        "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+        "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+        "The existing Maven dependency declarations are preserved without additions or duplicates.",
+        "Chained method-call dots start on new lines.",
+        "Calls with multiple arguments put each argument and the closing parenthesis on separate lines."
+      ]
+    }
+  ]
+}

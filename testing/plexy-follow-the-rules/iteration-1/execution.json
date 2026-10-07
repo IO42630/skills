@@ -1,0 +1,29 @@
+{
+  "executor_model": "gpt-6.1-sol",
+  "executor": "Junie general_purpose subagents",
+  "launch": "The initial six independent runs were launched together before assertions were added. Four additional independent runs (4 and 5 per configuration) were launched together in a second batch with the same prompt and existing assertions hidden from executors.",
+  "fixture_root": "testing/plexy-follow-the-rules/fixtures",
+  "skill_path": "plexy-follow-the-rules/SKILL.md",
+  "runs": [
+    {"configuration": "with_skill", "run_number": 1, "handle": "agent-4", "status": "completed", "skill_read": true},
+    {"configuration": "with_skill", "run_number": 2, "handle": "agent-3", "status": "completed", "skill_read": true},
+    {"configuration": "with_skill", "run_number": 3, "handle": "agent-1", "status": "completed", "skill_read": true},
+    {"configuration": "without_skill", "run_number": 1, "handle": "agent-6", "status": "completed", "skill_read": false},
+    {"configuration": "without_skill", "run_number": 2, "handle": "agent-5", "status": "completed", "skill_read": false},
+    {"configuration": "without_skill", "run_number": 3, "handle": "agent-2", "status": "completed", "skill_read": false},
+    {"configuration": "with_skill", "run_number": 4, "handle": "agent-3", "batch": "additional-four-runs", "status": "completed", "skill_read": true, "reported_scope_deviations": []},
+    {"configuration": "without_skill", "run_number": 4, "handle": "agent-2", "batch": "additional-four-runs", "status": "completed", "skill_read": false, "reported_scope_deviations": []},
+    {"configuration": "with_skill", "run_number": 5, "handle": "agent-1", "batch": "additional-four-runs", "status": "completed", "skill_read": true, "reported_scope_deviations": []},
+    {"configuration": "without_skill", "run_number": 5, "handle": "agent-4", "batch": "additional-four-runs", "status": "completed", "skill_read": false, "reported_scope_deviations": []}
+  ],
+  "input_read_evidence": "Each executor's final handoff reported reading all six supplied fixture files; with-skill executors also reported reading the target skill. This is self-reported provenance, not a persisted full tool trace.",
+  "additional_batch_note": "Fresh subagent contexts were used for all four additional runs; handles are batch-local and may repeat initial-batch handles. Inputs, skill, and prompt were unchanged from the end of the initial benchmark. These runs therefore read the repository fixture with its existing Python 3.9 postponed-annotation compatibility fix. All four reported no scope deviations; the original six outputs were retained.",
+  "duration_ms": null,
+  "total_tokens": null,
+  "measurement_note": "Subagent completion notifications exposed neither duration_ms nor total_tokens; no timing/token measurements are claimed.",
+  "protocol_deviations": [
+    "with_skill/run-1 additionally read .agents/skills/skill-creator/SKILL.md despite the executor's restricted scope. Retained and disclosed rather than silently discarded.",
+    "without_skill/run-1 attempted runtime validation but Python 3.9.6 could not evaluate the fixture repository's Account | None annotation. After all runs completed, the parent added future annotations to that fixture only; no generated output was changed."
+  ],
+  "baseline_limitation": "Both configurations inherit the general Junie instructions to follow user requirements and local code style. This tests the incremental effect of the target skill under that shared context, not an instruction-free model."
+}

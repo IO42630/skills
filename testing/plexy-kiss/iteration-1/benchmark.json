@@ -1,0 +1,648 @@
+{
+  "metadata": {
+    "skill_name": "plexy-kiss",
+    "skill_path": "plexy-kiss/SKILL.md",
+    "skill_sha256": "a32854596a599bfb86fed1cbfb0a217e07bb16d6782fa9b32c3b0e7c99998098",
+    "executor_model": "Junie general-purpose subagent (gpt-6.1-sol)",
+    "analyzer_model": "gpt-6.1-sol",
+    "timestamp": "2026-10-07T07:46:53.134691+00:00",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 5
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 17,
+        "source_chars": 475,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 16,
+        "source_chars": 490,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 20,
+        "source_chars": 644,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "with_skill",
+      "run_number": 4,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 19,
+        "source_chars": 546,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "with_skill",
+      "run_number": 5,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 20,
+        "source_chars": 577,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 20,
+        "source_chars": 596,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 20,
+        "source_chars": 619,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 20,
+        "source_chars": 601,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "without_skill",
+      "run_number": 4,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['__future__', 'json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 22,
+        "source_chars": 659,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "json-settings",
+      "configuration": "without_skill",
+      "run_number": 5,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null
+      },
+      "expectations": [
+        {
+          "text": "Returns exact dictionaries, including empty objects and nested UTF-8 values, for string and Path inputs.",
+          "passed": true,
+          "evidence": "Empty/nested Unicode objects preserved for string and Path inputs (4 calls)."
+        },
+        {
+          "text": "Rejects every non-object JSON top-level type with ValueError.",
+          "passed": true,
+          "evidence": "All 8 non-object examples rejected with ValueError."
+        },
+        {
+          "text": "Preserves native FileNotFoundError type, filename, and errno for a missing file.",
+          "passed": true,
+          "evidence": "Original FileNotFoundError with filename and ENOENT; no translated cause/context."
+        },
+        {
+          "text": "Preserves native JSONDecodeError type, document, message, and source position for malformed JSON.",
+          "passed": true,
+          "evidence": "Native JSON diagnostics preserved for all 3 malformed documents."
+        },
+        {
+          "text": "Closes file handles on success, malformed JSON, and rejected top-level values.",
+          "passed": true,
+          "evidence": "Observed real file handles closed after success and both error paths."
+        },
+        {
+          "text": "Uses a direct standard-library loader without framework classes, decorators, async flow, or unrelated runtime capabilities.",
+          "passed": true,
+          "evidence": "Direct synchronous function; stdlib imports ['json', 'os', 'typing']; no framework/decorators."
+        }
+      ],
+      "completion": {
+        "passed": true,
+        "design_note_present": true
+      },
+      "metrics": {
+        "source_lines": 20,
+        "source_chars": 604,
+        "function_count": 1,
+        "class_count": 0
+      },
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": null,
+      "tokens": null,
+      "completion_rate": {
+        "mean": 1,
+        "stddev": 0.0,
+        "min": 1,
+        "max": 1
+      },
+      "source_lines": {
+        "mean": 18.4,
+        "stddev": 1.8165902124584952,
+        "min": 16,
+        "max": 20
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": null,
+      "tokens": null,
+      "completion_rate": {
+        "mean": 1,
+        "stddev": 0.0,
+        "min": 1,
+        "max": 1
+      },
+      "source_lines": {
+        "mean": 20.4,
+        "stddev": 0.8944271909999159,
+        "min": 20,
+        "max": 22
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "All assertions passed in all 10 runs (60/60 checks). No assertion distinguishes skill-enabled from baseline behavior on this task; no observed benefit.",
+    "Required completion is reported separately; a structural/style pass cannot cancel a correctness failure.",
+    "Source length is descriptive, not a simplicity score; docstrings and annotations affect it.",
+    "Timing and token counts were not exposed by the executor; null means unavailable, not zero.",
+    "One prompt with 5 repeats per configuration is a pilot, not evidence of general effectiveness or statistical significance.",
+    "Both configurations used Junie general-purpose subagents (gpt-6.1-sol), unlike the earlier deepseek-flash reports; do not compare scores across models/tasks.",
+    "Fresh subagent conversations and disjoint outputs were used, but the repository and inherited agent instructions were shared. Baselines were instructed not to consult skills; this is not fully isolated end-to-end skill-trigger testing.",
+    "The AST check is a task-specific structural proxy, not a general ban on classes, dependencies, decorators, or asynchronous code.",
+    "This case does not test justified interfaces, payment idempotency/security, or DRY across independent concepts."
+  ]
+}

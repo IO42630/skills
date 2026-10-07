@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>A recursive total, one return at a time</title>
+  <style>
+    :root { --ink: #182735; --muted: #465766; --paper: #ffffff; --accent: #075965; --soft: #edf6f7; --border: #b9ccd1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #f3f6f8; font: 1.05rem/1.65 system-ui, sans-serif; }
+    main { max-width: 850px; margin: 0 auto; padding: 2rem 1.25rem 3rem; background: var(--paper); }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); margin: .5rem 0 1rem; }
+    h2 { font-size: 1.5rem; margin-top: 0; }
+    h3 { font-size: 1.15rem; }
+    p, ul, ol { margin: .8rem 0; }
+    a { color: var(--accent); text-underline-offset: .2em; }
+    section { margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid var(--border); }
+    .eyebrow, .time { color: var(--accent); font-weight: 700; }
+    .time { font-size: .88rem; margin: 0 0 .4rem; }
+    .lead { font-size: 1.2rem; }
+    .note, .task { padding: .8rem 1rem; border-left: 4px solid var(--accent); background: var(--soft); margin: 1rem 0; }
+    .note p:first-child, .task p:first-child { margin-top: 0; }
+    .note p:last-child, .task p:last-child { margin-bottom: 0; }
+    code { font: .95em ui-monospace, SFMono-Regular, Consolas, monospace; }
+    :not(pre) > code { background: #eef2f4; padding: .1em .25em; border-radius: .2em; }
+    pre { margin: 1rem 0; padding: 1rem; background: #152b38; color: #f5fbff; overflow-x: auto; border-radius: .4rem; line-height: 1.6; }
+    pre code { font-size: .94rem; }
+    details { margin: 1rem 0; border: 1px solid var(--border); border-radius: .4rem; padding: .75rem 1rem; }
+    summary { cursor: pointer; color: var(--accent); font-weight: 700; }
+    summary:focus-visible, a:focus-visible, textarea:focus-visible { outline: 3px solid #b45900; outline-offset: 4px; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; min-width: 530px; font-size: .96rem; }
+    caption { text-align: left; font-weight: 700; margin-bottom: .6rem; }
+    th, td { text-align: left; vertical-align: top; border: 1px solid var(--border); padding: .6rem; }
+    th { background: var(--soft); }
+    textarea { width: 100%; min-height: 7rem; padding: .8rem; color: var(--ink); background: white; border: 1px solid #687d89; border-radius: .3rem; font: 1rem/1.5 ui-monospace, monospace; }
+    .small { color: var(--muted); font-size: .9rem; }
+    .skip { position: absolute; top: -100px; left: 1rem; background: white; padding: .5rem; }
+    .skip:focus { top: .5rem; }
+    footer { margin-top: 2rem; color: var(--muted); font-size: .9rem; }
+    @media print { body { background: white; } main { max-width: none; } details { break-inside: avoid; } textarea, .skip { display: none; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#lesson">Skip to lesson</a>
+  <main id="lesson">
+    <header>
+      <p class="eyebrow">Python · 10-minute lesson · loops → recursion</p>
+      <h1>A recursive total, one return at a time</h1>
+      <p class="lead">A nested list is still a list. Its items just sometimes need their own little calculation.</p>
+      <p>By the end, you will be able to trace a nested total, explain what happens while a function waits for another call, and write the recursive step yourself.</p>
+      <p class="small">Use a timer if helpful. Try each prompt before opening its answer. This page works offline; the answer panels need no scripts.</p>
+      <nav aria-label="Lesson sections">
+        <a href="#problem">The job</a> · <a href="#function">The function</a> · <a href="#trace">Follow the returns</a> · <a href="#predict">Predict</a> · <a href="#practice">Build it</a>
+      </nav>
+    </header>
+
+    <section id="problem" aria-labelledby="problem-heading">
+      <p class="time">0–1 minute · Start with what you know</p>
+      <h2 id="problem-heading">Add numbers, not brackets</h2>
+      <p>For <code>[2, 3, 5]</code>, you already know the loop: start at zero, then add each number. Now imagine this:</p>
+      <pre><code>numbers = [2, [3, [4], 1], 5]</code></pre>
+      <div class="task">
+        <p><strong>First prediction:</strong> What should the total be? Ignore the brackets and add the numbers mentally.</p>
+      </div>
+      <details>
+        <summary>Check the target total</summary>
+        <p><code>2 + 3 + 4 + 1 + 5 = 15</code>. We want to count every number exactly once, regardless of depth.</p>
+      </details>
+      <p>The outer loop sees only three items: <code>2</code>, a list, and <code>5</code>. You cannot add that list directly to a number. But you <em>can</em> ask a function to turn the list into a subtotal.</p>
+      <p><strong>The recursive idea:</strong> when an item is another list, use this same function to total that smaller list. Add the number it returns.</p>
+    </section>
+
+    <section id="function" aria-labelledby="function-heading">
+      <p class="time">1–3 minutes · Read the loop you already understand</p>
+      <h2 id="function-heading">One function, many separate calls</h2>
+      <pre><code>def nested_total(items):
+    total = 0
+    for item in items:
+        if isinstance(item, list):
+            subtotal = nested_total(item)
+            total += subtotal
+        else:
+            total += item
+    return total
+
+numbers = [2, [3, [4], 1], 5]
+print(nested_total(numbers))  # 15</code></pre>
+      <p><code>isinstance(item, list)</code> asks whether this item is a list. A number takes the ordinary addition branch. A list takes the recursive branch.</p>
+      <ol>
+        <li><strong>Start:</strong> this call gets its own <code>items</code>, <code>total</code>, and loop position.</li>
+        <li><strong>Delegate:</strong> <code>nested_total(item)</code> starts a new call for that sublist. The current call waits.</li>
+        <li><strong>Resume:</strong> the child returns one number. The waiting call stores it in <code>subtotal</code>, adds it, and continues its loop.</li>
+        <li><strong>Finish:</strong> return the total <em>after</em> the loop, not during it.</li>
+      </ol>
+      <div class="note">
+        <p><strong>Nothing gets reset in the waiting call.</strong> Each call has a separate local <code>total</code>. A child's <code>total = 0</code> does not erase its parent's total.</p>
+      </div>
+      <h3>What makes it stop?</h3>
+      <p>Our inputs are finite lists containing only numbers and more such lists, with no list containing itself. Each recursive call goes down into a contained sublist. Eventually a call sees only numbers, or an empty list, so it makes no further calls and returns.</p>
+      <p>For <code>[]</code>, the loop runs zero times and returns <code>0</code>. There is no separate base-case <code>if</code> here: the no-more-sublists case stops recursion naturally. “Smaller” means less nesting left to descend through, not necessarily fewer items.</p>
+    </section>
+
+    <section id="trace" aria-labelledby="trace-heading">
+      <p class="time">3–6 minutes · Follow the pauses and returns</p>
+      <h2 id="trace-heading">The parent waits; the child does its own loop</h2>
+      <p>We'll label the calls <strong>A</strong>, <strong>B</strong>, and <strong>C</strong>. These are labels for separate executions, not different functions.</p>
+      <pre aria-label="Call tree and returned totals"><code>A: nested_total([2, [3, [4], 1], 5]) → 15
+    B: nested_total([3, [4], 1])     → 8
+        C: nested_total([4])        → 4</code></pre>
+      <p>Calls start inward: <strong>A → B → C</strong>. Then the returned subtotals travel outward: <strong>C → B → A</strong>.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>The execution order, with each call's local total</caption>
+          <thead><tr><th scope="col">Step</th><th scope="col">Active call and action</th><th scope="col">Waiting calls</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1</th><td>A starts at <code>0</code>; adds <code>2</code> → A total <code>2</code>.</td><td>None.</td></tr>
+            <tr><th scope="row">2</th><td>A reaches <code>[3, [4], 1]</code> and calls B.</td><td>A waits with total <code>2</code>.</td></tr>
+            <tr><th scope="row">3</th><td>B starts at <code>0</code>; adds <code>3</code> → B total <code>3</code>.</td><td>A still has <code>2</code>.</td></tr>
+            <tr><th scope="row">4</th><td>B reaches <code>[4]</code> and calls C.</td><td>A has <code>2</code>; B has <code>3</code>.</td></tr>
+            <tr><th scope="row">5</th><td>C starts at <code>0</code>; adds <code>4</code>; returns <code>4</code>.</td><td>A and B have not changed.</td></tr>
+            <tr><th scope="row">6</th><td>B receives <code>4</code>; adds it → <code>7</code>. B then adds its next item, <code>1</code> → <code>8</code>, and returns <code>8</code>.</td><td>A still has <code>2</code>.</td></tr>
+            <tr><th scope="row">7</th><td>A receives <code>8</code>; adds it → <code>10</code>. A then adds its next item, <code>5</code> → <code>15</code>, and returns <code>15</code>.</td><td>None. The original call is done.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="task">
+        <p><strong>Pause and say it aloud:</strong> Why does C returning <code>4</code> not make the entire calculation end at <code>4</code>?</p>
+      </div>
+      <details>
+        <summary>Check your explanation</summary>
+        <p><code>return</code> ends only the call executing it. C returns to B at B's <code>subtotal = nested_total(item)</code> line. B still has its own loop to finish; then B returns to A. Only A's final return goes back to the original caller.</p>
+      </details>
+      <p class="note"><strong>Replace a call with its returned value:</strong> in A, <code>nested_total([3, [4], 1])</code> eventually supplies <code>8</code>. A therefore computes <code>2 + 8 + 5</code>. You do not need to flatten or modify the list.</p>
+    </section>
+
+    <section id="predict" aria-labelledby="predict-heading">
+      <p class="time">6–8 minutes · Predict before revealing</p>
+      <h2 id="predict-heading">Try a fresh input</h2>
+      <div class="task">
+        <p>For <code>nested_total([1, [2, [3]], []])</code>, write three things:</p>
+        <ol>
+          <li>What does the call on <code>[3]</code> return?</li>
+          <li>What does the call on <code>[2, [3]]</code> return?</li>
+          <li>What does the outer call return after processing <code>[]</code>?</li>
+        </ol>
+      </div>
+      <label for="prediction"><strong>Your trace or notes</strong> (optional)</label>
+      <textarea id="prediction" placeholder="Innermost return: …&#10;Middle return: …&#10;Outer return: …"></textarea>
+      <p class="small">This is a scratchpad, not a Python runner. The page does not submit or save your notes.</p>
+      <details>
+        <summary>Reveal the trace</summary>
+        <p><code>[3]</code> returns <code>3</code>. The middle call adds <code>2 + 3</code> and returns <code>5</code>. The outer call adds <code>1 + 5</code>, then calls the function on <code>[]</code>. That call returns <code>0</code>, so the final result is <code>6</code>.</p>
+        <p>If you got <code>0</code> overall, remember that the empty list's return is added to the parent's existing total; it does not replace it.</p>
+      </details>
+      <div class="task">
+        <p><strong>One more check:</strong> predict <code>nested_total([[[-2]], 5])</code>. Do extra brackets change the value of a number?</p>
+      </div>
+      <details>
+        <summary>Reveal the answer</summary>
+        <p>The result is <code>3</code>. Each inner call passes the subtotal <code>-2</code> outward; the outer call adds <code>5</code>. Nesting does not multiply a number or count it again.</p>
+      </details>
+    </section>
+
+    <section id="practice" aria-labelledby="practice-heading">
+      <p class="time">8–10 minutes · Reconstruct the idea</p>
+      <h2 id="practice-heading">Fill the gap, then check the return</h2>
+      <p>On paper or in your notes, replace <code>???</code> with one expression. Explain why it produces a number rather than a list.</p>
+      <pre><code>def nested_total(items):
+    total = 0
+    for item in items:
+        if isinstance(item, list):
+            total += ???
+        else:
+            total += item
+    return total</code></pre>
+      <details>
+        <summary>Reveal the missing expression</summary>
+        <p><code>nested_total(item)</code>. It totals this sublist and returns a number to add. This is the earlier two-line recursive branch written in one line.</p>
+        <p><code>nested_total(items)</code> would call the function on the whole current list again. When that list contains a sublist, it repeats the same problem without getting closer to stopping.</p>
+      </details>
+      <div class="task">
+        <p><strong>Spot the bug:</strong> Suppose <code>return total</code> moves inside the <code>for</code> loop, after the <code>if/else</code>. What would happen to the original input <code>[2, [3, [4], 1], 5]</code>?</p>
+      </div>
+      <details>
+        <summary>Reveal the bug and fix</summary>
+        <p>The outer call would return <code>2</code> after its first item, never reaching the sublist or the final <code>5</code>. For an empty list, that misplaced return would never execute, so Python would return <code>None</code>.</p>
+        <p>Keep <code>return total</code> outside the loop, aligned with <code>for</code>. Each call must finish all of <em>its own</em> items.</p>
+      </details>
+      <h3>Your exit check</h3>
+      <p>Without looking back, explain: “When a loop item is a list, I _____ . The parent keeps _____ while it waits. The child returns _____, and the parent _____ .”</p>
+      <details>
+        <summary>Compare with a complete explanation</summary>
+        <p>“I call the same function on that sublist. The parent keeps its local total and loop position while it waits. The child returns a subtotal, and the parent adds it and continues with the next item.”</p>
+        <p>If the waiting part still feels unclear, revisit steps 4–7 in the table and track A's <code>2</code> separately from B's <code>3</code>.</p>
+      </details>
+      <div class="note">
+        <p><strong>Keep this mental model:</strong> each call totals one list. Numbers are added directly; sublists are replaced by their returned subtotals. Separate local totals, one return at a time.</p>
+      </div>
+    </section>
+    <footer>
+      <p>Scope: finite, non-self-referential Python lists of numbers and lists. Strings, other containers, and extremely deep nesting are outside this exercise; Python has a recursion-depth limit.</p>
+    </footer>
+  </main>
+</body>
+</html>

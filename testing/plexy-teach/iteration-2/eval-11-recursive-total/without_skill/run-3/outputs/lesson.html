@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Nested lists, one total — a ten-minute recursion lesson</title>
+  <style>
+    :root {
+      --ink: #192e36;
+      --muted: #536771;
+      --paper: #f6f7f2;
+      --card: #ffffff;
+      --line: #d9e1dd;
+      --teal: #075f5a;
+      --teal-light: #e6f4ef;
+      --gold: #fff3d1;
+      --code: #122931;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.65 system-ui, sans-serif; }
+    main { max-width: 920px; margin: 0 auto; padding: 40px 24px 60px; }
+    a { color: var(--teal); text-underline-offset: 3px; }
+    h1, h2, h3 { line-height: 1.2; letter-spacing: -.025em; }
+    h1 { font-size: clamp(2.25rem, 6vw, 3.8rem); max-width: 720px; margin: 16px 0; }
+    h2 { font-size: 1.65rem; margin: 0; }
+    h3 { font-size: 1.15rem; margin: 0 0 10px; }
+    p { margin: 12px 0; }
+    .eyebrow { color: var(--teal); font-size: .8rem; letter-spacing: .12em; font-weight: 750; text-transform: uppercase; }
+    .intro { max-width: 670px; font-size: 1.15rem; }
+    .muted, .small { color: var(--muted); }
+    .small { font-size: .9rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 18px 0 26px; }
+    nav a { font-size: .9rem; }
+    section { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; margin: 0 0 20px; scroll-margin-top: 20px; }
+    .section-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+    .number { flex: 0 0 36px; height: 36px; display: grid; place-items: center; background: var(--teal); color: white; border-radius: 50%; font-weight: 700; }
+    .time { margin: 4px 0 0; font-size: .85rem; color: var(--muted); }
+    code { font: .92em/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; background: #edf1ee; padding: 2px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+    pre { margin: 18px 0; background: var(--code); color: #f1f8f5; border-radius: 12px; padding: 20px; overflow-x: auto; font-size: .95rem; line-height: 1.8; }
+    pre code { background: none; padding: 0; border-radius: 0; color: inherit; overflow-wrap: normal; }
+    .code-line { display: block; }
+    .code-line.active { background: #24524e; box-shadow: -10px 0 0 #24524e, 10px 0 0 #24524e; }
+    .callout { border-left: 4px solid var(--teal); background: var(--teal-light); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 18px 0; }
+    .warning { border-left-color: #946200; background: var(--gold); }
+    .callout p { margin: 0; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .mini-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 8px 0; }
+    details { border: 1px solid var(--line); border-radius: 10px; margin: 14px 0; padding: 12px 16px; }
+    summary { cursor: pointer; color: var(--teal); font-weight: 650; }
+    details[open] summary { margin-bottom: 12px; }
+    details p:last-child { margin-bottom: 0; }
+    button { font: inherit; font-weight: 650; cursor: pointer; border: 1px solid var(--teal); border-radius: 8px; padding: 9px 16px; background: var(--teal); color: white; }
+    button.secondary { color: var(--teal); background: white; }
+    button:disabled { opacity: .45; cursor: default; }
+    button:hover:not(:disabled) { filter: brightness(.92); }
+    :focus-visible { outline: 3px solid #ad6c00; outline-offset: 4px; }
+    [hidden] { display: none !important; }
+    .controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .step-count { margin-left: auto; font-size: .9rem; color: var(--muted); }
+    .trace-scene { border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: var(--paper); }
+    .event { margin-top: 0; min-height: 3.5em; font-weight: 600; }
+    .stack { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 10px; }
+    .frame { margin: 0; border: 1px solid #b9ccc3; border-left: 5px solid #9bada5; background: white; border-radius: 8px; padding: 10px 14px; }
+    .frame.current { border-left-color: var(--teal); background: var(--teal-light); }
+    .frame-title { display: block; font-weight: 700; }
+    .frame-detail { display: block; font-size: .92rem; }
+    .trace-result { border-top: 1px solid var(--line); padding-top: 12px; margin-bottom: 0; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--teal); }
+    .question { margin-top: 22px; }
+    label { display: block; font-weight: 650; margin: 10px 0; }
+    input { font: inherit; width: 140px; max-width: 100%; padding: 9px 12px; border: 1px solid #7c8e88; border-radius: 8px; color: var(--ink); background: white; }
+    .feedback { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; margin-top: 10px; }
+    .feedback:empty { display: none; }
+    .finish { background: var(--teal); color: white; padding: 22px; border-radius: 12px; }
+    .finish code { background: #24524e; color: white; }
+    footer { color: var(--muted); font-size: .85rem; padding: 0 4px; }
+    @media (max-width: 620px) {
+      main { padding: 24px 14px 40px; }
+      section { padding: 20px 16px; }
+      .two-col { grid-template-columns: 1fr; }
+      pre { padding: 15px; font-size: .85rem; }
+      .step-count { width: 100%; margin-left: 0; }
+    }
+    @media print {
+      body { background: white; font-size: 11pt; }
+      main { max-width: none; padding: 0; }
+      nav, .controls, .answer-controls, #interactive-trace { display: none !important; }
+      section { break-inside: avoid; border-color: #bbb; }
+      pre { white-space: pre-wrap; background: #eee; color: black; }
+      details { break-inside: avoid; }
+      .finish { background: #eee; color: black; }
+      .finish code { background: white; color: black; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">Python · guided lesson · 10 minutes</div>
+      <h1>Nested lists,<br>one total.</h1>
+      <p class="intro">Recursion is a function asking another call of itself to handle a smaller piece, then using the number that comes back.</p>
+      <p>You already know loops and returns. By the end, you’ll be able to trace a nested sum, explain where each subtotal lives, and write the function yourself.</p>
+      <nav aria-label="Lesson sections">
+        <a href="#bridge">1. Start with a loop</a>
+        <a href="#function">2. Read the function</a>
+        <a href="#trace">3. Follow the calls</a>
+        <a href="#practice">4. Try it</a>
+        <a href="#transfer">5. Make it stick</a>
+      </nav>
+    </header>
+
+    <section id="bridge" aria-labelledby="bridge-title">
+      <div class="section-head">
+        <span class="number" aria-hidden="true">1</span>
+        <div><h2 id="bridge-title">Keep the loop. Delegate the list.</h2><p class="time">1 minute</p></div>
+      </div>
+      <p>For a flat list, you can accumulate a total:</p>
+      <pre><code>total = 0
+for item in [2, 3, 5]:
+    total += item
+# total is 10</code></pre>
+      <p>But in <code>[2, [3, [4]], 5]</code>, an item can be a list. Adding that list directly to a number raises a <code>TypeError</code>.</p>
+      <div class="callout"><p><strong>Use two rules:</strong> if the item is a number, add it. If it is a list, get <em>its</em> total first, then add that returned number.</p></div>
+      <p>The same problem appears inside the inner list: it, too, might contain numbers and lists. So the same function can do that smaller job.</p>
+      <details>
+        <summary>Pause: what number should replace [3, [4]]?</summary>
+        <p><strong>7.</strong> The innermost list contributes 4, so the surrounding list contributes <code>3 + 4</code>. The outer list can then add <code>2 + 7 + 5</code>.</p>
+      </details>
+    </section>
+
+    <section id="function" aria-labelledby="function-title">
+      <div class="section-head">
+        <span class="number" aria-hidden="true">2</span>
+        <div><h2 id="function-title">One function, separate calls</h2><p class="time">2 minutes</p></div>
+      </div>
+      <p><strong>The promise:</strong> give <code>nested_total</code> a list; it returns the sum of all numbers anywhere inside that list.</p>
+      <pre id="function-code" aria-label="Complete Python function"><code><span class="code-line" data-line="1">def nested_total(items):</span><span class="code-line" data-line="2">    total = 0</span><span class="code-line" data-line="3">    for item in items:</span><span class="code-line" data-line="4">        if isinstance(item, list):</span><span class="code-line" data-line="5">            total += nested_total(item)</span><span class="code-line" data-line="6">        else:</span><span class="code-line" data-line="7">            total += item</span><span class="code-line" data-line="8">    return total</span></code></pre>
+      <ol>
+        <li><code>total = 0</code> starts a <strong>new local total for each call</strong>. An inner call does not reset or overwrite the outer call’s total.</li>
+        <li><code>isinstance(item, list)</code> chooses the path: another list gets another call; a number gets added directly.</li>
+        <li>In <code>total += nested_total(item)</code>, the caller <strong>waits for the right-hand side to return</strong>. Only then does it add the returned subtotal and move to its next item.</li>
+        <li><code>return total</code> is <strong>after the loop</strong>, so every item gets handled. Returning ends this call, not every call.</li>
+      </ol>
+      <div class="two-col">
+        <div class="mini-card">
+          <h3>What makes it stop?</h3>
+          <p>A list with only numbers needs no more calls. An empty list skips the loop and returns <code>0</code>. These are the <strong>base cases</strong> here: work that finishes without recursion.</p>
+        </div>
+        <div class="mini-card">
+          <h3>What makes it progress?</h3>
+          <p>Each recursive call receives one contained list, not the original list again. In a finite nesting, you eventually reach numbers or empty lists.</p>
+        </div>
+      </div>
+      <p class="small">Input agreement for this lesson: a finite, non-circular Python list containing numbers (<code>int</code> or <code>float</code>) and more such lists. Strings, tuples, and self-containing lists are outside this agreement. Very deep nesting can exceed Python’s recursion limit.</p>
+    </section>
+
+    <section id="trace" aria-labelledby="trace-title">
+      <div class="section-head">
+        <span class="number" aria-hidden="true">3</span>
+        <div><h2 id="trace-title">Watch a call wait, then resume</h2><p class="time">3 minutes</p></div>
+      </div>
+      <p>Trace <code>nested_total([2, [3, [4]], 5])</code>. We’ll label its calls <strong>A</strong>, <strong>B</strong>, and <strong>C</strong>; these are labels, not different functions.</p>
+      <p><strong>Before stepping:</strong> predict the final answer. As you go, notice that A keeps its 2 while B and C work.</p>
+      <div id="interactive-trace" hidden>
+        <div class="controls" aria-label="Trace controls">
+          <button class="secondary" id="trace-back" type="button">← Back</button>
+          <button id="trace-next" type="button">Next →</button>
+          <button class="secondary" id="trace-reset" type="button">Restart</button>
+          <span class="step-count" id="trace-count"></span>
+        </div>
+        <div class="trace-scene" role="region" aria-label="Current trace state" aria-live="polite" aria-atomic="true">
+          <p class="event" id="trace-event"></p>
+          <h3>Calls still in progress</h3>
+          <p class="small">Outer call first; newest call last. Green marks the call working now.</p>
+          <ol class="stack" id="trace-stack"></ol>
+          <p class="trace-result" id="trace-result"></p>
+        </div>
+        <p class="small">The corresponding line in the function above is highlighted. Each step groups a small action, rather than every Python instruction.</p>
+      </div>
+      <noscript><p>The interactive stepper needs JavaScript. The complete trace below works without it.</p></noscript>
+      <details open>
+        <summary>Complete trace — read this instead of stepping, or use it to recap</summary>
+        <div class="table-wrap">
+          <table>
+            <caption class="small">Each call has its own list, loop position, and local total.</caption>
+            <thead><tr><th scope="col">Action</th><th scope="col">Local totals / return</th></tr></thead>
+            <tbody>
+              <tr><td>A starts on <code>[2, [3, [4]], 5]</code>, then adds 2.</td><td>A: <code>0 → 2</code></td></tr>
+              <tr><td>A calls B on <code>[3, [4]]</code>. A waits before adding B’s result.</td><td>A stays at <code>2</code>; B starts at <code>0</code>.</td></tr>
+              <tr><td>B adds 3, then calls C on <code>[4]</code>.</td><td>B: <code>0 → 3</code>; now A and B wait.</td></tr>
+              <tr><td>C adds 4 and finishes its loop.</td><td>C returns <code>4</code> to B.</td></tr>
+              <tr><td>B resumes its waiting addition: <code>3 + 4</code>. Its loop finishes.</td><td>B returns <code>7</code> to A.</td></tr>
+              <tr><td>A resumes its waiting addition: <code>2 + 7</code>.</td><td>A now has <code>9</code>, not 14 yet.</td></tr>
+              <tr><td>A moves to its next item, 5, and adds it.</td><td>A: <code>9 → 14</code></td></tr>
+              <tr><td>A finishes its loop.</td><td>A returns <strong>14</strong> to whoever called it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <div class="callout"><p><strong>The turning point:</strong> calling B does not abandon A. Python remembers where A paused. B’s returned <code>7</code> fills the waiting expression; A adds it and carries on to 5.</p></div>
+      <details>
+        <summary>Think first: when C starts at 0, what happens to A’s total?</summary>
+        <p><strong>It stays at 2.</strong> Each call has its own local variables. C’s <code>total = 0</code> initializes C’s total only. The calls communicate by returning numbers, not by sharing one accumulator.</p>
+      </details>
+    </section>
+
+    <section id="practice" aria-labelledby="practice-title">
+      <div class="section-head">
+        <span class="number" aria-hidden="true">4</span>
+        <div><h2 id="practice-title">Your turn: totals and pauses</h2><p class="time">2 minutes</p></div>
+      </div>
+      <p>Try each question before opening its explanation. You can check an answer here; you don’t need a Python interpreter.</p>
+      <div class="question">
+        <h3>1 · Resume the caller</h3>
+        <p>In the trace, B has just returned 7. A has added it, but has <em>not yet</em> processed 5. What is A’s local <code>total</code>?</p>
+        <form class="answer-form" data-answer="9" data-correct="Yes: A kept 2, then added B’s returned 7. The last 5 is still waiting in A’s loop." data-hint="Keep the timing in view: A had 2 and just added 7. It has not added the final 5 yet.">
+          <div class="answer-controls" hidden>
+            <label for="answer-resume">A’s total at this moment</label>
+            <div class="controls"><input id="answer-resume" name="answer" type="text" inputmode="decimal" autocomplete="off"><button type="submit">Check</button></div>
+            <p class="feedback" role="status"></p>
+          </div>
+        </form>
+        <details><summary>Reveal answer and reason</summary><p><strong>9.</strong> A’s waiting addition is <code>2 + 7</code>. Its next iteration adds 5, making 14.</p></details>
+      </div>
+      <div class="question">
+        <h3>2 · An empty list still returns something</h3>
+        <p>What does <code>nested_total([[], [[]]])</code> return?</p>
+        <form class="answer-form" data-answer="0" data-correct="Yes: every empty-list call returns 0. The containing calls add those zeros and also return 0." data-hint="Start with nested_total([]): the loop does nothing, so its total stays 0. What do the containing lists add?">
+          <div class="answer-controls" hidden>
+            <label for="answer-empty">Returned total</label>
+            <div class="controls"><input id="answer-empty" name="answer" type="text" inputmode="decimal" autocomplete="off"><button type="submit">Check</button></div>
+            <p class="feedback" role="status"></p>
+          </div>
+        </form>
+        <details><summary>Reveal answer and reason</summary><p><strong>0.</strong> For <code>[]</code>, the loop has no iterations and the call returns its initial 0. <code>[[]]</code> adds that returned 0; the outer list adds two zero subtotals.</p></details>
+      </div>
+      <div class="question">
+        <h3>3 · A fresh nesting</h3>
+        <p>What does <code>nested_total([1, [2, [], [3]], 4])</code> return? First work out the subtotal for <code>[2, [], [3]]</code>.</p>
+        <form class="answer-form" data-answer="10" data-correct="Yes: the inner list returns 2 + 0 + 3 = 5. The outer call returns 1 + 5 + 4 = 10." data-hint="The empty list contributes 0, and [3] contributes 3. Add those to 2 for the inner subtotal, then include the outer 1 and 4.">
+          <div class="answer-controls" hidden>
+            <label for="answer-fresh">Returned total</label>
+            <div class="controls"><input id="answer-fresh" name="answer" type="text" inputmode="decimal" autocomplete="off"><button type="submit">Check</button></div>
+            <p class="feedback" role="status"></p>
+          </div>
+        </form>
+        <details><summary>Reveal answer and reason</summary><p><strong>10.</strong> The inner subtotal is <code>2 + 0 + 3 = 5</code>. The outer call adds <code>1 + 5 + 4</code>. Nesting changes the route, not which numbers count.</p></details>
+      </div>
+    </section>
+
+    <section id="transfer" aria-labelledby="transfer-title">
+      <div class="section-head">
+        <span class="number" aria-hidden="true">5</span>
+        <div><h2 id="transfer-title">Rebuild it, then spot the trap</h2><p class="time">2 minutes</p></div>
+      </div>
+      <p>Without looking back, say what belongs in the two blanks. The indentation is part of the answer.</p>
+      <pre><code>def nested_total(items):
+    total = 0
+    for item in items:
+        if isinstance(item, list):
+            total += __________
+        else:
+            total += item
+    __________</code></pre>
+      <details>
+        <summary>Check the blanks</summary>
+        <p>First: <code>nested_total(item)</code> — ask for the current inner list’s subtotal. Second: <code>return total</code>, outside the loop — hand back the completed total.</p>
+        <p>Calling <code>nested_total(items)</code> instead would repeat the same whole-list problem without moving inward when a sublist is encountered. It would keep calling until Python raises <code>RecursionError</code>.</p>
+      </details>
+      <div class="callout warning"><p><strong>Debugging challenge:</strong> someone moves <code>return total</code> inside the <code>for</code> loop, after the <code>if/else</code>. What would their function return for <code>[2, [3], 5]</code>?</p></div>
+      <details>
+        <summary>Reveal the bug</summary>
+        <p><strong>2, instead of 10.</strong> On the first iteration it adds 2, then returns immediately. The remaining items never run. With the return inside the loop, an empty list would also reach the end without a return and give <code>None</code>, not 0.</p>
+        <p>Keep the return aligned with <code>for</code>, not with the statements inside it.</p>
+      </details>
+      <div class="finish">
+        <h3>Your one-sentence explanation</h3>
+        <p>“Each call loops over its own list, adds numbers directly, waits for inner-list totals, and returns its finished total to its caller.”</p>
+        <p><strong>Exit check:</strong> explain why the outer total is not reset, why <code>[]</code> returns 0, and what happens immediately after an inner call returns. If one is unclear, revisit that part of the trace.</p>
+      </div>
+    </section>
+    <footer>Self-contained lesson. The stepper illustrates Python execution; it does not execute Python. All explanations and answers are also available without JavaScript.</footer>
+  </main>
+  <script>
+    (function () {
+      'use strict';
+
+      function frame(name, items, total, state, current) {
+        return { name: name, items: items, total: total, state: state, current: current };
+      }
+
+      var steps = [
+        {
+          event: 'A starts. Its own local total is initialized to 0.',
+          line: 2,
+          frames: [frame('A', '[2, [3, [4]], 5]', 0, 'Ready to loop over its items.', true)],
+          result: 'No return yet.'
+        },
+        {
+          event: 'A sees the number 2 and adds it directly: 0 + 2 = 2.',
+          line: 7,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Next item: [3, [4]].', true)],
+          result: 'A’s running total is 2.'
+        },
+        {
+          event: 'A finds a list and calls B. A pauses before the addition can finish; B starts with its own 0.',
+          line: 5,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Waiting for B’s return before adding it.', false), frame('B', '[3, [4]]', 0, 'New call; ready to loop.', true)],
+          result: 'A keeps 2. B’s initialization does not change A.'
+        },
+        {
+          event: 'B adds the number 3 to its own total: 0 + 3 = 3.',
+          line: 7,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Waiting for B.', false), frame('B', '[3, [4]]', 3, 'Next item: [4].', true)],
+          result: 'A has 2; B has 3. These totals are separate.'
+        },
+        {
+          event: 'B finds [4] and calls C. B pauses; C starts with its own 0.',
+          line: 5,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Waiting for B.', false), frame('B', '[3, [4]]', 3, 'Waiting for C’s return before adding it.', false), frame('C', '[4]', 0, 'New call; ready to loop.', true)],
+          result: 'The newest call works while the callers wait.'
+        },
+        {
+          event: 'C adds 4. It has no more items and made no recursive call.',
+          line: 7,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Waiting for B.', false), frame('B', '[3, [4]]', 3, 'Waiting for C.', false), frame('C', '[4]', 4, 'Loop finished; ready to return.', true)],
+          result: 'C’s finished subtotal is 4.'
+        },
+        {
+          event: 'C returns 4 to B and ends. B can now finish its waiting addition.',
+          line: 8,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Waiting for B.', false), frame('B', '[3, [4]]', 3, 'Received 4; about to add it to 3.', true)],
+          result: 'Returned value: C → B is 4. B has not added it yet in this snapshot.'
+        },
+        {
+          event: 'B resumes: 3 + 4 = 7. Its loop is now finished.',
+          line: 5,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Waiting for B.', false), frame('B', '[3, [4]]', 7, 'Loop finished; ready to return.', true)],
+          result: 'B’s finished subtotal is 7.'
+        },
+        {
+          event: 'B returns 7 to A and ends. A resumes at the addition where it paused.',
+          line: 8,
+          frames: [frame('A', '[2, [3, [4]], 5]', 2, 'Received 7; about to add it to 2.', true)],
+          result: 'Returned value: B → A is 7. A still has its saved 2.'
+        },
+        {
+          event: 'A finishes its waiting addition: 2 + 7 = 9. There is still one item left.',
+          line: 5,
+          frames: [frame('A', '[2, [3, [4]], 5]', 9, 'Next item: 5.', true)],
+          result: 'A has 9, not the final answer yet.'
+        },
+        {
+          event: 'A’s loop continues to the number 5: 9 + 5 = 14.',
+          line: 7,
+          frames: [frame('A', '[2, [3, [4]], 5]', 14, 'Loop finished; ready to return.', true)],
+          result: 'All items have now been processed.'
+        },
+        {
+          event: 'A returns 14 to its caller and ends. No calls remain in progress.',
+          line: 8,
+          frames: [],
+          result: 'Final value: nested_total([2, [3, [4]], 5]) returns 14.'
+        }
+      ];
+
+      var index = 0;
+      var back = document.getElementById('trace-back');
+      var next = document.getElementById('trace-next');
+      var reset = document.getElementById('trace-reset');
+      var stack = document.getElementById('trace-stack');
+      var lines = document.querySelectorAll('.code-line');
+
+      function renderTrace() {
+        var step = steps[index];
+        document.getElementById('trace-count').textContent = 'Step ' + (index + 1) + ' of ' + steps.length;
+        document.getElementById('trace-event').textContent = step.event;
+        document.getElementById('trace-result').textContent = step.result;
+        while (stack.firstChild) stack.removeChild(stack.firstChild);
+        step.frames.forEach(function (call) {
+          var li = document.createElement('li');
+          li.className = 'frame' + (call.current ? ' current' : '');
+          var title = document.createElement('span');
+          title.className = 'frame-title';
+          title.textContent = call.name + ': nested_total(' + call.items + ')';
+          var detail = document.createElement('span');
+          detail.className = 'frame-detail';
+          detail.textContent = 'Local total = ' + call.total + '. ' + call.state;
+          li.appendChild(title);
+          li.appendChild(detail);
+          stack.appendChild(li);
+        });
+        if (!step.frames.length) {
+          var done = document.createElement('li');
+          done.textContent = 'All calls have returned.';
+          stack.appendChild(done);
+        }
+        lines.forEach(function (line) {
+          line.classList.toggle('active', Number(line.getAttribute('data-line')) === step.line);
+        });
+        back.disabled = index === 0;
+        next.disabled = index === steps.length - 1;
+      }
+
+      back.addEventListener('click', function () { if (index > 0) { index--; renderTrace(); } });
+      next.addEventListener('click', function () { if (index < steps.length - 1) { index++; renderTrace(); } });
+      reset.addEventListener('click', function () { index = 0; renderTrace(); });
+      renderTrace();
+      document.getElementById('interactive-trace').hidden = false;
+
+      document.querySelectorAll('.answer-form').forEach(function (form) {
+        var controls = form.querySelector('.answer-controls');
+        var input = form.querySelector('input');
+        var feedback = form.querySelector('.feedback');
+        controls.hidden = false;
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var raw = input.value.trim();
+          if (raw === '') {
+            feedback.textContent = 'Enter your prediction first, or open the explanation below.';
+            return;
+          }
+          var value = Number(raw);
+          if (!Number.isFinite(value)) {
+            feedback.textContent = 'Use a number for the total, such as 0 or 12.';
+          } else if (value === Number(form.getAttribute('data-answer'))) {
+            feedback.textContent = form.getAttribute('data-correct');
+          } else {
+            feedback.textContent = 'Not quite. ' + form.getAttribute('data-hint') + ' Try again, or reveal the worked explanation.';
+          }
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

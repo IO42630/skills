@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Lines 195–210 show C returning 4, B using it to return 7, A using 7 to reach 9, then adding 5 and returning 14; the caller's pause and independent total are explained."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "The worked list [2, [3, [4]], 5] has four leaves and three labelled calls. The stepper visualizes those calls, not an application the learner must understand."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 144–161 show the complete function, return placement, empty-list zero, finite non-circular numeric assumptions, and depth limit. The code-line spans were reconstructed into Python; nine regression inputs passed."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 246–280 require the child subtotal for [1, [2, [], [3]], 4], reconstruction without looking, and diagnosis of returning inside the loop; feedback explains child 5, outer 10, and premature return 2."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "Transfer uses changed numeric nesting, the taught empty-list case, and the same function with return moved. No dictionaries, cyclic-data exercise, performance task, or new library."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "Five main sections budget 1/2/3/2/2 minutes for one return model, static or stepped trace, short practice, and reconstruction. There are no compulsory anecdotes or unrelated mechanisms. The simulator adds presentation complexity but is not prohibited by this frozen rubric. Learner timing was not measured."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Feedback explains the saved parent total, empty-list identity, child subtotal, and return placement. The diagnostic also explains why an empty input in the early-return variant yields None."
+    }
+  ]
+}

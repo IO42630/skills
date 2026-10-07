@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "The core explanation directly shows which call returns what and how the parent uses it, rather than relying on a definition or metaphor alone.",
+      "passed": true,
+      "evidence": "Table rows 89\u201395 show the parent keeping 2 while the child accumulates 7, then the parent receiving and adding 7 to return 9. Lines 99\u2013101 name the exact pending +=."
+    },
+    {
+      "text": "The worked input contains only a few numeric leaves and enough nesting to expose a child return; no filesystem, parser, object hierarchy, or application setup is needed.",
+      "passed": true,
+      "evidence": "Worked [2, [3, 4]] uses three integer leaves and one child. Only an explained list type check is needed beyond the learner's loops and returns."
+    },
+    {
+      "text": "If code is used, its base behavior and list aggregation are visible and consistent with the trace; any illustrative limitations are stated without claiming a general-purpose implementation.",
+      "passed": true,
+      "evidence": "Lines 68\u201376 show the complete aggregation and final return; lines 102\u2013104 explain [] zero and finite descent. Lines 67 and 151 define finite non-circular integer lists, modest depth, and no general validation. Nine executable inputs pass."
+    },
+    {
+      "text": "A changed input requires a fresh trace and an explanation from memory, with answer reasoning that checks more than the final numeric total.",
+      "passed": true,
+      "evidence": "Lines 109\u2013130 ask to cover the code, explain the addition, and trace [1, [2, []], 3] with separate caller totals; feedback details empty 0, child 2, and parent 1 \u2192 3 \u2192 6 plus loop continuation."
+    },
+    {
+      "text": "Transfer stays within the taught number-and-list model rather than adding dictionaries, cyclic data, performance analysis, or unfamiliar libraries.",
+      "passed": true,
+      "evidence": "Transfer, missing-addition repair, immediate practice, and next-day recall only use integers and nested lists. Cycles/depth remain stated limitations."
+    },
+    {
+      "text": "The core explanation and practice plausibly fit ten minutes without compulsory historical anecdotes, multiple curiosity anchors, or nine teaching sections.",
+      "passed": true,
+      "evidence": "The header budgets 2/4/3/1 minutes across four main sections, with one two-call worked trace and three focused tasks. There is no obligatory historical or application scaffolding."
+    },
+    {
+      "text": "The lesson remains substantive despite its small example: the learner can explain how the total is built, not merely repeat that a function calls itself.",
+      "passed": true,
+      "evidence": "Lines 139\u2013145 require diagnosing a discarded 7, repairing +=, and finding the first divergence in each call's subtotal; the lesson directly tests how the total is built."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "eval_id": 0,
+  "eval_name": "native-account-action",
+  "prompt": "Add RenameAccountAction to this small Python account module. Its execute(account_id, *, rename_to) method should rename an existing account, save it, and return the saved account. A missing account must follow the module's existing not-found contract. Use the selected reference's rename_to naming idiom, not its execution architecture. For this task, preserve the supplied name exactly, including leading/trailing whitespace, even though the project normally strips names. Do not migrate unrelated code. Read the supplied module, guidelines, and selected reference. Deliver only rename_account.py and a short implementation note.",
+  "assertions": [
+    "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+    "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+    "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+    "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+    "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+    "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture."
+  ]
+}

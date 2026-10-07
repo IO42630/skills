@@ -1,0 +1,47 @@
+{
+  "expectations": [
+    {
+      "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+      "passed": true,
+      "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+    },
+    {
+      "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+      "passed": true,
+      "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+    },
+    {
+      "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+      "passed": true,
+      "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+    },
+    {
+      "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+      "passed": true,
+      "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+    },
+    {
+      "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+      "passed": true,
+      "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+    },
+    {
+      "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+      "passed": true,
+      "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 479
+  },
+  "metrics": {
+    "source_lines": 15,
+    "source_chars": 479
+  }
+}

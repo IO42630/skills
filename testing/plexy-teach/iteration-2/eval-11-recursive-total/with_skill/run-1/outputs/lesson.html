@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recursive totals: how the child's answer reaches the parent</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f7f9; color: #202b36; font: 1.05rem/1.65 system-ui, sans-serif; }
+    main { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.4rem 3rem; background: #fff; }
+    h1, h2, h3 { line-height: 1.25; color: #162c40; }
+    h1 { font-size: clamp(1.9rem, 6vw, 2.65rem); margin-top: .4rem; }
+    h2 { margin-top: 2.1rem; font-size: 1.4rem; }
+    h3 { font-size: 1.12rem; margin-top: 1.5rem; }
+    p, ul, ol { margin: .8rem 0; }
+    li { margin: .6rem 0; }
+    .meta { color: #485b6b; font-size: .93rem; }
+    .rule { border-left: .25rem solid #24637d; padding: .6rem 1rem; background: #edf5f8; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .92em; overflow-wrap: anywhere; }
+    pre { padding: 1rem; background: #f1f4f7; border: 1px solid #d4dce3; border-radius: .25rem; overflow-x: auto; line-height: 1.6; }
+    pre code { overflow-wrap: normal; }
+    details { margin: 1rem 0; border: 1px solid #b7c5cf; padding: .7rem 1rem; border-radius: .25rem; }
+    summary { cursor: pointer; color: #164a66; font-weight: 650; }
+    a { color: #164f78; text-underline-offset: .15em; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #9a4800; outline-offset: 4px; }
+    .source { font-size: .87rem; color: #485b6b; }
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #cbd5dd; }
+    @media (max-width: 480px) { main { padding: 1.4rem 1rem 2rem; } ol, ul { padding-left: 1.4rem; } pre { padding: .75rem; font-size: .9rem; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+    @media print {
+      body, main { background: #fff; color: #000; }
+      main { max-width: none; padding: 0; }
+      h2, h3, summary { break-after: avoid; }
+      pre, details, .rule { break-inside: avoid; }
+      pre { white-space: pre-wrap; overflow: visible; }
+      a { color: #000; }
+      .print-note { font-weight: 600; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="meta">10 minutes · Python · Read 6 minutes, practise 3, recap 1</p>
+    <h1>A child returns a number.<br>The parent adds it.</h1>
+    <p>You already know loops and function returns. Here you will trace a recursive total through a nested list and explain exactly how an inner list's answer becomes part of the outer answer.</p>
+    <p>No Python execution is needed. Use paper or say each subtotal aloud. Try the exercises before opening their answers.</p>
+  </header>
+
+  <section aria-labelledby="idea">
+    <h2 id="idea">1. A list inside a list is one smaller job</h2>
+    <p>For <code>[2, [3, 4]]</code>, the total we want is <code>2 + 3 + 4 = 9</code>. The outer loop sees only two items: the number <code>2</code> and the list <code>[3, 4]</code>. It cannot add that list as if it were a number.</p>
+    <p>Instead, it asks the same function to total <code>[3, 4]</code>. That call returns <code>7</code>. Now the outer call can add <code>2 + 7</code>.</p>
+    <p class="rule"><strong>Recursion means a function calls itself on a smaller part of the input.</strong> In this example, the smaller call turns an inner list into a number that its caller can use.</p>
+    <p>We'll call the waiting caller the <strong>parent</strong> and the call it makes the <strong>child</strong>. These are roles, not different functions.</p>
+    <pre><code>def total(items):
+    subtotal = 0
+    for item in items:
+        if isinstance(item, list):
+            subtotal += total(item)
+        else:
+            subtotal += item
+    return subtotal</code></pre>
+    <p><code>isinstance(item, list)</code> asks whether this item is a list. If it is, compute its total first; otherwise, add the number directly. <code>return subtotal</code> is <em>after</em> the loop, so every item contributes before the answer leaves the call.</p>
+    <p><strong>Input assumption:</strong> finite nested Python lists, with numbers at the leaves and no list containing itself, directly or indirectly. We are teaching the return flow, not input validation.</p>
+  </section>
+
+  <section aria-labelledby="trace">
+    <h2 id="trace">2. Follow the pause, then the return</h2>
+    <p>Trace <code>total([2, [3, 4]])</code>. Every call has its <em>own</em> <code>items</code> and <code>subtotal</code>. Starting a child does not reset the parent's subtotal.</p>
+    <ol>
+      <li><strong>Parent starts.</strong> Its <code>items</code> is <code>[2, [3, 4]]</code>; its <code>subtotal</code> starts at <code>0</code>. The first item is <code>2</code>, so the parent's subtotal becomes <code>2</code>.</li>
+      <li><strong>Parent reaches the inner list.</strong> To do <code>subtotal += total(item)</code>, it must get the right-hand number first. It calls <code>total([3, 4])</code> and waits. Its subtotal is still <code>2</code>.</li>
+      <li><strong>Child does its own loop.</strong> Its subtotal starts at <code>0</code>, becomes <code>3</code>, then <code>7</code>. Its loop ends, so it returns <code>7</code> to the waiting parent.</li>
+      <li><strong>Parent resumes the unfinished addition.</strong> In that call, <code>subtotal += total(item)</code> now has the effect of <code>subtotal += 7</code>. The parent's subtotal becomes <code>2 + 7 = 9</code>.</li>
+      <li><strong>Parent finishes.</strong> There are no more outer items. It returns <code>9</code> to whoever originally called it.</li>
+    </ol>
+    <pre aria-label="Summary of the two separate call subtotals"><code>Parent: 0 → 2 ── waits ─────────→ 9 → return 9
+Child:           0 → 3 → 7 → return 7
+                              │
+                     parent adds this 7</code></pre>
+    <p>The child returns only its own subtotal, <code>7</code>, not the whole answer, <code>9</code>. It does not know about the parent's <code>2</code>. <strong>The parent's addition is the bridge between those two answers.</strong></p>
+    <p class="source">Language reference: the <a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">Python tutorial on defining functions</a> explains that each function call has its own local symbol table and that <code>return</code> sends a value back from a function. This link was not browsed or verified for this lesson; the arithmetic and call trace above are shown directly.</p>
+  </section>
+
+  <section aria-labelledby="stop">
+    <h2 id="stop">3. Where does it stop?</h2>
+    <p>A call only makes another call when it finds a list. The child working on <code>[3, 4]</code> finds only numbers, so it can finish without calling itself again. This is the stopping case for this trace.</p>
+    <p>An empty list also needs no smaller call: <code>total([])</code> starts at <code>0</code>, runs the loop zero times, and returns <code>0</code>. There is no separate <code>if not items</code> needed in this version.</p>
+    <p>For a finite, non-circular nested list, following inner lists eventually reaches a list with no inner lists. Calls then return outward, one caller at a time. A list that contains itself would break this argument. Extremely deep nesting can also reach Python's recursion limit; this tiny teaching function is not a solution for arbitrary depth.</p>
+  </section>
+
+  <section aria-labelledby="practice">
+    <h2 id="practice">4. Make the return flow yours</h2>
+    <p>Cover the worked trace. Write your answers first, including the reason, then reveal the feedback. Getting the final number without tracing the returning subtotals does not yet show the idea has clicked.</p>
+
+    <h3>A · Retrieve the decisive step</h3>
+    <p>In <code>total([2, [3, 4]])</code>, just before the child returns, what are the parent's and child's subtotals? What operation happens next in the parent?</p>
+    <details>
+      <summary>Reveal the reasoning for A</summary>
+      <p>The parent still has <code>2</code>; the child has <code>7</code>. The child returns <code>7</code>, and the parent completes its pending addition: <code>2 + 7 = 9</code>. If you thought the parent also had <code>7</code>, you treated two local subtotals as one shared variable.</p>
+    </details>
+
+    <h3>B · Trace one more level</h3>
+    <p>Use the same function on <code>[1, [2, [3]], 4]</code>. Write the return value of the call on <code>[3]</code>, then the call on <code>[2, [3]]</code>, then the outer call. Explain what the outer loop does after its child returns.</p>
+    <details>
+      <summary>Reveal the reasoning for B</summary>
+      <ol>
+        <li>The deepest call, on <code>[3]</code>, adds <code>3</code> to its own <code>0</code> and returns <code>3</code>.</li>
+        <li>The call on <code>[2, [3]]</code> was waiting with subtotal <code>2</code>. It adds the returned <code>3</code> and returns <code>5</code>.</li>
+        <li>The outer call was waiting with subtotal <code>1</code>. It adds <code>5</code>, reaching <code>6</code>. Then its loop continues to <code>4</code>, reaching <code>10</code>, which it returns.</li>
+      </ol>
+      <p>Returning from a child does not end the parent's function. It supplies a value at the call site; the parent continues its own work. If you got <code>6</code>, you stopped before the outer loop processed its last item.</p>
+    </details>
+
+    <h3>C · Diagnose a lost answer</h3>
+    <p>Suppose the list branch contains only <code>total(item)</code> instead of <code>subtotal += total(item)</code>. All other lines stay unchanged. For <code>[2, [3, 4]]</code>, what does the outer call return, and why?</p>
+    <details>
+      <summary>Reveal the reasoning for C</summary>
+      <p>It returns <code>2</code>. The child still computes and returns <code>7</code>, but the parent does nothing with that returned value. Calling the function is not enough: <code>subtotal += total(item)</code> is what incorporates the child's answer into the parent's subtotal.</p>
+    </details>
+    <p class="print-note meta">Printing? Open the answer reveals first if you want the explanations included in your printout.</p>
+  </section>
+
+  <section aria-labelledby="keep">
+    <h2 id="keep">Keep this rule</h2>
+    <p class="rule"><strong>Each call owns its subtotal.</strong> Add numbers directly. For an inner list, wait for its total, add that returned number, and continue your loop. Return your subtotal only when your own loop is done.</p>
+    <p><strong>Quick boundary check:</strong> <code>total([1, [], 4])</code> is <code>5</code>: the empty child returns <code>0</code>, so nothing is lost and nothing extra is added. This reasoning assumes the finite, non-circular numeric lists described above.</p>
+    <p><strong>Next action:</strong> Without looking back, draw the three calls from exercise B and an arrow labelled with each returned number. Beside each arrow, write the addition its caller performs. If you want feedback, share that trace and identify the step that felt uncertain.</p>
+    <p><strong>Later recall:</strong> Tomorrow, trace <code>[5, [1, [2]]]</code> from a blank page and explain why child returns must be added. Repeat a week later if recall is still effortful. The return values, deepest first, are <code>2</code>, <code>3</code>, and <code>8</code>; keep those covered until you have your trace.</p>
+  </section>
+
+  <footer>
+    <p class="meta">This is one self-contained lesson, not a record of mastery. No learner answers have been observed. Styles are embedded; there are no scripts, fonts, images, or other required network resources. Research and browser checks were unavailable; direct-file rendering, offline behavior, keyboard navigation, narrow-screen layout, and print output remain unverified.</p>
+  </footer>
+</main>
+</body>
+</html>

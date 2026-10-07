@@ -1,0 +1,11 @@
+{
+  "model": "opencode/deepseek-v4-flash-free",
+  "agent": "lesson-benchmark",
+  "started_at": "2026-10-07T07:19:07.552511+00:00",
+  "duration_seconds": 240.019,
+  "exit_code": 124,
+  "tokens": null,
+  "tool_calls": 0,
+  "errors": [],
+  "successful_generation": false
+}

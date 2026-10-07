@@ -1,0 +1,565 @@
+{
+  "metadata": {
+    "skill_name": "plexy-follow-the-rules",
+    "skill_path": "plexy-follow-the-rules/SKILL.md",
+    "executor_model": "gpt-6.1-sol",
+    "analyzer_model": "gpt-6.1-sol",
+    "timestamp": "2026-10-07T07:40:58Z",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 5,
+    "skill_sha256": "fb4c2c7664951095733efe65c67381a3547245e4402e98d56edba855ecd25303",
+    "resource_metrics_available": false
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 4,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 5,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 4,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 5,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The action is a typed frozen dataclass with a generated constructor, matching the local injection convention.",
+          "passed": true,
+          "evidence": "Frozen dataclass; typed repository field; generated constructor; reassignment rejected."
+        },
+        {
+          "text": "execute uses typed account_id and keyword-only rename_to parameters and returns Account.",
+          "passed": true,
+          "evidence": "execute(self, account_id: str, *, rename_to: str) -> Account."
+        },
+        {
+          "text": "Renaming saves and returns the replacement account without mutating the original or other accounts.",
+          "passed": true,
+          "evidence": "Correct account saved and returned; original immutable instance and second account unchanged."
+        },
+        {
+          "text": "Explicit user preference wins: leading/trailing whitespace, Unicode, and empty names are preserved exactly.",
+          "passed": true,
+          "evidence": "Saved exact names for whitespace, empty-string, and Unicode cases: ['  Renamed\\t ', '', '  na\u00efve \ud83c\udf32  ']."
+        },
+        {
+          "text": "Missing accounts raise the existing NotFoundError(account_id) and leave stored accounts unchanged.",
+          "passed": true,
+          "evidence": "Existing NotFoundError raised with args ('missing',); no missing account created; existing account unchanged."
+        },
+        {
+          "text": "The implementation uses dataclasses.replace, imports only module-native dependencies, and adds no unrelated architecture.",
+          "passed": true,
+          "evidence": "dataclasses.replace used; native imports ['dataclasses', '.models', '.repository']; only the requested action class and output files."
+        }
+      ],
+      "notes": [
+        "See iteration-1/execution.json for self-reported execution provenance and deviations."
+      ],
+      "eval_name": "native-account-action"
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "With skill: 30/30 assertions across 5 runs. Without skill: 30/30 assertions across 5 runs.",
+    "Every assertion is non-discriminating on this task. Correctness and convention adherence were preserved, but no incremental skill benefit or harm was demonstrated.",
+    "The baseline already receives explicit fixture guidelines, a naming reference, the user override, and shared Junie code-style instructions. This is a ceiling-effect smoke test, not evidence that the skill never helps.",
+    "These are repetitions of one task, not additional task coverage; ambiguous conventions, material instruction conflicts, unavailable libraries, and broader project migrations remain untested.",
+    "Runs 4 and 5 in each configuration are four additional independent executions of the unchanged prompt and skill. They used the current fixture with postponed annotations; the original six outputs were retained.",
+    "Current executor: gpt-6.1-sol via Junie subagents. Earlier robot/markdown benchmarks used a different runtime/model; their scores are not a controlled cross-skill comparison.",
+    "Timing, tokens, executor tool-call counts, and executor error counts were not exposed. These values are null, not zero; source characters are not treated as tokens.",
+    "with_skill/run-1 additionally read .agents/skills/skill-creator/SKILL.md despite the executor's restricted scope. Retained and disclosed rather than silently discarded.",
+    "without_skill/run-1 attempted runtime validation but Python 3.9.6 could not evaluate the fixture repository's Account | None annotation. After all runs completed, the parent added future annotations to that fixture only; no generated output was changed."
+  ]
+}

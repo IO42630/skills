@@ -1,0 +1,10 @@
+test_conversion (test_timeout.TimeoutTest) ... ok
+test_negative_timeout (test_timeout.TimeoutTest) ... ok
+test_request_options (test_timeout.TimeoutTest) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+Exit code: 0

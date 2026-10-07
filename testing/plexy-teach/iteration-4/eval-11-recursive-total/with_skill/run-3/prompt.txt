@@ -1,0 +1,366 @@
+Apply these teaching instructions:
+
+---
+name: plexy-teach
+description: >
+  Teach a skill or concept through clear, focused HTML lessons with simple examples, visible reasoning,
+  and useful practice. Use for guided learning, practice, lessons, tutorials,
+  study plans, courses, or teaching workspaces, even without the word "teach". Do not turn quick factual
+  questions, ordinary code fixes, or edits to teaching instructions into teaching sessions.
+---
+
+# plexy-teach
+
+- Teach the core idea directly.
+- Use the simplest faithful example that makes the reasoning visible.
+- Judge depth by what the learner can explain or do, not by topic count, realism, or visual polish.
+- Spend the learner's attention on understanding the idea, not decoding a scenario.
+- Keep necessary nuance without turning every caveat into another topic.
+
+## Invocation Boundaries
+
+- Use this workflow when the user wants guided learning rather than a quick answer or ordinary project work.
+- Respect requests for a brief explanation without creating teaching files.
+- Give feedback or update earned state on lesson follow-ups without automatically producing another lesson.
+
+## Teaching Workspace
+
+Treat the current directory as a persistent teaching workspace. Inspect it before writing and preserve its
+existing conventions.
+
+- `MISSION.md` records the concrete reason the learner cares about the topic.
+- `RESOURCES.md` records trustworthy sources, annotated by what each source is useful for.
+- `GLOSSARY.md` records the workspace's settled terminology.
+- `reference/` contains compact, revisitable reference documents.
+- `learning-records/` contains evidence-based records of what the learner now understands.
+- `lessons/` contains the primary outputs: numbered HTML lessons complete within the workspace.
+- `assets/` contains reusable styles, diagrams, widgets, and other lesson components.
+- `NOTES.md` records durable teaching preferences and pending review prompts.
+
+Create directories lazily. Do not manufacture a full course scaffold when the user only needs one lesson.
+Reuse existing assets and terminology before introducing new ones. Keep the state files coherent across sessions.
+
+## Start With Diagnosis
+
+Before designing a lesson, read the smallest useful slice of the workspace:
+
+- Read `MISSION.md`, if it exists, to anchor the lesson in a real outcome.
+- Read recent `learning-records/` to establish the learner's current floor.
+- Read `GLOSSARY.md` and relevant `reference/` documents to avoid terminology drift.
+- Read the most recent related lessons and `assets/` before creating new material.
+- Read `RESOURCES.md` before researching, so you extend rather than duplicate the source base.
+
+If the mission is missing or vague, ask focused questions about the desired outcome, current experience,
+constraints, and evidence of success. Do not fill the gap with a generic introductory lecture. If the request
+is specific enough for a useful first lesson, make a reasonable assumption and state it briefly.
+
+Estimate the zone of proximal development from demonstrated understanding, not from the learner's confidence.
+Start just beyond what they can already do. Avoid both remedial repetition and unexplained leaps.
+
+## Research Before Explanation
+
+Research claims that matter to the lesson. Prefer primary sources, standards, original papers, authoritative
+documentation, respected textbooks, and high-signal practitioner accounts. Use secondary explainers to clarify,
+not to replace the strongest available evidence.
+
+- Record useful sources in `RESOURCES.md` with a short annotation and a reason to return to them.
+- Record mission-relevant source gaps instead of filling them with unsupported claims.
+- Remove sources that prove unreliable, shallow, or off-mission.
+- Distinguish established findings, plausible interpretations, heuristics, and active disputes.
+- Cite claims near the point where they do explanatory work, not in a decorative bibliography dump.
+- Include limitations, assumptions, and the conditions under which a claim stops applying.
+- Never invent citations, quotations, experiments, consensus, or browsing results.
+- If evidence is thin or conflicting, make that uncertainty part of the lesson.
+
+Research is in service of a mental model. Do not paste a literature survey into the lesson. Select the evidence
+that lets the learner understand a mechanism, make a decision, predict an outcome, or notice an exception.
+
+## Design the Lesson
+
+- Choose one tightly bounded capability connected to the mission.
+    - A broad mission is context, not the syllabus for the next lesson.
+- Default to a core lesson completable in 10–15 minutes, including practice.
+    - The learner's stated time budget takes precedence.
+    - State the estimated completion time in the lesson.
+- Define the promised capability and the learner's demonstrated prior floor before writing.
+- Choose the smallest example that exposes the mechanism needed for that capability.
+- Keep worked steps visible so the learner need not hold the whole procedure in working memory.
+- Split material that exceeds the budget into later lessons rather than compressing it into unexplained prose.
+- Do not attach an advanced appendix merely to include everything researched.
+
+Use a short teaching flow rather than a quota of sections:
+
+1. State the idea and why it matters in plain language.
+2. Work through one small example, showing why each decisive step follows.
+3. Ask the learner to retrieve the reasoning and apply it to a small changed case.
+4. Finish with the rule to keep and its essential limit.
+
+- Combine stages when it makes the explanation clearer.
+- Use a puzzle only when it helps reveal the idea.
+    - Ask for a prediction before revealing the outcome; a known failure calls for diagnosis instead.
+- Add a contrast or boundary case when it prevents a likely misunderstanding of this capability.
+    - Neither needs its own section or a separate elaborate scenario.
+- Introduce additional concepts only when the current explanation needs them.
+
+### Use Minimal, Faithful Examples
+
+- Start with the minimum actors, objects, inputs, and steps needed to show the mechanism.
+- Explain the concept before asking the learner to navigate domain-specific machinery.
+- Reuse the same small example for explanation, correction, and comparison where possible.
+    - Change one relevant condition at a time so the cause of the changed result is visible.
+- Omit names, backstory, infrastructure, code, and numbers that do no explanatory work.
+- Use short code fragments when they make the decisive operation clearer than prose.
+    - Do not build a sample application to teach one check or one return value.
+    - Label pseudocode and omitted implementation details honestly.
+- State assumptions that keep the example valid.
+    - Simplify the presentation, not required safety, correctness, or data-integrity controls.
+    - Do not present an illustrative fragment as production-ready code.
+- Add realistic complexity after the simple mechanism is understood, or when it is the requested capability.
+
+- For an initial authorization lesson, one caller and one requested document can expose the missing check.
+    - Show why being logged in does not establish permission to read that document.
+    - Use trusted caller identity and trusted policy data for the server-side decision before releasing bytes.
+    - Keep policy stable for this example; defer queues, cached grants, and revocation timing.
+- For a recursive-total lesson, a tiny nested list can expose how a child result reaches its parent.
+    - Avoid a filesystem crawler or a general tree framework unless that is what the learner needs to learn.
+
+### Make the Reasoning Do the Work
+
+- Explain the causal chain instead of listing related facts.
+- Walk through the decisive step rather than naming an advanced principle in place of explaining it.
+- Define only vocabulary needed for the current reasoning.
+- Explain a tempting mistake when the learner is likely to make it.
+- Keep interesting facts only when they clarify the mechanism or make its essential limit memorable.
+    - There is no quota for surprises, historical context, or cross-domain connections.
+- Remove a detail if its removal changes neither understanding nor the learner's next decision.
+- Do not mistake brevity for teaching: the example still needs an explanation of why it works.
+
+### Write Like an Expert Teacher
+
+Use concrete nouns, causal verbs, and examples that carry the argument. Vary sentence rhythm without becoming
+ornamental. Explain the stakes and the mechanism, not just the conclusion. Make the learner feel the idea click,
+then make them earn durable recall.
+
+Do not use motivational filler, generic praise, inflated promises, unexplained jargon, or a parade of headings
+that each contain one shallow sentence. A lesson can be elegant and vivid while remaining exact.
+
+## Practice and Feedback
+
+Passive reading is preparation, not mastery. Every substantive lesson should contain an immediate feedback loop
+unless the subject genuinely cannot support one.
+
+Choose practice that matches the capability:
+
+- **Prediction:** ask what will happen before revealing the mechanism.
+- **Discrimination:** ask which of two similar cases the model explains, and why.
+- **Reconstruction:** ask the learner to draw, outline, or explain the model from memory.
+- **Manipulation:** let the learner change an input and observe a consequence.
+- **Diagnosis:** present a plausible failure and ask for the broken assumption.
+- **Transfer:** apply the taught reasoning to a small changed case without adding untaught prerequisites.
+    - Require a fresh decision or trace, not just recognition of the same words.
+
+- A short exercise can combine retrieval and transfer.
+    - Ask the learner to recall the rule, make a prediction, and explain it in the changed case.
+- Give feedback that identifies the decisive reasoning, not only whether the answer is right.
+- Address the relevant wrong path without inventing a catalogue of distractors.
+- Avoid answer clues in formatting, option length, ordering, or conspicuous wording.
+- Prefer a prompt with a readable answer explanation over a custom simulator or quiz engine.
+- Keep interactions readable if scripts fail.
+
+End with a small real-world action or observation when possible. Ask the learner to report what they predicted,
+noticed, built, or changed. Only treat material as learned when there is evidence of use, not mere exposure.
+
+### Build Retention Across Sessions
+
+- Treat fluent performance immediately after an explanation as provisional, not proof of durable recall.
+- Begin later sessions with a brief closed-book retrieval task from relevant prior learning.
+    - Use the response to adjust the next lesson rather than automatically repeating prior material.
+- Space reviews over time with a concrete next session or date.
+    - A starting plan might review next session and again a week later.
+    - Adjust the interval from recall evidence and the learner's availability rather than a rigid schedule.
+- Interleave related, already-practised skills once the learner can use each individually.
+    - Ask which method fits a case and why, rather than announcing the method in every prompt.
+    - Do not mix unrelated topics or several unfamiliar skills merely to make practice harder.
+- Save pending review prompts in `NOTES.md` without recording them as mastered learning.
+
+## Situated Judgment and Communities
+
+- Distinguish sourced knowledge, practised skills, and judgment gained through real-world feedback.
+- When context-dependent judgment matters, explain what the evidence supports before suggesting practitioner input.
+- Recommend communities only when their feedback serves the mission.
+    - Verify their existence and relevance before recommending them.
+    - Prefer credible practitioners, constructive feedback, and strong moderation.
+    - Respect the learner's budget, location, privacy, and access constraints.
+- Explain what question or artifact to bring to a community rather than offering a bare link.
+- Respect community opt-outs.
+    - Record the preference in `NOTES.md` and the community section of `RESOURCES.md` when it exists.
+    - Offer individual real-world practice or feedback instead of repeatedly proposing communities.
+- Never imply the learner joined a community or received external feedback without evidence.
+
+## HTML Lesson Contract
+
+- Save each new lesson as `lessons/0001-dash-case-name.html`, incrementing the highest existing number.
+- A lesson contains its essential explanation and practice without requiring the agent's chat transcript.
+- Default portability means copying the complete workspace folder, including its shared `assets/`.
+    - Use relative local paths that work when opening the lesson directly through `file://`.
+    - External sources may require connectivity, but the core lesson must not.
+- When the user requests a single-file export, embed required styles, scripts, and media in an exported copy.
+    - Preserve the workspace lesson and reusable assets.
+    - An export is not a new lesson and does not consume the next lesson number.
+
+Keep the HTML contract small:
+
+- A meaningful `<title>`, `lang` attribute, semantic landmarks, and a visible statement of the lesson promise.
+- A direct explanation with a small worked example.
+- Practice that requires recall and application, with specific answer reasoning when feasible.
+- A compact takeaway with the assumptions or limits needed to use it correctly.
+- Source notes at the claims they support.
+    - A useful primary-source link can serve as the recommendation; do not duplicate it into extra reading sections.
+- Relevant existing lesson or reference links when they help the current learner.
+    - Describe a useful next question without linking to files that do not exist.
+- A brief invitation to ask follow-up questions.
+
+- Reuse the workspace's stylesheet rather than inventing a new visual system for each lesson.
+    - If none exists, create a small readable foundation rather than a component library.
+- Use headings, paragraphs, lists, and native answer reveals by default.
+- Add a diagram, table, or interaction only when it explains something more clearly than those defaults.
+    - Do not turn a lesson into a dashboard, simulated product, or decorative card collection.
+- Keep external dependencies optional so the core lesson remains usable offline.
+- Support keyboard navigation, visible focus, sufficient contrast, and readable line length.
+- Support responsive layout, reduced motion, and print-friendly output.
+- Use semantic HTML before adding JavaScript.
+
+- Verify relative dependencies and links before delivery.
+- Where browser tools are available, test direct file opening with networking disabled.
+- Check keyboard-only navigation and visible focus on interactive controls.
+- Disable JavaScript to check that prompts and answer explanations remain readable.
+- Check a narrow viewport and print preview, including exercises and answer explanations.
+- Report unavailable checks as unverified rather than claiming tested offline or accessibility behavior.
+
+## Durable Learning State
+
+After the lesson, update only the state that has earned an update.
+
+- Add a reference document only when it provides reusable value beyond the lesson's takeaway.
+    - Do not duplicate the lesson into a reference page merely because the workspace has a reference directory.
+- Add a glossary term when the learner understands and can use it; do not use the glossary as a first-exposure dump.
+- Add a numbered learning record when the learner demonstrates a non-trivial understanding, reveals prior knowledge,
+  corrects a misconception, or changes the mission.
+- Record preferences in `NOTES.md` only when they are likely to matter in future sessions.
+- Update `MISSION.md` only after confirming a genuine change in the learner's goal.
+- Record a confirmed mission change in a learning record linked to `MISSION.md`.
+
+Learning records are not session logs. Capture the insight, the evidence for it, and what it changes next. Preserve
+superseded understanding when it explains how the learner's model improved.
+
+### Compact State Formats
+
+- Preserve existing workspace formats rather than migrating them for cosmetic consistency.
+- Use the compact templates below for new state files.
+    - Omit unused optional sections rather than filling them with guesses.
+    - Keep one mission per workspace.
+    - Keep `MISSION.md` short enough to function as a compass rather than a curriculum.
+
+#### `MISSION.md`
+
+```markdown
+# Mission: {topic}
+- Why: {concrete real-world reason for learning}
+- Success: {observable capability or outcome}
+- Constraints: {time, budget, access, or learning preferences}
+- Out of scope: {adjacent topics explicitly excluded for now}
+```
+
+#### `RESOURCES.md`
+
+```markdown
+# {Topic} Resources
+## Knowledge
+- [Source title](URL)
+    - Use for: {coverage and reason to return}
+    - Trust: {authority and relevant limitations}
+## Wisdom (Communities)
+- [Community name](URL)
+    - Use for: {question or artifact worth bringing for feedback}
+## Gaps
+- {mission-relevant area without an adequate source}
+```
+
+- Create the community section only when a recommendation or opt-out needs recording.
+- Leave missing sources in `Gaps`; never invent a link to fill the template.
+
+#### `GLOSSARY.md`
+
+```markdown
+# {Topic} Glossary
+- **{Canonical term}**: {one or two sentences defining the understood concept}
+    - Aliases to avoid: {competing labels, if any}
+    - Scope: {workspace-specific meaning when the wider field is ambiguous}
+```
+
+- Prefer canonical terms in lessons, reference documents, records, and other definitions.
+- Revise definitions in place when demonstrated understanding improves.
+- Do not duplicate a term under a synonym or promote first exposure into settled vocabulary.
+
+#### `learning-records/0001-dash-case-name.md`
+
+```markdown
+# {Insight or established prior knowledge}
+- Status: active
+- Insight: {what the learner now understands}
+- Evidence: {answer, artifact, observed use, or explicitly stated prior experience}
+- Implication: {what to teach, review, or skip next}
+```
+
+- Increment the highest existing learning-record number independently of lesson numbering.
+- Distinguish demonstrated understanding from self-reported prior knowledge in the evidence.
+    - Include the claimed depth without treating it as tested mastery.
+- When a later record replaces an earlier understanding, retain the old record.
+    - Mark it `Status: superseded by LR-NNNN`, using the new record's number.
+    - Link the old record to its replacement and the new record back to its predecessor.
+- Avoid records that merely duplicate a glossary definition or log completed activities.
+
+## Session Loop
+
+For each teaching request:
+
+1. Inspect the learner's state, including pending reviews, and identify the smallest useful next capability.
+2. State the intended win and any assumption that materially affects the lesson.
+3. Research and verify the claims that will carry the explanation.
+4. Explain the mechanism through a small example before asking for recall and application.
+5. Run the quality gate below before handing it back.
+6. Save the HTML and durable state, then open the lesson when the environment permits it.
+7. Invite the learner to attempt the practice before recording mastery.
+8. Use their response to choose what comes next and schedule an appropriate spaced review.
+
+- Do not dump an entire curriculum when the learner needs one next step.
+- When a broad request needs a path, outline it briefly before choosing the first useful lesson.
+    - Create a separate learning-map artifact only when it provides requested or reusable value.
+
+## Quality Gate
+
+Check the lesson before delivery without turning these questions into required lesson sections:
+
+- **Mission:** Does the lesson serve a concrete outcome rather than an abstract topic label?
+- **Size:** Does the core explanation and practice fit the learner's budget without overloading working memory?
+- **Clarity:** Can the learner state the core idea without remembering the scenario's incidental details?
+- **Example:** Is this the smallest faithful example that shows the decisive step?
+- **Depth:** Is the reasoning explained rather than replaced by terminology or a list of facts?
+- **Limits:** Are essential assumptions visible without expanding into adjacent lessons?
+- **Evidence:** Are important claims sourced, qualified, and honest about uncertainty?
+- **Practice:** Does the changed case test the taught idea without requiring unexplained new concepts?
+    - Does its feedback explain the decisive reasoning?
+- **Retention:** Is there a concrete later review, with interleaving only where related skills are ready for it?
+- **Continuity:** Does the lesson respect the learner's prior knowledge and link to the workspace's vocabulary?
+- **Artifact:** Does the HTML work offline, read well, print cleanly, and remain accessible without scripting?
+- **Verification:** Were available artifact checks performed, with unavailable checks explicitly left unverified?
+- **Next move:** Is there a clear action, question, or branch that follows from the learner's result?
+
+- Remove scenario machinery that does not help explain or test the promised capability.
+- If only a definition remains, restore a worked explanation rather than adding decorative complexity.
+
+
+Learner request:
+Teach me how a recursive function gets a total from a nested list. I know Python loops and function returns but recursion has not clicked. Make an HTML lesson I can work through in ten minutes.
+
+Save the complete, self-contained HTML lesson as outputs/lesson.html. Only that artifact may be written for this content-only evaluation. Research and browser tools are unavailable. Do not claim to have researched sources, tested a browser, or observed learner answers. Do not ask follow-up questions; use the learner context in the request.

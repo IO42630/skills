@@ -1,0 +1,1045 @@
+{
+  "metadata": {
+    "skill_name": "plexy-java",
+    "skill_path": "plexy-java/SKILL.md",
+    "executor_model": "gpt-6.1-sol (Junie general-purpose subagents)",
+    "analyzer_model": "gpt-6.1-sol",
+    "timestamp": "2026-10-07T07:47:05.852493+00:00",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 5,
+    "generation_mode": "artifact-only, same inputs and 20-step budget per run",
+    "skill_sha256": "bdbc510f37ab99772c9dc23d960271b89709f3256014f57bac9ae5fb7e0fb55d",
+    "java_version": "openjdk version \"26.0.1\" 2026-04-21\nOpenJDK Runtime Environment (build 26.0.1+8-34)\nOpenJDK 64-Bit Server VM (build 26.0.1+8-34, mixed mode, sharing)"
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 11,
+        "failed": 1,
+        "total": 12,
+        "pass_rate": 0.9166666666666666,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": true,
+          "evidence": "Import failures: []"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": true,
+          "evidence": "var initializers=2; redundant obvious locals=[]."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": true,
+          "evidence": "Same-line chained dots: {}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": true,
+          "evidence": "Multi-argument layout failures: {}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 77,
+        "max_line_length": 80,
+        "var_initializers": 2,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 0,
+        "argument_layout_violations": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "passed": 11,
+        "failed": 1,
+        "total": 12,
+        "pass_rate": 0.9166666666666666,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": true,
+          "evidence": "Import failures: []"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": true,
+          "evidence": "var initializers=4; redundant obvious locals=[]."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": true,
+          "evidence": "Same-line chained dots: {}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": true,
+          "evidence": "Multi-argument layout failures: {}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 75,
+        "max_line_length": 80,
+        "var_initializers": 4,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 0,
+        "argument_layout_violations": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "passed": 11,
+        "failed": 1,
+        "total": 12,
+        "pass_rate": 0.9166666666666666,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": true,
+          "evidence": "Import failures: []"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": true,
+          "evidence": "var initializers=2; redundant obvious locals=[]."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": true,
+          "evidence": "Same-line chained dots: {}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": true,
+          "evidence": "Multi-argument layout failures: {}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 73,
+        "max_line_length": 79,
+        "var_initializers": 2,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 0,
+        "argument_layout_violations": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "with_skill",
+      "run_number": 4,
+      "result": {
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "pass_rate": 1.0,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": true,
+          "evidence": "Import failures: []"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": true,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: True."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": true,
+          "evidence": "var initializers=4; redundant obvious locals=[]."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": true,
+          "evidence": "Same-line chained dots: {}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": true,
+          "evidence": "Multi-argument layout failures: {}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 77,
+        "max_line_length": 81,
+        "var_initializers": 4,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 0,
+        "argument_layout_violations": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "with_skill",
+      "run_number": 5,
+      "result": {
+        "passed": 11,
+        "failed": 1,
+        "total": 12,
+        "pass_rate": 0.9166666666666666,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": true,
+          "evidence": "Import failures: []"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": true,
+          "evidence": "var initializers=3; redundant obvious locals=[]."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": true,
+          "evidence": "Same-line chained dots: {}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": true,
+          "evidence": "Multi-argument layout failures: {}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 69,
+        "max_line_length": 84,
+        "var_initializers": 3,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 0,
+        "argument_layout_violations": 0
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "pass_rate": 0.5833333333333334,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": false,
+          "evidence": "Import failures: ['src/main/java/example/service/CustomerDirectory.java']"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": false,
+          "evidence": "var initializers=0; redundant obvious locals=['src/main/java/example/service/CustomerDirectory.java:26', 'src/main/java/example/service/CustomerDirectory.java:35', 'src/main/java/example/service/CustomerDirectory.java:38']."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": false,
+          "evidence": "Same-line chained dots: {'src/main/java/example/service/CustomerDirectory.java': [30, 30]}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": false,
+          "evidence": "Multi-argument layout failures: {'src/main/java/example/model/Customer.java': [10, 11, 19, 27, 31], 'src/main/java/example/service/CustomerDirectory.java': [18, 28, 34, 35, 38, 43, 43]}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 83,
+        "max_line_length": 89,
+        "var_initializers": 0,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 2,
+        "argument_layout_violations": 12
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "pass_rate": 0.5833333333333334,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": false,
+          "evidence": "Import failures: ['src/main/java/example/service/CustomerDirectory.java']"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": false,
+          "evidence": "var initializers=0; redundant obvious locals=['src/main/java/example/service/CustomerDirectory.java:33']."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": false,
+          "evidence": "Same-line chained dots: {'src/main/java/example/service/CustomerDirectory.java': [25, 35]}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": false,
+          "evidence": "Multi-argument layout failures: {'src/main/java/example/model/Customer.java': [10, 11, 19, 27, 44, 53], 'src/main/java/example/service/CustomerDirectory.java': [17, 21, 32, 33, 35, 41, 43, 45]}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 107,
+        "max_line_length": 108,
+        "var_initializers": 0,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 2,
+        "argument_layout_violations": 14
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "pass_rate": 0.5833333333333334,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": false,
+          "evidence": "Import failures: ['src/main/java/example/service/CustomerDirectory.java']"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": false,
+          "evidence": "var initializers=0; redundant obvious locals=['src/main/java/example/service/CustomerDirectory.java:32', 'src/main/java/example/service/CustomerDirectory.java:41', 'src/main/java/example/service/CustomerDirectory.java:45']."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": false,
+          "evidence": "Same-line chained dots: {'src/main/java/example/service/CustomerDirectory.java': [36, 36]}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": false,
+          "evidence": "Multi-argument layout failures: {'src/main/java/example/model/Customer.java': [10, 11, 19, 27, 31], 'src/main/java/example/service/CustomerDirectory.java': [19, 21, 22, 27, 34, 40, 41, 45, 51, 53, 55]}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 95,
+        "max_line_length": 102,
+        "var_initializers": 0,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 2,
+        "argument_layout_violations": 16
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "without_skill",
+      "run_number": 4,
+      "result": {
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "pass_rate": 0.5833333333333334,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": false,
+          "evidence": "Import failures: ['src/main/java/example/service/CustomerDirectory.java']"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": false,
+          "evidence": "var initializers=0; redundant obvious locals=['src/main/java/example/service/CustomerDirectory.java:26', 'src/main/java/example/service/CustomerDirectory.java:34', 'src/main/java/example/service/CustomerDirectory.java:42']."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": false,
+          "evidence": "Same-line chained dots: {'src/main/java/example/service/CustomerDirectory.java': [30, 30]}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": false,
+          "evidence": "Multi-argument layout failures: {'src/main/java/example/model/Customer.java': [10, 11, 19, 27, 31], 'src/main/java/example/service/CustomerDirectory.java': [18, 28, 34, 36, 37, 42, 47, 49]}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 90,
+        "max_line_length": 103,
+        "var_initializers": 0,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 2,
+        "argument_layout_violations": 13
+      },
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "customer-directory",
+      "configuration": "without_skill",
+      "run_number": 5,
+      "result": {
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "pass_rate": 0.5833333333333334,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "validation": {
+        "compile": 0,
+        "bytecode": 0,
+        "core": 0,
+        "null": 0,
+        "io": 0,
+        "optional": 0
+      },
+      "expectations": [
+        {
+          "text": "The complete candidate compiles for Java 17 with the real declared dependencies.",
+          "passed": true,
+          "evidence": "javac exit=0; see validation/results.json."
+        },
+        {
+          "text": "Lookup, mutable customer fields, sorted displays, UTF-8 CSV loading, and supplied-map updates work.",
+          "passed": true,
+          "evidence": "PASS core"
+        },
+        {
+          "text": "Imports are explicit and grouped java/javax, third-party, then project-internal.",
+          "passed": false,
+          "evidence": "Import failures: ['src/main/java/example/service/CustomerDirectory.java']"
+        },
+        {
+          "text": "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors.",
+          "passed": false,
+          "evidence": "@Data/@Builder without handwritten DTO accessors/constructors: False."
+        },
+        {
+          "text": "Obvious local initializers use var rather than redundant explicit types.",
+          "passed": false,
+          "evidence": "var initializers=0; redundant obvious locals=['src/main/java/example/service/CustomerDirectory.java:33']."
+        },
+        {
+          "text": "Java sources compile without raw-type warnings.",
+          "passed": true,
+          "evidence": "Compiler raw-type warnings=0; compiled=True."
+        },
+        {
+          "text": "Missing-file IOException reaches the caller rather than being swallowed.",
+          "passed": true,
+          "evidence": "PASS io"
+        },
+        {
+          "text": "findById returns typed Optional<Customer>, empty for absence and populated for presence.",
+          "passed": true,
+          "evidence": "PASS optional"
+        },
+        {
+          "text": "The constructor rejects a null map and uses Objects.requireNonNull for that parameter.",
+          "passed": true,
+          "evidence": "Objects.requireNonNull in constructor=True; PASS null"
+        },
+        {
+          "text": "The existing Maven dependency declarations are preserved without additions or duplicates.",
+          "passed": true,
+          "evidence": "Dependency group/artifact/version/scope/classifier/type declarations match."
+        },
+        {
+          "text": "Chained method-call dots start on new lines.",
+          "passed": false,
+          "evidence": "Same-line chained dots: {'src/main/java/example/service/CustomerDirectory.java': [25, 35]}"
+        },
+        {
+          "text": "Calls with multiple arguments put each argument and the closing parenthesis on separate lines.",
+          "passed": false,
+          "evidence": "Multi-argument layout failures: {'src/main/java/example/model/Customer.java': [10, 11, 19, 27, 44, 48], 'src/main/java/example/service/CustomerDirectory.java': [17, 26, 32, 33, 35, 41, 43, 46]}"
+        }
+      ],
+      "metrics": {
+        "java_lines": 103,
+        "max_line_length": 104,
+        "var_initializers": 0,
+        "raw_type_warnings": 0,
+        "chain_layout_violations": 2,
+        "argument_layout_violations": 14
+      },
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9333333333333333,
+        "stddev": 0.03726779962499651,
+        "min": 0.9166666666666666,
+        "max": 1.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.5833333333333334,
+        "stddev": 0.0,
+        "min": 0.5833333333333334,
+        "max": 0.5833333333333334
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.35"
+    }
+  },
+  "notes": [
+    "Imports are explicit and grouped java/javax, third-party, then project-internal. With skill 5/5; without skill 0/5.",
+    "Customer uses Lombok @Data and @Builder instead of handwritten accessors or constructors. With skill 1/5; without skill 0/5.",
+    "Obvious local initializers use var rather than redundant explicit types. With skill 5/5; without skill 0/5.",
+    "Chained method-call dots start on new lines. With skill 5/5; without skill 0/5.",
+    "Calls with multiple arguments put each argument and the closing parenthesis on separate lines. With skill 5/5; without skill 0/5.",
+    "7 assertions pass in all 10 runs; these check correctness/control conditions rather than distinguish the skill.",
+    "The frozen Lombok probe demands @Data and @Builder without handwritten DTO accessors or constructors. The task never explicitly requests a builder API; an annotation-specific failure need not mean failure to remove boilerplate.",
+    "In the original cohort, with-skill runs 2 and 3 combine @RequiredArgsConstructor with scoped lombok.config to generate Objects.requireNonNull; run 1 retains a manual service constructor. Constructor bytecode and null-input execution verify the resulting guard.",
+    "Time, token counts, and executor-wide tool/error counts were not exposed; null means unavailable, not zero. No efficiency claim is supported.",
+    "One task with 5 repeats per variant is exploratory, not evidence of statistical significance or broad Java coverage.",
+    "Only generated artifacts were tested. All agents were explicitly told not to build; evaluator success does not prove agent-side verification.",
+    "The skill was explicitly loaded, not auto-triggered. Baseline agents were instructed not to read skills; they shared the repository and inherited agent instructions, so filesystem isolation was not enforced."
+  ],
+  "artifact_sha256": {
+    "plexy-java/SKILL.md": "bdbc510f37ab99772c9dc23d960271b89709f3256014f57bac9ae5fb7e0fb55d",
+    "testing/plexy-java/.deps/lombok-1.18.48.jar": "85477a4655ebb2c074a9099cfb749be454449fee564d4282610df1b85f7c508b",
+    "testing/plexy-java/.deps/slf4j-api-2.0.17.jar": "7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832",
+    "testing/plexy-java/fixtures/customer-directory/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/fixtures/customer-directory/src/main/java/example/model/Customer.java": "db43244a9ff4cc39421046e7ef1e40b117700eb9770ae83fa9a3e8ba18b3647d",
+    "testing/plexy-java/fixtures/customer-directory/src/main/java/example/service/CustomerDirectory.java": "d92fcd5c88eb2998f8bea86ac7372c7619591fc31e4e7bcd4f399e58b1166e1c",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-1/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-1/outputs/src/main/java/example/model/Customer.java": "d53e8ccfb683728f092a7aeef4973f5c4a10ffc8ff0496f8240370da8eeaa366",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-1/outputs/src/main/java/example/service/CustomerDirectory.java": "83b08ecd2ac2f987f496b5cd5813b34e21e0288fb42b0b983bf5f53a70f6ed43",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-2/outputs/lombok.config": "d241439e533975f7df17b41b702a1311474dc5e5fdf82eab5ed858278be3e1d9",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-2/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-2/outputs/src/main/java/example/model/Customer.java": "d3ae3facfe6b69e69874a8a72113fb8f33cf70fb6e2039eaf40d1035543dd019",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-2/outputs/src/main/java/example/service/CustomerDirectory.java": "d782af76a084a5c2cd774c533cde5a4966888b5645e91efd836b6c8b6778e6bd",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-3/outputs/lombok.config": "d241439e533975f7df17b41b702a1311474dc5e5fdf82eab5ed858278be3e1d9",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-3/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-3/outputs/src/main/java/example/model/Customer.java": "996ef0a41dd37dbe3764d0f2a218e40c38ff883c55c2a31b8569364b9fe776e8",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-3/outputs/src/main/java/example/service/CustomerDirectory.java": "e73bbbd79cd57aa86aba2921987079e0b09a6e7cb0a65ddb774f512e6d6018c3",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-4/outputs/lombok.config": "d241439e533975f7df17b41b702a1311474dc5e5fdf82eab5ed858278be3e1d9",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-4/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-4/outputs/src/main/java/example/model/Customer.java": "de3b602591979c92329e9cc55945b1502a0f5df1c3ab9ec92f30df6acae90dad",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-4/outputs/src/main/java/example/service/CustomerDirectory.java": "81a1b1cc1888e9adf2c69e67236a8975d40dcc31a01ada2c53852f940e35a43d",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/outputs/lombok.config": "d241439e533975f7df17b41b702a1311474dc5e5fdf82eab5ed858278be3e1d9",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/outputs/src/main/java/example/model/Customer.java": "ff6010a5653462950155a39922dc017c8ac61987798cfcd116fb43b5ac37a863",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/with_skill/run-5/outputs/src/main/java/example/service/CustomerDirectory.java": "dba9534da652905bb8e0c60cbabf0858b62ac0a660e892d5d3352a3147ea12ab",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-1/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-1/outputs/src/main/java/example/model/Customer.java": "0f9e8fdeaa7d1323015a04ea3bb947354c6dbb9fc2468670ce82a6f73755f374",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-1/outputs/src/main/java/example/service/CustomerDirectory.java": "6525896bf41d8a2d2d51ae21076ae9e1fb3db9f377ab52ebf3eb7c1d6aa3626d",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-2/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-2/outputs/src/main/java/example/model/Customer.java": "61c22eb8554537ef175cacd01390f587c9e18048fdb17d05baeba30ac4752425",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-2/outputs/src/main/java/example/service/CustomerDirectory.java": "d361acb04443fc27042cdf5a5f3d9df902b35274fa11786f7f098b63c375c3f9",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-3/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-3/outputs/src/main/java/example/model/Customer.java": "483d73fe01edeb1f9b8c1b914add7c88fcec0742998ecfec9908466dd07ab00b",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-3/outputs/src/main/java/example/service/CustomerDirectory.java": "2257ccfb1b18f820ef7ffa6a4c08423990573716d23aa71c926e472c8a5d3471",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-4/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-4/outputs/src/main/java/example/model/Customer.java": "483d73fe01edeb1f9b8c1b914add7c88fcec0742998ecfec9908466dd07ab00b",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-4/outputs/src/main/java/example/service/CustomerDirectory.java": "6edfaa19e24645584212e31632ea3cb46e734d464e0804e13464ad3316366d89",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-5/outputs/pom.xml": "6ec30a4e3f78993b87c9e8ad7fac356be6530190542941123f6ee944d2f55429",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-5/outputs/src/main/java/example/model/Customer.java": "daf83c26644dfe5111aa481358a378ca0d0ec19a929722dc243fae5a68394076",
+    "testing/plexy-java/iteration-1/eval-0-customer-directory/without_skill/run-5/outputs/src/main/java/example/service/CustomerDirectory.java": "688985c58920f666e33df2c9308d48db0064e7f325e2c60058a7e2541f88c964"
+  }
+}

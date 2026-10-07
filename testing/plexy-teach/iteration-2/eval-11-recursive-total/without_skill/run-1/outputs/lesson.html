@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recursion: getting a total from a nested list</title>
+  <style>
+    :root { color-scheme: light; --ink: #182b3a; --muted: #43596a; --paper: #fff; --bg: #f1f5f7; --accent: #12605b; --border: #bdcdd5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 system-ui, sans-serif; }
+    main { max-width: 880px; margin: auto; padding: 32px 22px 60px; }
+    header { padding: 12px 0 24px; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 12px 0; }
+    h2 { font-size: 1.45rem; line-height: 1.3; margin-top: 0; }
+    h3 { font-size: 1.1rem; }
+    p { margin: 12px 0; }
+    .eyebrow, .time { color: var(--accent); font-weight: 700; }
+    .time { display: block; font-size: .85rem; margin-bottom: 8px; }
+    section { background: var(--paper); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 22px; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    nav { display: flex; gap: 10px 20px; flex-wrap: wrap; margin-top: 20px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; background: #eaf0f2; padding: 2px 4px; border-radius: 3px; }
+    pre { background: #142a38; color: #f3f8fa; padding: 18px; border-radius: 8px; overflow-x: auto; font-size: .92rem; line-height: 1.7; }
+    pre code { padding: 0; color: inherit; background: none; }
+    .note { border-left: 4px solid var(--accent); padding: 10px 16px; background: #eaf5f2; margin: 18px 0; }
+    .small { font-size: .9rem; color: var(--muted); }
+    button, input { font: inherit; }
+    button { background: var(--accent); color: white; border: 2px solid var(--accent); padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+    button.secondary { color: var(--accent); background: white; }
+    button:disabled { opacity: .5; cursor: default; }
+    :focus-visible { outline: 3px solid #a84700; outline-offset: 4px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .frame { padding: 14px; border: 2px solid var(--border); border-radius: 8px; }
+    .frame.active { border-color: var(--accent); background: #eaf5f2; }
+    .frame h3 { margin: 0 0 8px; }
+    .frame p { margin: 6px 0; }
+    .frame code { overflow-wrap: anywhere; }
+    #trace-message { min-height: 5em; }
+    .feedback { border-left: 3px solid var(--accent); padding-left: 12px; margin-top: 12px; }
+    .feedback:empty { display: none; }
+    form { margin: 16px 0; }
+    label { display: block; font-weight: 600; margin-bottom: 8px; }
+    input { width: 120px; border: 2px solid var(--border); padding: 8px; border-radius: 6px; margin: 0 8px 8px 0; }
+    summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+    details { margin: 18px 0; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+    th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--border); }
+    th { background: #eaf0f2; }
+    li { margin: 8px 0; }
+    footer { font-size: .9rem; color: var(--muted); }
+    @media (max-width: 620px) { main { padding: 18px 12px 40px; } section { padding: 18px; } .frames { grid-template-columns: 1fr; } #trace-message { min-height: 0; } }
+    @media print { body { background: white; font-size: 11pt; } main { max-width: none; padding: 0; } section { break-inside: avoid; } .js-only, form, nav { display: none !important; } pre { white-space: pre-wrap; background: #eee; color: #111; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">A 10-minute Python lesson · loops → recursion</div>
+    <h1>One list, one subtotal</h1>
+    <p>Recursion means a function calls itself. The useful part: <strong>each call solves one smaller piece and returns its answer to the call that asked for it.</strong></p>
+    <p>By the end, you’ll trace a nested-list total, explain why calls stop, and write the key recursive line.</p>
+    <nav aria-label="Lesson sections">
+      <a href="#loop">1. Start with a loop</a>
+      <a href="#function">2. Read the function</a>
+      <a href="#trace">3. Trace the calls</a>
+      <a href="#practice">4. Try it</a>
+    </nav>
+  </header>
+
+  <section id="loop">
+    <span class="time">0–1 minute</span>
+    <h2>1. Keep the loop you already know</h2>
+    <p>For <code>[2, 3, 4, 1]</code>, a loop can add each number into <code>total</code>. But what about <code>[2, [3, [4]], 1]</code>?</p>
+    <p>The outer loop sees only three items: <code>2</code>, <code>[3, [4]]</code>, and <code>1</code>. Adding that middle list directly to a number would cause a <code>TypeError</code>.</p>
+    <div class="note"><strong>The new rule:</strong> If an item is a list, ask the same function to total that list. Add the <em>number it returns</em>, not the list itself.</div>
+    <p>So the outer calculation will become <code>2 + (subtotal of [3, [4]]) + 1</code>. You don’t need to know the nesting depth in advance.</p>
+  </section>
+
+  <section id="function">
+    <span class="time">1–3 minutes</span>
+    <h2>2. The whole function</h2>
+    <p>Our input is a finite list containing only numbers and other lists, with no list containing itself. The function returns the sum of all the numbers, at any depth.</p>
+    <pre><code>def recursive_total(items):
+    total = 0
+    for item in items:
+        if isinstance(item, list):
+            total += recursive_total(item)
+        else:
+            total += item
+    return total
+
+answer = recursive_total([2, [3, [4]], 1])
+print(answer)  # 10</code></pre>
+    <ol>
+      <li><code>total = 0</code>: <strong>every call gets its own local subtotal</strong>. A child’s zero does not reset the parent’s subtotal.</li>
+      <li><code>isinstance(item, list)</code>: choose between asking for a list’s subtotal and adding a number directly.</li>
+      <li><code>total += recursive_total(item)</code>: the caller <strong>waits</strong>. The child finishes, returns a number, and only then does the caller add it and continue its loop.</li>
+      <li><code>return total</code>: after the loop, send this call’s subtotal back to its caller. Notice that <code>return</code> is <em>outside</em> the loop.</li>
+    </ol>
+    <h3>What makes it stop?</h3>
+    <p>Numbers take the <code>else</code> branch: no new call. An empty list <code>[]</code> makes the loop run zero times and returns <code>0</code>. These are the simple stopping cases; this version needs no separate <code>if items == []</code>.</p>
+    <p>Each recursive call works on a child list deeper inside the finite input. Eventually there are only numbers or empty lists, so calls finish and their results travel back outward.</p>
+  </section>
+
+  <section id="trace">
+    <span class="time">3–6 minutes</span>
+    <h2>3. Watch the caller wait, then resume</h2>
+    <p>Trace <code>recursive_total([2, [3, [4]], 1])</code>. We’ll label the calls <strong>A</strong>, <strong>B</strong>, and <strong>C</strong>—they all run the <em>same function</em>, with different inputs and separate totals.</p>
+    <div class="js-only" id="trace-widget" hidden>
+      <div id="trace-message" aria-live="polite" aria-atomic="true"></div>
+      <div class="frames" aria-label="Each call’s local state">
+        <div class="frame" id="frame-a"><h3>A · outer call</h3><code>[2, [3, [4]], 1]</code><p id="state-a"></p></div>
+        <div class="frame" id="frame-b"><h3>B · child call</h3><code>[3, [4]]</code><p id="state-b"></p></div>
+        <div class="frame" id="frame-c"><h3>C · deepest call</h3><code>[4]</code><p id="state-c"></p></div>
+      </div>
+      <div class="controls">
+        <button type="button" class="secondary" id="back">Back</button>
+        <button type="button" id="next">Next event</button>
+        <button type="button" class="secondary" id="restart">Restart</button>
+      </div>
+      <p class="small">Before each next event, predict: which call is running, and which subtotal changes?</p>
+    </div>
+    <noscript><p>The interactive trace needs JavaScript. The full trace and all worked answers below are available without it.</p></noscript>
+    <details>
+      <summary>Read the complete trace (also works without JavaScript)</summary>
+      <div class="table-wrap">
+        <table>
+          <caption>Time moves down; returned values move back toward A.</caption>
+          <thead><tr><th>Event</th><th>A total</th><th>B total</th><th>C total</th></tr></thead>
+          <tbody>
+            <tr><td>A starts, then adds 2.</td><td>2</td><td>—</td><td>—</td></tr>
+            <tr><td>A waits for B. B starts at 0, then adds 3.</td><td>2 (waiting)</td><td>3</td><td>—</td></tr>
+            <tr><td>B waits for C. C starts at 0, then adds 4.</td><td>2 (waiting)</td><td>3 (waiting)</td><td>4</td></tr>
+            <tr><td>C finishes and returns 4 to B.</td><td>2 (waiting)</td><td>3 (not yet added)</td><td>4 (returned)</td></tr>
+            <tr><td>B resumes and adds C’s returned 4.</td><td>2 (waiting)</td><td>7</td><td>4 (returned)</td></tr>
+            <tr><td>B finishes and returns 7 to A.</td><td>2 (not yet added)</td><td>7 (returned)</td><td>4 (returned)</td></tr>
+            <tr><td>A resumes, adds 7, then adds its last item, 1.</td><td>9 → 10</td><td>7 (returned)</td><td>4 (returned)</td></tr>
+            <tr><td>A returns 10 to the original caller.</td><td>10 (returned)</td><td>7 (returned)</td><td>4 (returned)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <div class="note"><strong>A return is not the whole answer yet.</strong> C returns <code>4</code> to B. B returns <code>7</code> to A. Only A returns the final <code>10</code> to the code that started the calculation.</div>
+    <form id="checkpoint-form">
+      <label for="checkpoint">Pause and predict: what number does B return for <code>[3, [4]]</code>?</label>
+      <input id="checkpoint" name="checkpoint" type="text" inputmode="numeric" autocomplete="off" aria-describedby="checkpoint-feedback">
+      <button type="submit" class="js-only" hidden>Check prediction</button>
+      <p class="feedback" id="checkpoint-feedback" role="status"></p>
+    </form>
+    <details><summary>Reveal the reasoning after predicting</summary><p>B returns <strong>7</strong>: its own 3 plus C’s returned 4. The outer 2 and 1 belong to A’s input, not B’s. The 4 is included once inside B’s 7; A does not add it again separately.</p></details>
+  </section>
+
+  <section id="practice">
+    <span class="time">6–9 minutes</span>
+    <h2>4. Work one without the trace</h2>
+    <p>Use a scratchpad. For <code>[1, [2, []], [3, [4]], 5]</code>, write the deepest returns first:</p>
+    <ol>
+      <li>What does the call on <code>[]</code> return?</li>
+      <li>What do the calls on <code>[2, []]</code> and <code>[3, [4]]</code> return?</li>
+      <li>Replace each child list with its returned number. What does the outer call return?</li>
+    </ol>
+    <form id="practice-form">
+      <label for="practice-answer">Your outer total</label>
+      <input id="practice-answer" name="practice-answer" type="text" inputmode="numeric" autocomplete="off" aria-describedby="practice-feedback">
+      <button type="submit" class="js-only" hidden>Check total</button>
+      <p class="feedback" id="practice-feedback" role="status"></p>
+    </form>
+    <details>
+      <summary>Compare with the worked solution</summary>
+      <p><code>[] → 0</code>, so <code>[2, []] → 2 + 0 = 2</code>.</p>
+      <p><code>[4] → 4</code>, so <code>[3, [4]] → 3 + 4 = 7</code>.</p>
+      <p>The outer call adds <code>1 + 2 + 7 + 5 = 15</code>. Check against the individual numbers: <code>1 + 2 + 3 + 4 + 5 = 15</code>. Empty lists contribute nothing.</p>
+    </details>
+    <h3>Now rebuild the key line</h3>
+    <p>Without looking above, say what belongs in the blank:</p>
+    <pre><code>if isinstance(item, list):
+    total += __________
+else:
+    total += item</code></pre>
+    <details>
+      <summary>Reveal the line and explain it</summary>
+      <p><code>recursive_total(item)</code>. Ask for the subtotal of <em>this child list</em>, then add its return value to <em>this call’s</em> total.</p>
+      <p>Not <code>recursive_total(items)</code>: that would call the function again on the same whole list whenever it finds a list item, so it would not make progress. Not <code>total += item</code>: that attempts to add a list, not its subtotal.</p>
+    </details>
+  </section>
+
+  <section id="wrap">
+    <span class="time">9–10 minutes</span>
+    <h2>5. The one-minute exit check</h2>
+    <p>Explain aloud: “Each call totals ______. When it reaches a child list, it ______. When the child returns, it ______.”</p>
+    <details><summary>Compare your explanation</summary><p>Each call totals its own input list. At a child list, it calls the same function and waits. When the child returns a number, it adds that number to its local total and continues its loop.</p></details>
+    <p>Predict these before opening the answers: <code>[]</code>, <code>[[], [[]]]</code>, and <code>[-2, [5]]</code>.</p>
+    <details><summary>Check the edge cases</summary><p><code>[] → 0</code>; <code>[[], [[]]] → 0</code>, because every child returns 0; <code>[-2, [5]] → 3</code>, because ordinary addition still applies to negative numbers.</p></details>
+    <div class="note"><strong>Takeaway:</strong> You don’t need to hold every depth in your head. Track one call’s local total, trust a child call to return its subtotal, then resume.</div>
+    <p class="small">Scope note: this example is for finite, non-cyclic lists of numbers. Very deep nesting can hit Python’s recursion limit; a list containing itself does not reach a stopping case.</p>
+  </section>
+  <footer>This lesson is self-contained and works offline. No Python execution is required; the controls visualize the worked example, not a live Python runtime.</footer>
+</main>
+<script>
+  (() => {
+    'use strict';
+    const steps = [
+      { message: 'A starts. Its own total is 0.', states: ['Running · total = 0', 'Not called yet', 'Not called yet'], active: 'a' },
+      { message: 'A sees the number 2 and adds it. A’s total is now 2.', states: ['Running · total = 2', 'Not called yet', 'Not called yet'], active: 'a' },
+      { message: 'A sees [3, [4]] and calls B. A waits with total 2; B starts with its own total 0.', states: ['Waiting for B · total = 2', 'Running · total = 0', 'Not called yet'], active: 'b' },
+      { message: 'B sees the number 3 and adds it. A is still waiting, unchanged.', states: ['Waiting for B · total = 2', 'Running · total = 3', 'Not called yet'], active: 'b' },
+      { message: 'B sees [4] and calls C. B waits with total 3; C starts with its own total 0.', states: ['Waiting for B · total = 2', 'Waiting for C · total = 3', 'Running · total = 0'], active: 'c' },
+      { message: 'C adds its only item, 4. It makes no further calls because 4 is a number.', states: ['Waiting for B · total = 2', 'Waiting for C · total = 3', 'Running · total = 4'], active: 'c' },
+      { message: 'C’s loop is finished. C returns 4 to B. Next, B will use that returned number.', states: ['Waiting for B · total = 2', 'Ready to add C’s return · total = 3', 'Finished · returned 4'], active: 'b' },
+      { message: 'B resumes: total += 4. Its own total becomes 3 + 4 = 7. A’s total is still 2.', states: ['Waiting for B · total = 2', 'Running · total = 7', 'Finished · returned 4'], active: 'b' },
+      { message: 'B’s loop is finished. B returns 7 to A. Next, A will use that returned number.', states: ['Ready to add B’s return · total = 2', 'Finished · returned 7', 'Finished · returned 4'], active: 'a' },
+      { message: 'A resumes: total += 7. Its total becomes 2 + 7 = 9. The 4 is already included in that 7.', states: ['Running · total = 9', 'Finished · returned 7', 'Finished · returned 4'], active: 'a' },
+      { message: 'A continues its loop, sees its final item 1, and adds it. Total = 10.', states: ['Running · total = 10', 'Finished · returned 7', 'Finished · returned 4'], active: 'a' },
+      { message: 'A’s loop is finished. A returns 10; the original caller stores it in answer. All calls are complete.', states: ['Finished · returned 10', 'Finished · returned 7', 'Finished · returned 4'], active: null }
+    ];
+    let position = 0;
+    const back = document.getElementById('back');
+    const next = document.getElementById('next');
+    function render() {
+      const step = steps[position];
+      document.getElementById('trace-message').textContent = 'Event ' + (position + 1) + ' of ' + steps.length + ': ' + step.message;
+      ['a', 'b', 'c'].forEach((call, index) => {
+        document.getElementById('state-' + call).textContent = step.states[index];
+        document.getElementById('frame-' + call).classList.toggle('active', step.active === call);
+      });
+      back.disabled = position === 0;
+      next.disabled = position === steps.length - 1;
+    }
+    back.addEventListener('click', () => { if (position > 0) { position--; render(); } });
+    next.addEventListener('click', () => { if (position < steps.length - 1) { position++; render(); } });
+    document.getElementById('restart').addEventListener('click', () => { position = 0; render(); });
+    function attachCheck(formId, inputId, feedbackId, expected, correct, hint) {
+      document.getElementById(formId).addEventListener('submit', event => {
+        event.preventDefault();
+        const raw = document.getElementById(inputId).value.trim();
+        const feedback = document.getElementById(feedbackId);
+        if (!/^[+-]?\d+$/.test(raw)) {
+          feedback.textContent = 'Enter a whole-number prediction, then check it. You can also open the worked answer below.';
+        } else if (Number(raw) === expected) {
+          feedback.textContent = correct;
+        } else {
+          feedback.textContent = hint;
+        }
+      });
+    }
+    attachCheck('checkpoint-form', 'checkpoint', 'checkpoint-feedback', 7,
+      'Yes: B returns 7. B adds its own 3 to C’s returned 4; the outer 2 and 1 belong to A.',
+      'Not yet. Focus only on B’s input, [3, [4]]. The child returns 4; what is B’s own 3 plus that return? Try again or reveal the reasoning.');
+    attachCheck('practice-form', 'practice-answer', 'practice-feedback', 15,
+      'Yes: 15. The child subtotals are 2 and 7, so the outer call adds 1 + 2 + 7 + 5.',
+      'Try replacing child lists with numbers first: [] returns 0, [2, []] returns 2, and [3, [4]] returns 7. Now add the outer items: 1 + 2 + 7 + 5.');
+    render();
+    document.querySelectorAll('.js-only').forEach(element => { element.hidden = false; });
+  })();
+</script>
+</body>
+</html>

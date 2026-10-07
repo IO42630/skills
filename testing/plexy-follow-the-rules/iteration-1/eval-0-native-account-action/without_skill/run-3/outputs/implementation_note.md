@@ -1,0 +1,3 @@
+Implemented `RenameAccountAction` as a frozen dataclass for the future `accounts.rename_account` module, using native relative imports and the repository's `find`/`save` methods. Missing accounts raise `NotFoundError(account_id)`; existing accounts are updated with `dataclasses.replace`, and the saved account is returned.
+
+The keyword-only `rename_to` idiom comes from the selected reference. Its value is preserved exactly, including surrounding whitespace, as explicitly requested instead of the usual stripping convention. No execution framework, dependencies, or unrelated changes were introduced. Inputs were left unchanged; tests were not inspected or run.

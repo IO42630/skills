@@ -1,0 +1,3 @@
+Implemented `RenameAccountAction` for the future `accounts.rename_account` module using native relative imports, a frozen dataclass, and the typed repository field. It uses `find`, raises the existing `NotFoundError(account_id)` when missing, and saves an immutable replacement, returning the repository's saved result.
+
+The selected reference supplies the keyword-only `rename_to` naming, not its execution architecture. The explicit task requirement overrides normal name stripping: the supplied name is preserved exactly, including leading/trailing whitespace. Inputs are unchanged; no dependencies, concurrency, or unrelated migrations were added. No tests were inspected or run, as requested.
