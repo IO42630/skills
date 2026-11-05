@@ -46,6 +46,24 @@ description: >
         - Create it before writing the new recipe.
         - Specify required and optional recipe sections.
         - Define a concise, category-first naming hierarchy.
+    - Keep a table with `keyword`, `weight`, and `scope` columns for filename terms.
+        - For a new cookbook, generate the initial table from project conventions for the user to review and edit.
+        - For an authorized update that needs a missing table, create a draft for user review.
+        - Treat the table as user-maintained after creation and preserve the user's edits.
+        - Give broader groups higher weights than narrower concerns, types, or topics.
+        - Sort table rows by descending weight, then alphabetically by keyword for equal weights.
+        - Order filename keywords by descending weight; order equal weights alphabetically.
+        - For example, these project-specific weights produce `recipe-backend-testing-resource.md`:
+
+          | keyword | weight | scope |
+          | --- | --- | --- |
+          | backend | 30 | Backend code |
+          | testing | 20 | Tests |
+          | resource | 10 | Resources |
+
+        - Include every filename keyword in the table.
+        - For a missing term, propose a row for the user to add; edit the table only with explicit authorization.
+        - Preserve established weights; ask if a new term's placement cannot be inferred.
     - Use `recipe-<category>-<subcategory>-<topic>.md` when each category adds useful meaning.
         - For example, prefer `recipe-frontend-angular-zoneless.md` over `recipe-zoneless-angular.md`.
         - Use lowercase kebab case without a sequence number for new recipes.
@@ -97,4 +115,5 @@ description: >
 - Check that the example is complete enough for the concept.
     - Compression should remove repetition, not essential context.
 - Check source provenance, uncertainty labels, authorized path, and filename.
+    - Confirm every filename keyword is in the cookbook and ordered by descending weight.
     - Re-read the saved recipe and report its path.
