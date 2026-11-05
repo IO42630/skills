@@ -38,15 +38,28 @@ description: >
     - Distinguish observed behavior, recommendations, and unresolved concerns.
     - When sources conflict, check current implementation, tests, or configuration and state any remaining uncertainty.
 4. Check for an existing recipe before choosing a filename.
+    - Read `.agents/recipes/cookbook.md` when it exists.
+    - When present, follow its project-specific recipe structure and naming conventions.
     - Compare relevant recipes by concept. Revise one only when asked or authorized; otherwise report a duplicate.
-    - For a new concept, use `recipe-<lowercase-kebab-case-slug>.md` without a sequence number.
+    - For a new concept, follow the cookbook's section structure and category hierarchy.
+        - If the cookbook is missing, derive its conventions from existing recipes and the project.
+        - Create it before writing the new recipe.
+        - Specify required and optional recipe sections.
+        - Define a concise, category-first naming hierarchy.
+    - Use `recipe-<category>-<subcategory>-<topic>.md` when each category adds useful meaning.
+        - For example, prefer `recipe-frontend-angular-zoneless.md` over `recipe-zoneless-angular.md`.
+        - Use lowercase kebab case without a sequence number for new recipes.
     - If that filename already exists for a different concept, choose a more specific, descriptive slug.
     - Preserve existing filenames, including recipes that already have sequence numbers.
-    - Prefer a flat collection unless the project already has useful directories or stable categories justify them.
-    - Keep slugs concise and searchable; use established prefixes such as `frontend` or `backend` when helpful.
-    - Avoid encoding every category in a filename; recipes can cover cross-cutting concepts.
-    - If an index exists, update its relevant entry as part of an authorized recipe addition or rename.
-    - Create `.agents/recipes/` only when a new recipe is needed.
+    - Keep the collection flat unless existing directories or stable categories justify a tree.
+    - Keep category chains concise and searchable.
+    - Reuse established prefixes such as `frontend` or `backend`.
+    - Omit categories that add no useful distinction; cross-cutting recipes need not encode every category.
+    - Treat the cookbook as conventions, not an exhaustive recipe catalog.
+    - Update cookbook rules only when an authorized change to the conventions is needed.
+    - Create or revise the cookbook on its own only when the user explicitly requests it.
+    - If a separate index exists, update its relevant entry as part of an authorized recipe addition or rename.
+    - Create `.agents/recipes/` only when a new recipe or an explicitly requested cookbook needs it.
 5. Teach the pattern at its natural scale.
     - Use a complete, representative example that connects the input, key wiring or decision, and outcome.
     - Keep a simple pattern short; add detail or examples only for branches that change behavior.
@@ -65,10 +78,13 @@ description: >
 ## Find and apply a recipe
 
 1. Resolve `.agents/recipes/` from the target project root, not this skill's fixtures.
+    - Read `.agents/recipes/cookbook.md` when it exists.
+    - Treat it as guidance, not a recipe or complete catalog.
+    - Create a missing cookbook only when authoring a recipe or when the user explicitly requests it.
 2. Find candidates by concept and read the best match, including assumptions, limits, and checks.
     - Search filenames and contents; do not rely on one prefix or category to find a recipe.
     - Search recursively when the collection already uses subdirectories.
-    - Treat an index as a navigation aid, not a complete catalog; verify matches through search.
+    - Verify cookbook or index suggestions through filename and content search.
     - If none fits, ask whether to create one or proceed without it.
 3. Inspect target code and tests; compare contracts with the recipe and adapt names and structure.
     - Surface material conflicts or missing prerequisites before implementation.

@@ -159,8 +159,13 @@ cleanup_lockfiles() {
 trap cleanup_lockfiles EXIT
 
 install_skill "https://github.com/io42630/skills" "plexy-markdown"
+install_skill "https://github.com/io42630/skills" "plexy-markdown-update"
 install_skill "https://github.com/io42630/skills" "plexy-probe"
+install_skill "https://github.com/io42630/skills" "plexy-recipe"
 install_skill "https://github.com/io42630/skills" "plexy-save"
+
+install_skill "https://github.com/anthropics/skills" "skill-creator"
+install_skill "https://github.com/mattpocock/skills" "writing-for-agents"
 
 if [ -n "$GITEA_REPO_URL" ]; then
   if [ "${#GITEA_SKILLS[@]}" -eq 0 ]; then
