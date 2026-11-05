@@ -1,70 +1,50 @@
 ---
 name: plexy-markdown-update
 description: >
-  Preserve wording and structure only when the user explicitly asks to update an existing Markdown file, including
-  natural forms such as "update this doc" or "I'm updating this page." Do not trigger for requests to rewrite, edit,
-  revise, or correct Markdown without explicitly asking for an update. For updates, make the smallest accurate, locally
-  traceable edits; avoid unrelated rewriting or reformatting. Pair with plexy-markdown for authored text without
-  retrofitting untouched content.
+  Make focused Markdown updates when the user explicitly asks to update an existing file. Natural forms include
+  "update this doc" and "I'm updating this page." Do not trigger for rewrite, edit, revision, or correction requests
+  unless the user asks for an update. Prefer small, clear edits that preserve meaning and useful structure.
 ---
 
 # plexy-markdown-update
 
-- Keep updates easy to review by preserving text that remains accurate and useful.
-- Minimize unnecessary diff; accuracy, completeness, and explicit user requests take priority.
+- Keep updates accurate, concise, and easy to review.
+- Prefer local edits; accuracy, completeness, and explicit requests take priority over diff size.
 
 ## When to apply
 
-- Apply this skill only when the user explicitly asks to update an existing Markdown file.
-  Natural forms such as "update this doc" and "I'm updating this page" count.
-- Rewrite, edit, revision, correction, and creation requests do not trigger this skill unless the user explicitly asks
-  to update an existing Markdown file.
-  Follow the user's requested approach without imposing its diff-preserving workflow.
-- If an update request also asks for a restructure or rewrite, honor that request and keep the rewrite scoped.
+- Trigger only when the user explicitly asks to update an existing Markdown file.
+  "Update this doc" and "I'm updating this page" are examples.
+- A rewrite, edit, revision, correction, or creation request alone does not trigger this skill.
+  Follow the requested approach without imposing its update workflow.
+- If an update also requests a rewrite or restructure, honor it within the requested scope.
 
 ## Update existing Markdown
 
-1. Read the relevant content and enough surrounding structure to understand its context.
-2. Map the requested changes to existing text.
-    - Keep accurate, relevant text unchanged.
-    - Replace stale or incorrect claims where they already appear.
-    - Add genuinely new facts near the related content.
-    - Restructure only when requested or needed for correctness or clarity.
-3. Edit the smallest meaningful spans.
-    - Prefer a local word or phrase replacement when it preserves meaning and grammar.
-    - Preserve sentence wording and order when only a fact or term has changed.
-    - Add a focused line or list item instead of rewriting a nearby paragraph.
-    - Keep headings, paragraph boundaries, list style, and table structure where practical.
-    - Renumber only when a list's membership or order changes.
-4. Do not keep outdated text merely to make the diff smaller.
-    - Remove or replace a superseded claim when leaving it would create a contradiction.
-    - Make surrounding edits only as large as needed for a correct, readable result.
-5. Preserve unrelated formatting and content.
-    - Do not reflow, reorder, rename, or restyle sections outside the requested change.
-    - Do not run broad formatting over a document just to reduce line lengths.
-6. Review the focused diff before delivery.
-    - Check that each changed line maps to a requested fact or a necessary correction.
-    - Confirm untouched content remains intact and stale claims do not remain contradictory.
-    - Check grammar, links, list structure, and table consistency in the edited area.
+1. Read the target and enough surrounding content to understand its structure.
+2. Map requested changes to existing text.
+    - Replace outdated claims in place and add new facts near related content.
+3. Edit locally, then make a light editorial pass.
+    - Remove filler and repetition; clarify awkward wording and improve scanability when small edits help.
+    - Preserve accurate meaning and useful detail; leave clear wording alone.
+    - Prefer local replacements and a few focused lines; this is a preference, not a quota.
+    - Preserve the existing structure and format where practical; restructure only when requested or needed.
+4. Review the diff before delivery.
+    - Remove superseded claims even when that makes the diff larger.
+    - Check that changes serve the request, clarity, or correctness.
+    - Check the edited area for grammar, links, and consistent lists or tables.
 
 ## Use with plexy-markdown
 
-- Use `plexy-markdown` guidance for text you add or substantially rewrite.
-- Do not convert existing prose into bullets solely to apply that formatting style.
-- Preserve the document's established format unless the user requests a style change.
+- Apply `plexy-markdown` to added or substantially rewritten text.
+- Preserve the established format; don't reflow or convert untouched text just to apply the style.
 
 ## Examples
 
-- Before: `This repo uses Jest.`
-- New finding: the repo now uses Vitest.
-- Prefer: `This repo uses Vitest.`
-- Avoid: `Testing is done via Vitest.`
-- The direct replacement preserves the sentence and makes the changed fact obvious.
+- Fact change: `This repo uses Jest.` → `This repo uses Vitest.`
+- Prefer the direct replacement over `Testing is done via Vitest.`
 
-- Before: `Unit tests run with Jest.`
-- New finding: unit tests use Vitest, and browser tests still use Playwright.
-- Prefer: change `Jest` to `Vitest` and add a nearby sentence about Playwright.
-- Avoid: replacing the whole testing section or appending a conflicting Vitest claim.
+- New fact: change `Jest` to `Vitest` and add a nearby sentence that browser tests use Playwright.
+- Avoid replacing the whole testing section or leaving conflicting claims.
 
-- A larger rewrite is appropriate when the user explicitly requests a new structure.
-- Keep that rewrite scoped; leave unrelated sections and accurate facts alone.
+- Light edit: `This guide explains the process in a simple way.` → `This guide explains the process clearly.`
