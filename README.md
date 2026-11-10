@@ -4,35 +4,6 @@ A collection of AI agent skills compatible with [skills.sh](https://skills.sh/) 
 
 ## Available Skills
 
-### [`com-olexyn-tabdriver`](./com-olexyn-tabdriver/SKILL.md)
-
-- Guides integration of `com.olexyn:tabdriver` browser automation in Java applications.
-    - Covers configuration, a shared driver, named tabs, and session handling.
-
-### [`plexy-clean-code`](./plexy-clean-code/SKILL.md)
-
-- Relies on exceptions and stack traces instead of custom error messages.
-- Makes fields private whenever possible.
-
-### [`plexy-do-less`](./plexy-do-less/SKILL.md)
-
-- Keeps exploration, analysis, delegation, and explanation proportional to the task.
-    - Preserves necessary context and verification.
-
-### [`plexy-follow-the-rules`](./plexy-follow-the-rules/SKILL.md)
-
-- Follows explicit guidelines, user-designated references, and established project idioms.
-    - Matches implementation conventions beyond formatting, including libraries and boilerplate-reduction tools.
-
-### [`plexy-java`](./plexy-java/SKILL.md)
-
-- Defines Java conventions for imports, code style, null handling, dependencies, and line breaks.
-
-### [`plexy-kiss`](./plexy-kiss/SKILL.md)
-
-- Keeps the requested solution readable and maintainable without speculative complexity.
-    - Uses precise abstractions and meaningful `DRY` rather than minimizing lines or dependencies blindly.
-
 ### [`plexy-markdown`](./plexy-markdown/SKILL.md)
 
 Formats Markdown as tight bullets: one statement per bullet, sub-bullets for sub-statements, lines under 120 chars.
@@ -57,20 +28,14 @@ Formats Markdown as tight bullets: one statement per bullet, sub-bullets for sub
 
 - Keeps replies terse, dense, and direct without losing technical accuracy or necessary detail.
 
+### [`plexy-save`](./plexy-save/SKILL.md)
+
+- Updates the repository's `AGENTS.md` model and saves a session checkpoint under `.agents/saves/`.
+
 ### [`plexy-sheep`](./plexy-sheep/SKILL.md)
 
 - Keeps project changes native to established conventions.
     - Uses comparable precedent and asks before introducing unauthorized constructs.
-
-### [`plexy-skill-review`](./plexy-skill-review/SKILL.md)
-
-- Reviews a selected skill bundle for exposed proprietary information, credentials, and personal data.
-    - Reports redacted evidence and coverage gaps without claiming a guarantee of safety.
-
-### [`plexy-tickets`](./plexy-tickets/SKILL.md)
-
-- Turns plans into verifiable local tickets with explicit blockers and approval before writing files.
-    - Saves one Markdown file per ticket under `.agents/issues/<feature-slug>/` in the target project.
 
 ## Installation
 
@@ -78,11 +43,20 @@ Install a skill via the `skills` CLI:
 
 ```bash
 # Install to your current project
-npx skills add IO42630/skills@plexy-do-less
+npx skills add IO42630/skills@plexy-markdown
 
 # Or install globally for your agents
-npx skills add IO42630/skills@plexy-do-less -g
+npx skills add IO42630/skills@plexy-markdown -g
 ```
+
+## Evaluations
+
+- Install the pinned Promptfoo version with `./setup.sh`.
+- Set `DEEPSEEK_API_KEY` in the environment or in a root `.env` file.
+- Run `./eval.sh` to evaluate each root skill containing `SKILL.md`.
+- Each skill's `evals/result.md` records scores and links to generated outputs.
+- The runner fails on evaluation errors or failed `yes_skill` assertions; `no_skill` failures are expected.
+- Workspace-oriented cases evaluate proposed text artifacts and do not perform real file operations.
 
 ## One-off Usage (without installing)
 
